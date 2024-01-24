@@ -1,2 +1,1 @@
-# suxmoe
-a
+welcum to projek soumoe
