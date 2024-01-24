@@ -5,7 +5,7 @@ const client = new Discord.Client({ ws: { properties: { $browser: "Discord iOS" 
 const YouTube = require("simple-youtube-api");
 const ytdl = require("ytdl-core");
 require("dotenv").config();
-require("./server.js");
+//require("./server.js");
 const axios = require("axios");
 const fetch = require("node-fetch");
 const superagent = require("superagent");
