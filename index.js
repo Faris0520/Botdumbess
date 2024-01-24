@@ -2,8 +2,6 @@ const fs = require("fs");
 const { Client, Util, MessageEmbed } = require("discord.js");
 const Discord = require("discord.js");
 const client = new Discord.Client({ ws: { properties: { $browser: "Discord iOS" }} });
-const YouTube = require("simple-youtube-api");
-const ytdl = require("ytdl-core");
 require("dotenv").config();
 //require("./server.js");
 const axios = require("axios");
