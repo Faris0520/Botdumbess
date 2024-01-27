@@ -16,7 +16,7 @@ const guild = "695851369277685760";
 //-----------HANDLER Boi ------------//
 //----------------------------------//
 const bot = new Client();
-const PREFIX = process.env.PREFIX;
+const PREFIX = "h.";
 const queue = new Map();
 const chanel = ["831770333501325332", "827581906140528660"];
 
