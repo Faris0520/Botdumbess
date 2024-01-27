@@ -17,7 +17,6 @@ const guild = "695851369277685760";
 //----------------------------------//
 const bot = new Client();
 const PREFIX = process.env.PREFIX;
-const youtube = new YouTube(process.env.YTAPI_KEY);
 const queue = new Map();
 const chanel = ["831770333501325332", "827581906140528660"];
 
