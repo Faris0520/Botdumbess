@@ -8,7 +8,3 @@ app.get("/", (request, response) => {
 });
 
 app.listen(process.env.PORT);
-setInterval(() => {
-  http.get(`http://parriz.my.id/`)
-}, 25000); 
-
