@@ -9,6 +9,6 @@ app.get("/", (request, response) => {
 
 app.listen(process.env.PORT);
 setInterval(() => {
-  http.get(`https://botdumbed-5e0ad17071b2.herokuapp.com/`)
+  http.get(`https://parriz.my.id/`)
 }, 25000); 
 
