@@ -3,7 +3,7 @@ const { Client, Util, MessageEmbed } = require("discord.js");
 const Discord = require("discord.js");
 const client = new Discord.Client({ ws: { properties: { $browser: "Discord iOS" }} });
 require("dotenv").config();
-//require("./server.js");
+require("./server.js");
 const axios = require("axios");
 const fetch = require("node-fetch");
 const superagent = require("superagent");
