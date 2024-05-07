@@ -1981,13 +1981,15 @@ Sebenarnya masih bnyk, tpi *Malas* nulis. Coba2 aja, atau tanya.
     let price = await got(link2).then(res => JSON.parse(res.body));
 
     const embed = new Discord.MessageEmbed()   
-    .setAuthor(`${price.data.symbol}`)
-    .addField(`Volume`, `${price.data.intraday[0].volume}`, true)
-    .addField(`Open`, `${price.data.intraday[0].open}`, true)
-    .addField(`Now`, `${price.data.intraday[0].last}`, false)
+    .setAuthor(`${price.data.name} (${price.data.symbol})`)
+    .addField(`Volume`, `$${price.data.intraday[0].volume}`, true)
+    .addField(`Open`, `$${price.data.intraday[0].open}`, true)
+    .addField(`Close`, `$${price.data.intraday[0].close}`, true)
+    .addField(`Now`, `$${price.data.intraday[0].last}`, false)
     .setImage(link)
     .setColor('#5dbdd2')
-    .setFooter(`${price.data.intraday[0].date}`)
+    .setTimestamp()
+    .setFooter(`Data fetched from tradingview.com`)
     message.channel.send(embed);
     return;
 }
