@@ -991,7 +991,7 @@ module.exports = {afk};
         message.channel.send("Try Again!");
       }
     }
-  }
+  }/*
   if (command === "anime") {
     const Kitsu = require("kitsu.js");
     const kitsu = new Kitsu();
@@ -1065,7 +1065,7 @@ module.exports = {afk};
           );
         });
     }
-  }
+  }*/
   if (command === "gantipp") {
     if (message.author.id !== owner)
       return message.channel.send(`khusus owner! <@${owner}> `);
