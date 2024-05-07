@@ -1983,7 +1983,7 @@ Sebenarnya masih bnyk, tpi *Malas* nulis. Coba2 aja, atau tanya.
     let data = await got(link3).then(res => JSON.parse(res.body));
 
     const embed = new Discord.MessageEmbed()   
-    .setAuthor(`${data.results.ticker} (${data.results.name})`, `${data.results.branding.icon_url}`)
+    .setAuthor(`${data.results.ticker} (${data.results.name})`, `${data.results.branding.icon_url + "?apiKey=JbQ9qI1RzLjAQDDVQ9KUdfxHxiopBhpO"}`)
     .addField(`Volume`, `$${price.data.intraday[0].volume}`, true)
     .addField(`Open`, `$${price.data.intraday[0].open}`, true)
     .addField(`Close`, `$${price.data.intraday[0].close}`, true)
