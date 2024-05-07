@@ -1970,6 +1970,8 @@ Sebenarnya masih bnyk, tpi *Malas* nulis. Coba2 aja, atau tanya.
   }
  
   if (command == "stock" || command == "stok"){
+    if (!searchString) return message.channel.send('Masukkan nama stok!')
+
     let stok = `${searchString}`;
     let link = `https://api.chart-img.com/v1/tradingview/advanced-chart?key=eU0wk2N1a24X4WutKduR19QiOYs1oSvm3dDHNhUD&symbol=nasdaq:${stok}&interval=5m&style=line`;
     let link2 = `http://api.marketstack.com/v1/tickers/${stok}/intraday?access_key=891320bd915705bf7d49ca0af19abfc4`
@@ -1978,11 +1980,14 @@ Sebenarnya masih bnyk, tpi *Malas* nulis. Coba2 aja, atau tanya.
     const got = require("got");
     let price = await got(link2).then(res => JSON.parse(res.body));
 
-    const embed = new Discord.MessageEmbed()
-    .setAuthor(`${price.data.name}`, `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXpIh8aQDsxKXMrSw-nSBu1tukmgDCCi99XyoBNi33OQ&s`)
-    .setTitle(`${price.data.symbol} - $${price.data.intraday[0].last}`)
+    const embed = new Discord.MessageEmbed()   
+    .setAuthor(`${price.data.symbol}`)
+    .addField(`Volume`, `${price.data.intraday[0].volume}`, true)
+    .addField(`Open`, `${price.data.intraday[0].open}`, true)
+    .addField(`Now`, `${price.data.intraday[0].last}`, false)
     .setImage(link)
     .setColor('#5dbdd2')
+    .setFooter(`${price.data.intraday[0].date}`)
     message.channel.send(embed);
     return;
 }
