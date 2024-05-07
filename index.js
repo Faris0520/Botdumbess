@@ -1972,16 +1972,18 @@ Sebenarnya masih bnyk, tpi *Malas* nulis. Coba2 aja, atau tanya.
   if (command == "stock" || command == "stok"){
     if (!searchString) return message.channel.send('Masukkan nama stok!')
 
-    let stok = `${searchString}`;
+    let stok = `${searchString.toUpperCase()}`;
     let link = `https://api.chart-img.com/v1/tradingview/advanced-chart?key=eU0wk2N1a24X4WutKduR19QiOYs1oSvm3dDHNhUD&symbol=nasdaq:${stok}&interval=5m&style=line`;
     let link2 = `http://api.marketstack.com/v1/tickers/${stok}/intraday?access_key=891320bd915705bf7d49ca0af19abfc4`
+    let link3 = `https://api.polygon.io/v3/reference/tickers/${stok}?apiKey=JbQ9qI1RzLjAQDDVQ9KUdfxHxiopBhpO`
     
 
     const got = require("got");
     let price = await got(link2).then(res => JSON.parse(res.body));
+    let data = await got(link3).then(res => JSON.parse(res.body));
 
     const embed = new Discord.MessageEmbed()   
-    .setAuthor(`${price.data.name} (${price.data.symbol})`)
+    .setAuthor(`${data.results.ticker} (${data.results.name})`, `${data.results.branding.icon_url}`)
     .addField(`Volume`, `$${price.data.intraday[0].volume}`, true)
     .addField(`Open`, `$${price.data.intraday[0].open}`, true)
     .addField(`Close`, `$${price.data.intraday[0].close}`, true)
