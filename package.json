@@ -53,7 +53,8 @@
     "superagent": "",
     "unirest": "^0.6.0",
     "weather-js": "^2.0.0",
-    "ytdl-core": "^4.7.0"
+    "ytdl-core": "^4.7.0",
+    "openai": "^3.0.0"
   },
   "devDependencies": {
     "node": "^16.6.1"
