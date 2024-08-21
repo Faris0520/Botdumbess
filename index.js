@@ -1827,21 +1827,23 @@ const url = `https://api.xteam.xyz/trendingtwitter?APIKEY=dd06e91fdbccaa28`
     message.channel.send(Result);
   }
   if (command === "ai") {
-    if (!searchString) return message.channel.send("Masukkan prompt!")
-      try {
-    const response = await openai.createCompletion({
-      model: "text-davinci-003",
-      prompt: searchString,
-      max_tokens: 150,
-      temperature: 0.7
-    });
+    if (!searchString) return message.channel.send("Mohon berikan pertanyaan atau pesan untuk AI.");
   
-  const aiResp = response.data.choices[0].text.trim();
-message.channel.send(aiResp);
-       } catch (error) {
-        console.error("Error")
-        message.channel.send("Error bng")
-       }}
+    try {
+      const response = await openai.createCompletion({
+        model: "gpt-3.5-turbo",  // Mengganti model ke gpt-3.5-turbo
+        prompt: searchString,
+        max_tokens: 150,
+        temperature: 0.7,
+      });
+  
+      const aiResponse = response.data.choices[0].text.trim();
+      message.channel.send(aiResponse);
+    } catch (error) {
+      console.error("Error saat mengakses OpenAI API:", error);
+      message.channel.send("Maaf, terjadi kesalahan saat berkomunikasi dengan AI. Silakan coba lagi nanti.");
+    }
+  }
   if (command === "wangy") {
     if (!searchString) return message.channel.send("Masukkan nama!");
     let idk = searchString.replace(
