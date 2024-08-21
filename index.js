@@ -1877,7 +1877,7 @@ let att = new Discord.MessageAttachment(index.media.reddit_video.fallback_url, '
       model: "gpt-4o",
     });
 
-    console.log(completion.choices[0]);
+    console.log(completion.choices[0])
     message.channel.send(completion.choices[0].message.content);
   }
   if (command === "wangy") {
