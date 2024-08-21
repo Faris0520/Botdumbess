@@ -1832,7 +1832,7 @@ const url = `https://api.xteam.xyz/trendingtwitter?APIKEY=dd06e91fdbccaa28`
   const openai = new OpenAI();
 
   const completion = await openai.chat.completions.create({
-    messages: [{ role: "system", content: "You are a helpful assistant." }],
+    messages: [{ role: "user", content: `${searchString}` }],
     model: "gpt-4o",
   });
 
