@@ -1878,7 +1878,7 @@ let att = new Discord.MessageAttachment(index.media.reddit_video.fallback_url, '
     });
 
     console.log(completion.choices[0]);
-    message.channel.send(completion.choices.message.content);
+    message.channel.send(completion.choices[0].message.content);
   }
   if (command === "wangy") {
     if (!searchString) return message.channel.send("Masukkan nama!");
