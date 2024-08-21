@@ -1864,7 +1864,7 @@ let att = new Discord.MessageAttachment(index.media.reddit_video.fallback_url, '
   if (command === "ai") {
     const OpenAI = require("openai");
     const openai = new OpenAI({
-      project: process.env.OPENAI
+      apiKey: process.env.OPENAI
   });
 
     if (!searchString)
