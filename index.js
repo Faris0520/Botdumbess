@@ -1891,6 +1891,36 @@ let att = new Discord.MessageAttachment(index.media.reddit_video.fallback_url, '
       message.channel.send(responseText);
     }
   }
+  if (command === "aiturbo") {
+    const OpenAI = require("openai");
+    const openai = new OpenAI({
+      apiKey: process.env.OPENAI
+    });
+  
+    if (!searchString)
+      return message.channel.send("Mohon berikan pertanyaan atau pesan untuk AI.");
+  
+    const completion = await openai.chat.completions.create({
+      messages: [{ role: "user", content: `${searchString}` }],
+      model: "gpt-4-turbo",
+    });
+  
+    console.log(completion.choices[0]);
+    const responseText = completion.choices[0].message.content;
+  
+    // Memeriksa panjang pesan dan membaginya jika lebih dari 1999 karakter
+    if (responseText.length > 1999) {
+      // Membagi pesan menjadi potongan-potongan
+      let partLength = 1999;
+      for (let i = 0; i < responseText.length; i += partLength) {
+        const part = responseText.substring(i, i + partLength);
+        message.channel.send(part);
+      }
+    } else {
+      // Mengirim pesan jika kurang dari atau sama dengan 1999 karakter
+      message.channel.send(responseText);
+    }
+  }
   if (command === "wangy") {
     if (!searchString) return message.channel.send("Masukkan nama!");
     let idk = searchString.replace(
