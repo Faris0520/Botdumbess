@@ -1937,7 +1937,9 @@ let att = new Discord.MessageAttachment(index.media.reddit_video.fallback_url, '
       size: "1024x1024",
     });
 
-    message.channel.send(`${response.data[0].url}`)
+    const image = new Discord.MessageAttachment(response.output[0].url, `${searchString}.png`);
+    message.channel.send(image);
+    
   }
   if (command === "wangy") {
     if (!searchString) return message.channel.send("Masukkan nama!");
