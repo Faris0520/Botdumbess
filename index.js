@@ -1921,6 +1921,25 @@ let att = new Discord.MessageAttachment(index.media.reddit_video.fallback_url, '
       message.channel.send(responseText);
     }
   }
+  if (command === "aimage") {
+    const OpenAI = require("openai");
+    const openai = new OpenAI({
+      apiKey: process.env.OPENAI
+    });
+  
+    if (!searchString)
+      return message.channel.send("Mohon berikan pertanyaan atau pesan untuk AI.");
+  
+    const response = await openai.images.generate(
+      model="dall-e-3",
+      prompt=`${searchString}`,
+      size="1024x1024",
+      quality="standard",
+      n=1,
+    );
+
+    message.channel.send(`${response.data[0].url}`)
+  }
   if (command === "wangy") {
     if (!searchString) return message.channel.send("Masukkan nama!");
     let idk = searchString.replace(
