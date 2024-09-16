@@ -1930,13 +1930,12 @@ let att = new Discord.MessageAttachment(index.media.reddit_video.fallback_url, '
     if (!searchString)
       return message.channel.send("Mohon berikan pertanyaan atau pesan untuk AI.");
   
-    const response = await openai.images.generate(
-      model="dall-e-3",
-      prompt=`${searchString}`,
-      size="1024x1024",
-      quality="standard",
-      n=1,
-    );
+    const response = await openai.images.generate({
+      model: "dall-e-3",
+      prompt: `${searchString}`,
+      n: 1,
+      size: "1024x1024",
+    });
 
     message.channel.send(`${response.data[0].url}`)
   }
