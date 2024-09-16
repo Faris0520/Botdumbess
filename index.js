@@ -1937,7 +1937,7 @@ let att = new Discord.MessageAttachment(index.media.reddit_video.fallback_url, '
       size: "1024x1024",
     });
 
-    const image = new Discord.MessageAttachment(response.output[0].url, `${searchString}.png`);
+    const image = new Discord.MessageAttachment(`${response.data[0].url}`, `${searchString}.png`);
     message.channel.send(image);
     
   }
