@@ -1922,7 +1922,7 @@ let att = new Discord.MessageAttachment(index.media.reddit_video.fallback_url, '
     }
   }
   if (command === "aimage") {
-    const OpenAI = require("openai");
+    /*const OpenAI = require("openai");
     const openai = new OpenAI({
       apiKey: process.env.OPENAI
     });
@@ -1939,7 +1939,8 @@ let att = new Discord.MessageAttachment(index.media.reddit_video.fallback_url, '
 
     const image = new Discord.MessageAttachment(`${response.data[0].url}`, `${searchString}.png`);
     message.channel.send(image);
-    
+    */
+    message.channel.send("Command ini telah dinonaktifkan.");
   }
   if (command === "wangy") {
     if (!searchString) return message.channel.send("Masukkan nama!");
