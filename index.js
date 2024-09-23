@@ -1946,7 +1946,7 @@ let att = new Discord.MessageAttachment(index.media.reddit_video.fallback_url, '
       "updated_at": profileResponse.updated_at}
 
     const completion = await openai.chat.completions.create({
-      messages: [{ role: "user", content: `berikan roasting singkat dengan kejam, menyindir, serta menyakitkan dalam bahasa gaul untuk profile github berikut : ${searchString}. Berikut detailnya: "${JSON.stringify(data)}"` }],
+      messages: [{ role: "user", content: `berikan roasting singkat dengan kejam, menyindir, serta menyakitkan dalam bahasa gaul untuk profile github berikut : ${searchString}. Berikut detailnya: "${JSON.stringify(data)}". (berikan response dalam bahasa indonesia dan jangan berikan pujian atau saran)` }],
       model: "gpt-4o",
     });
   
