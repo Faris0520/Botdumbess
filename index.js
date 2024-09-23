@@ -1935,26 +1935,15 @@ let att = new Discord.MessageAttachment(index.media.reddit_video.fallback_url, '
       return message.channel.send("Masukkan username github.");
   
     data = {
-      "name": profileResponse.data.name,
-      "bio": profileResponse.data.bio,
-      "company": profileResponse.data.company,
-      "location": profileResponse.data.location,
-      "followers": profileResponse.data.followers,
-      "following": profileResponse.data.following,
-      "public_repos": profileResponse.data.public_repos,
-      "created_at": profileResponse.data.created_at,
-      "updated_at": profileResponse.data.updated_at,
-      "repositories": repoResponse.data.map(repo => ({
-          "name": repo.name,
-          "description": repo.description,
-          "language": repo.language,
-          "stargazers_count": repo.stargazers_count,
-          "open_issues_count": repo.open_issues_count,
-          "license": repo.license,
-          "fork": repo.fork,
-          "created_at": repo.created_at,
-          "updated_at": repo.updated_at
-      })).slice(0, 50)}
+      "name": profileResponse.name,
+      "bio": profileResponse.bio,
+      "company": profileResponse.company,
+      "location": profileResponse.location,
+      "followers": profileResponse.followers,
+      "following": profileResponse.following,
+      "public_repos": profileResponse.public_repos,
+      "created_at": profileResponse.created_at,
+      "updated_at": profileResponse.updated_at}
 
     const completion = await openai.chat.completions.create({
       messages: [{ role: "user", content: `berikan roasting singkat dengan kejam, menyindir, serta menyakitkan dalam bahasa gaul untuk profile github berikut : ${searchString}. Berikut detailnya: "${JSON.stringify(data)}"` }],
