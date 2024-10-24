@@ -431,64 +431,6 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
     message.channel.send("Maintain!");
   }
 
-  if (command === "testb") {
-    let button = new bot.MessageButton()
-      .setStyle("blurple") //default: blurple
-      .setLabel("hi") //default: NO_LABEL_PROVIDED
-      .setID("1"); //note: if you use the style "url" you must provide url using .setURL('https://example.com')
-    //disables the button | default: false
-    message.channel.send("testing button", button);
-
-    client.on("clickButton", async (button) => {
-      button.defer();
-      message.channel.send(`Hello, ${button.clicker.user.tag}`);
-    });
-  }
-
-  if (command === "gplay" || command === "googleplay" || command === "gp") {
-    const url = `https://api-gplay.azharimm.tk/apps?q=${searchString}`;
-    const got = require("got");
-    let data = await got(url).then((res) => JSON.parse(res.body));
-    var id = data.data.results[0].appId;
-
-    const get = require("got");
-    let web = `https://api-gplay.azharimm.tk/apps/${id}`;
-    var hasil = await get(web).then((res) => JSON.parse(res.body));
-
-    let s = hasil.data.results;
-    let desc = s.description;
-    if (desc.length > 300) desc = desc.substring(0, 300);
-    let em = new MessageEmbed()
-      .setTitle(s.title)
-      .setURL(s.url)
-      .setThumbnail(s.icon)
-      .setColor("BLUE")
-      .setAuthor(
-        `Google Play Store`,
-        `https://www.freepnglogos.com/uploads/google-play-png-logo/google-changes-play-store-png-logo-0.png`
-      )
-      .setDescription(`${s.summary}\n\n${desc} ...`)
-      .addField(`Installs`, s.installs, true)
-      .addField(`Score`, s.scoreText, true)
-      .addField(`Price`, s.priceText, true)
-      .addField(`Genre`, s.genre, false)
-      .setImage(s.screenshots[0]);
-    message.channel.send(em);
-  }
-  if ((command === "ytcomment") | (command === "ytc")) {
-    const got = require("got");
-    const user = message.mentions.users.first() || message.author;
-    let link = `https://some-random-api.ml/canvas/youtube-comment?username=${user.username.replace(
-      " ",
-      "%20"
-    )}&comment=${searchString.replace(" ", "%20")}&avatar=${user.avatarURL({
-      size: 1024,
-      dynamic: "JPG",
-    })}`;
-    let att = new Discord.MessageAttachment(link, "ytc.jpg");
-    message.channel.send(att);
-    message.channel.send(link);
-  }
   if (command === "clear") {
     if (message.author.id !== owner)
       return message.channel.send(`<@${ownerID}>`);
