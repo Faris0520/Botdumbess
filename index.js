@@ -247,7 +247,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
       });
   }
 
-  if (message.content === "link server") {
+  if (message.content === "link server" && message.guild.id === ) {
     message.channel.send("discord.gg/PmcWWpGTR6");
   }
   if (message.content === "menkrep") {
@@ -349,20 +349,6 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
     message.channel.send("gtw");
   }
 
-  /*  if (command === "afk"){
-    const { Collection } = require("discord.js");
-const afk = new Collection();
-module.exports = {afk};
-    
-    const reason = args.join(" ") || "No reason given";
-
-        if(message.content.includes(`@`)) return message.channel.send("ao so a6");
-
-        afk.set(message.author.id, [Date.now(), reason]);
-
-        message.reply(`${message.author.username} I have set your afk : ${reason}`)
-  }*/
-
   //  status
 
   if (command == "g" && message.author.id === owner) {
@@ -422,123 +408,6 @@ module.exports = {afk};
   }
 
   /////////////////////////////////////
-
-  if ((command === "w") | (command === "waifu")) {
-    const adios = require("axios").default;
-
-    var options = {
-      method: "GET",
-      url: "https://animu.p.rapidapi.com/waifu",
-      headers: {
-        auth: "31186a66bedaf8cec5709cb65daedf71806890645fe8",
-        "x-rapidapi-key": "8c4189ecbamsha08a1ccd63b8c39p1a40b3jsnd160b540e4cf",
-        "x-rapidapi-host": "animu.p.rapidapi.com",
-      },
-    };
-
-    axios
-      .request(options)
-      .then(function (response) {
-        console.log(response.data);
-        var data = response.data;
-        var p = new MessageEmbed()
-          .setColor("BLUE")
-          .setImage(data.images[0])
-          .setAuthor(data.names.en)
-          .setDescription(
-            `${data.names.jp}\n${data.from.name}\n\n---------------\n:star: : ${data.statistics.fav}\n:heart: : ${data.statistics.love}\n:arrow_up: : ${data.statistics.upvote}\n:arrow_down: : ${data.statistics.downvote}`
-          );
-        message.channel.send(p);
-      })
-      .catch(function (error) {
-        console.error(error);
-        message.channel.send(error);
-      });
-  }
-  if (command === "fact") {
-    //  var axios = require("axios").default;
-    var options = {
-      method: "GET",
-      url: "https://animu.p.rapidapi.com/fact",
-      headers: {
-        auth: "31186a66bedaf8cec5709cb65daedf71806890645fe8",
-        "x-rapidapi-key": "8c4189ecbamsha08a1ccd63b8c39p1a40b3jsnd160b540e4cf",
-        "x-rapidapi-host": "animu.p.rapidapi.com",
-      },
-    };
-    axios
-      .request(options)
-      .then(function (response) {
-        let data = response.data;
-        p = new MessageEmbed()
-          .setAuthor(
-            "Anime Fact",
-            `https://cdn.discordapp.com/emojis/825083895057219624.png?v=1`
-          )
-          .setColor("BLUE")
-          .setDescription(data.fact)
-          .setFooter(`${message.author.username} karna lo wibu`);
-        message.channel.send(p);
-      })
-      .catch(function (error) {
-        message.channel.send(`Error ngab. [h.fact] <@${owner}>`);
-        console.log(error);
-      });
-  }
-  if (command === "wink") {
-    const axios = require("axios");
-    const url = `https://some-random-api.ml/animu/wink`;
-    const got = require("got");
-    let data = await got(url).then((res) => JSON.parse(res.body));
-    var p = new MessageEmbed()
-      .setImage(data.link)
-      .setColor("BLUE")
-      .setFooter("karna lo wibu");
-    message.channel.send(p);
-  }
-  if (command === "roblox") {
-    const roblox = require("noblox.js");
-    let username = searchString;
-    if (username) {
-      roblox
-        .getIdFromUsername(username)
-        .then((id) => {
-          if (id) {
-            roblox.getPlayerInfo(parseInt(id)).then(function (info) {
-              let embed = new MessageEmbed()
-                .setTimestamp()
-                .setAuthor(
-                  `Player information`,
-                  `https://cdn.discordapp.com/attachments/734360066202796104/734390659842310154/unnamed.png`
-                )
-                .setThumbnail(
-                  `https://www.roblox.com/bust-thumbnail/image?userId=${id}&width=420&height=420&format=png`
-                )
-                .setDescription(
-                  `🌸 **Username**
-╰\`${info.username || "None"}\`
-🌸 **ID**
-╰\`${id || "None"}\`
-🌸 **Age**
-╰\`${info.age + " days" || "None"}\`
-🌸 **Profile**
-╰[\`${username}\`](https://roblox.com/users/${id}/profile)`
-                )
-                .setFooter(`Noblox.js`)
-                .setColor("BLUE");
-              message.channel.send({
-                embed,
-              });
-            });
-          }
-        })
-        .catch(function (err) {
-          message.channel.send("⚠️ | ไม่พบผู้เล่นค่ะกรุณาสะกดให้ถูกด้วยนะคะ");
-        });
-    } else {
-      message.channel.send(":x: | กรุณาใส่ชื่อในเกมส์ด้วยค่ะ");
-    }
-  }
   if (command === "wasted") {
     const got = require("got");
     const user = message.mentions.users.first() || message.author;
@@ -547,7 +416,7 @@ module.exports = {afk};
     )}`;
     let attachmnet = new Discord.MessageAttachment(
       `https://some-random-api.ml/canvas/wasted/?avatar=${message.author.avatarURL(
-        { format: "png" }
+        { format: "gif" }
       )}`,
       "triggered.gif"
     );
