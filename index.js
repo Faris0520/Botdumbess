@@ -247,7 +247,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
       });
   }
 
-  if (message.content === "link server" && message.guild.id === ) {
+  if (message.content === "link server" && message.guild.id === "875388139148017715") {
     message.channel.send("discord.gg/PmcWWpGTR6");
   }
   if (message.content === "menkrep") {
