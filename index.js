@@ -408,29 +408,6 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
   }
 
   /////////////////////////////////////
-  if (command === "wasted") {
-    const got = require("got");
-    const user = message.mentions.users.first() || message.author;
-    const url = `https://some-random-api.ml/canvas/wasted?avatar=${user.avatarURL(
-      { size: 1024, dynamic: "JPG" }
-    )}`;
-    let attachmnet = new Discord.MessageAttachment(
-      `https://some-random-api.ml/canvas/wasted/?avatar=${message.author.avatarURL(
-        { format: "gif" }
-      )}`,
-      "triggered.gif"
-    );
-    return message.channel.send(attachmnet);
-    /* let response, data;
-        try {
-            response = await axios.get(url)
-            data = response.data
-        } catch (e) {
-            return message.channel.send(`Error ngab`)
-        }*/
-    message.channel.send("Maintain!");
-  }
-
   if (command === "clear") {
     if (message.author.id !== owner)
       return message.channel.send(`<@${ownerID}>`);
@@ -505,8 +482,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
     const embed = await message.channel.send(umser);
     if (message.member.presence.activities[0].name === "Spotify") {
       embed.react("<:r_spotify:843373295046885386>");
-    }
-    const spotify = new MessageEmbed()
+      const spotify = new MessageEmbed()
       .setAuthor("Listening to Spotify")
       .setColor(`GREEN`)
       .setThumbnail(person.presence.activities[0].assets.largeImageURL())
@@ -514,6 +490,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
         `${person.presence.activities[0].details}\nby ${person.presence.activities[0].state}\n**${person.presence.activities[0].assets.largeText}**`
       );
     message.channel.send(spotify);
+    }
 
     const filter = (reaction, user) => {
       return (
@@ -612,7 +589,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
   if (command === "respect" || command === "f") {
     if (!searchString) {
       let p = new MessageEmbed()
-        .setDescription("Press <a:r_pressf:843389937139449856> to pay respect.")
+        .setDescription("Tekan <a:r_pressf:843389937139449856> untuk memberi respect.")
         .setColor("GREEN");
       return message.channel.send(p).then(async (msg) => {
         await msg.react("<a:r_pressf:843389937139449856>");
@@ -625,27 +602,27 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
 
           if (!botReact)
             message.channel.send(
-              `**${userReact.user.username}** has paid their respect.`
+              `**${userReact.user.username}** memberi respect.`
             );
 
           return reaction.emoji.id === "843389937139449856";
         };
 
-        const reactions = msg
-          .awaitReactions(filter, { time: 30000 })
-          .then((collected) =>
-            message.channel.send(
-              `**${msg.reactions.cache.get(
-                "<a:r_pressf:843389937139449856>"
-              )}** person has paid their respect.`
-            )
-          );
+        msg.awaitReactions({ filter, time: 30000 })
+        .then((collected) => {
+          const reaction = collected.get("843389937139449856");
+          const count = reaction ? reaction.count - 1 : 0; // Subtract 1 to exclude the bot's own reaction
+          message.channel.send(`**${count}** orang telah memberi respect 🫡`);
+        })
+        .catch((error) => {
+          console.error('Failed to collect reactions:', error);
+        });
       });
     } else {
       let reason = args.join(" ");
       let p = new MessageEmbed()
         .setDescription(
-          `Press <a:r_pressf:843389937139449856> to pay respect to **${searchString}**`
+          `Tekan <a:r_pressf:843389937139449856> untuk memberi respect ke **${searchString}**`
         )
         .setColor("GREEN");
       return message.channel.send(p).then(async (msg) => {
@@ -659,24 +636,26 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
 
           if (!botReact)
             message.channel.send(
-              `**${userReact.user.username}** has paid their respect.`
+              `**${userReact.user.username}** memberi respect.`
             );
 
           return reaction.emoji.id === "843389937139449856";
         };
 
         const reactions = msg
-          .awaitReactions(filter, { time: 60000 })
-          .then((collected) =>
-            message.channel.send(
-              `**${
-                msg.reactions.cache.get("<a:r_pressf:843389937139449856>").count
-              }** person paid their respect to **${searchString}**`
-            )
+        .awaitReactions(filter, { time: 60000 })
+        .then((collected) => {
+          const reaction = msg.reactions.cache.get("843389937139449856");
+          const count = reaction ? reaction.count - 1 : 0; // Subtract 1 to exclude the bot's own reaction
+          message.channel.send(
+            `**${count}** telah memberi respect ke **${searchString}** 🫡`
           );
-      });
-    }
-  }
+        })
+        .catch((error) => {
+          console.error('Failed to collect reactions:', error);
+        });
+    });
+  }}
   if (command == "gempa") {
     const url = `https://cuaca-gempa-rest-api.vercel.app/quake`;
     const got = require("got");
@@ -775,7 +754,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
     if (ping > 500) p = "MF >:";
     if (ping < 500) p = "Nice! <:ndaktau:831494322901352498>";
     message.channel.send(
-      `:mega: *${repl[result]}* - My ping: **${ping}** ms (${p}) ~ Repl.it smc`
+      `:mega: *${repl[result]}* - My ping: **${ping}** ms (${p})`
     );
   }
 
@@ -931,7 +910,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
     let dat = await got(url).then((res) => JSON.parse(res.body));
     message.channel.send(dat.results[r].urls.regular);
   }
-  if (command === "ss") {
+/*  if (command === "ss") {
     if (!searchString) return message.channel.send("Masukkan url!");
     const axios = require("axios");
     const url = `https://shot.screenshotapi.net/screenshot?&url=${searchString}&fresh=true&output=json&file_type=png&wait_for_event=load`;
@@ -944,24 +923,26 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
       .setFooter("Web Screenshot");
     message.channel.send(w);
   }
+*/    
   if (command === "adzan") {
     let txt = args.join(" ");
-    if (!args[0])
+    if (!searchString)
       return message.channel.send(
         `\`.adzan <city>\` (Hanya tersedia kota" di indonesia. Kota negara lain tdk tersedia)`
       );
+    let nama = searchString.charAt(0).toUpperCase() + string.slice(1).toLowerCase()
     const url = `http://api.aladhan.com/v1/timingsByCity?city=${txt}&country=Indonesia&method=8`;
     const got = require("got");
     let data = await got(url).then((res) => JSON.parse(res.body));
     var hmm = new MessageEmbed()
-      .setAuthor(`Adzan Prayer Time | ${searchString}`)
+      .setAuthor(`Adzan Prayer Time | ${nama}`)
       .setDescription(`Today`)
       .addField(`Subuh`, data.data.timings.Fajr, false)
       .addField(`Dzuhur`, data.data.timings.Dhuhr, false)
       .addField(`Ashar`, data.data.timings.Asr, true)
-      .addField(`Magrib`, data.data.timings.Maghrib, false)
+      .addField(`Magrib`, data.data.timings.Maghrib, true)
       .addField(`Isha`, data.data.timings.Isha, true)
-      .setFooter(`${searchString}, Indonesia`, message.author.avatarURL)
+      .setFooter(`${nama}, Indonesia`, message.author.avatarURL)
       .setTimestamp()
       .setColor(`BLUE`);
     message.channel.send(hmm);
@@ -978,24 +959,11 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
     let data = await got(url).then((res) => JSON.parse(res.body));
 
     try {
-      /*embed = new MessageEmbed()
-        .setTitle(`@${data.result.username}`)
-        .setDescription(`${data.result.caption}\n\n _**sedang mengirim video**..._`)
-      message.channel.send(embed)
-      
-let att = new Discord.MessageAttachment(index.media.reddit_video.fallback_url, 'reddit.mp4')
-      message.channel.send(`${title}`, att)*/
       let ttc = new Discord.MessageAttachment(data.result[0], `instagram.mp4`);
       let ttc2 = new Discord.MessageAttachment(data.result[1], `instagram.mp4`);
       let ttc3 = new Discord.MessageAttachment(data.result[2], `instagram.mp4`);
       let ttc4 = new Discord.MessageAttachment(data.result[3], `instagram.mp4`);
       let ttc5 = new Discord.MessageAttachment(data.result[4], `instagram.mp4`);
-
-      /*message.channel.send(`${args[2]}`, ttc)
-      message.channel.send(ttc2)
-      message.channel.send(ttc3)
-      message.channel.send(ttc4)
-      message.channel.send(ttc5)*/
 
       const member = message.author;
       if (!member) return message.reply("error unexpected");
@@ -1009,7 +977,7 @@ let att = new Discord.MessageAttachment(index.media.reddit_video.fallback_url, '
           webhook.send(`${args[2] || "  "}`, ttc);
           setTimeout(() => {
             webhook.delete();
-          }, 600000);
+          }, 600000); 
         });
     } catch (e) {
       message.channel.send(`Error, coba lagi!. ||<@${owner}>||`);
@@ -1052,14 +1020,6 @@ let att = new Discord.MessageAttachment(index.media.reddit_video.fallback_url, '
     let data = await got(url).then((res) => JSON.parse(res.body));
 
     message.channel.send(`Today: ${data.result.today}`);
-    /* message.channel.send(`\`\`\`json\n{
-    "status": ${data.status},
-    "message": "${data.message}",
-    "result": {
-        "requests": ${data.result.requests},
-        "today": ${data.result.today}
-    }
-}\`\`\` `)*/
   }
   if (command === "api2") {
     const url = `https://api.lolhuman.xyz/api/checkapikey?apikey=854755d0039999bbaeee450c`;
@@ -1097,14 +1057,11 @@ let att = new Discord.MessageAttachment(index.media.reddit_video.fallback_url, '
       .setImage(`${data.data[r].thumbs.large}`)
       .setFooter(`gbt`);
     message.channel.send(embed);
+    if (data.meta.total === 0){
+      message.channel.send("Wallpaper tidak ditemukan!\n-#Source: Wallhaven");
+    }
   }
-  if (command === "trending" || command === "trendtwit") {
-    const url = `https://api.xteam.xyz/trendingtwitter?APIKEY=dd06e91fdbccaa28`;
-    const got = require("got");
-    let data = await got(url).then((res) => JSON.parse(res.body));
-    let p = new MessageEmbed();
-  }
-  if (command === "morse" || searchString[0] === "encode") {
+  if (command === "morsee" || searchString[0] === "encode") {
     if (!searchString[1])
       return message.channel.send(
         "Mengubah Teks ke Kode Morse.\nKetik `h.morsee [Teks]` tanpa `[]`."
@@ -1140,9 +1097,8 @@ let att = new Discord.MessageAttachment(index.media.reddit_video.fallback_url, '
   }
   if (command === "project") {
     message.channel.send(
-      "`https://glitch.com/edit/#!/soumoe` atau `https://replit.com/join/svdcnbtjdt-faris0520`"
+      "https://github.com/faris0520/soumoe jangan lupa star ya!"
     );
-    message.channel.send(`<@${owner}> | <@${message.author.id}>`);
   }
   if (command === "say" && message.author.id == owner) {
     message.delete({ timeout: 100 });
@@ -1191,12 +1147,7 @@ let att = new Discord.MessageAttachment(index.media.reddit_video.fallback_url, '
     const got = require("got");
     let data = await got(url).then((res) => JSON.parse(res.body));
   }
-  if (command === "smug") {
-    const { Random } = require("something-random-on-discord");
-    const random = new Random();
-    let data = await random.getAnimeImgURL("smug");
-    message.channel.send(data);
-  }
+
   /*
   if (command == "redid" || command === "reddit") {
     const url = `https://www.reddit.com/r/${searchString}.json`
@@ -1330,7 +1281,7 @@ let att = new Discord.MessageAttachment(index.media.reddit_video.fallback_url, '
       message.channel.send(`Created new emoji with name ${emoji.name}!`);
     });
   }
-  if (command === "t") {
+  if (command === "id") {
     const target = message.mentions.members.first().user.id;
     if (!target) return message.channel.send("Unkown member");
 
@@ -1394,23 +1345,6 @@ let att = new Discord.MessageAttachment(index.media.reddit_video.fallback_url, '
       })
       .catch(console.error);
   }
-  if (command === "1cak" || command === "onecak") {
-    //const url = `https://onecak.azurewebsites.net/?shuffle=1`
-    const url = `http://api-1cak.herokuapp.com/random`;
-    const got = require("got");
-    let data = await got(url).then((res) => JSON.parse(res.body));
-    let embed = new MessageEmbed();
-    embed.setTitle(data.title);
-    embed.setImage(data.img);
-    embed.setColor("WHITE");
-    embed.setURL(data.url);
-    if (data.nsfw === true) {
-      embed.setDescription("**NSFW**");
-    }
-
-    let atac = new Discord.MessageAttachment(data.img, "onecak.jpg");
-    message.channel.send(atac);
-  }
   if (command === "servers") {
     let p = new MessageEmbed()
       .setColor("GOLD")
@@ -1421,34 +1355,6 @@ let att = new Discord.MessageAttachment(index.media.reddit_video.fallback_url, '
       .setTimestamp()
       .setFooter(`Noob bot`);
     message.channel.send(p).catch(console.error);
-  }
-  if (command === "wiki") {
-    if (!searchString) return message.channel.send("mau cari ap ngab?");
-    let web = `https://mhankbarbar.herokuapp.com/api/wiki?q=${searchString}`;
-    const got = require("got");
-    let data = await got(web).then((res) => JSON.parse(res.body));
-
-    if (data.status === false) {
-      message.channel.send(
-        "[\u2757] Yang anda cari tidak bisa saya temukan di wikipedia!"
-      );
-    }
-    if (data.status === 200) {
-      let w = new MessageEmbed()
-        .setAuthor(
-          "Wikipedia",
-          "https://cdn.discordapp.com/attachments/831770333501325332/884080848159277126/wikipedia_logo_icon_181367.png"
-        )
-        .setTitle(`${searchString}`)
-        .setColor("WHITE")
-        .setDescription(
-          //  data.query.search[0].snippet.replace('<span class="searchmatch">', " ")
-          data.result
-        )
-        .setFooter("https://wikipedia.org");
-
-      message.channel.send(w);
-    }
   }
   if (command === "kbbi") {
     if (!searchString) return message.channel.send("mau cari ap ngab?");
@@ -1702,36 +1608,6 @@ let att = new Discord.MessageAttachment(index.media.reddit_video.fallback_url, '
       message.channel.send(responseText);
     }
   }
-  if (command === "aiturbo") {
-    const OpenAI = require("openai");
-    const openai = new OpenAI({
-      apiKey: process.env.OPENAI
-    });
-  
-    if (!searchString)
-      return message.channel.send("Mohon berikan pertanyaan atau pesan untuk AI.");
-  
-    const completion = await openai.chat.completions.create({
-      messages: [{ role: "user", content: `${searchString}` }],
-      model: "gpt-4-turbo",
-    });
-  
-    console.log(completion.choices[0]);
-    const responseText = completion.choices[0].message.content;
-  
-    // Memeriksa panjang pesan dan membaginya jika lebih dari 1999 karakter
-    if (responseText.length > 1999) {
-      // Membagi pesan menjadi potongan-potongan
-      let partLength = 1999;
-      for (let i = 0; i < responseText.length; i += partLength) {
-        const part = responseText.substring(i, i + partLength);
-        message.channel.send(part);
-      }
-    } else {
-      // Mengirim pesan jika kurang dari atau sama dengan 1999 karakter
-      message.channel.send(responseText);
-    }
-  }
   if (command === "roast"){
     const OpenAI = require("openai");
     const openai = new OpenAI({
@@ -1857,7 +1733,7 @@ let att = new Discord.MessageAttachment(index.media.reddit_video.fallback_url, '
     }
   }
 
-  if (command === "tk" || command === "daily") {
+/*  if (command === "tk" || command === "daily") {
     message.delete();
     const url = `https://cinnabar.icaksh.my.id/public/daily/tawiki`;
     const got = require("got");
@@ -1867,6 +1743,7 @@ let att = new Discord.MessageAttachment(index.media.reddit_video.fallback_url, '
       `## Tahukah Kamu\n\n${data.data.info[r].tahukah_anda}`
     );
   }
+    */
   //------------ M U S I C . C O M M A N D S -----------------//
   if (command === "help") {
     const helpembed = new MessageEmbed()
@@ -1961,7 +1838,7 @@ Sebenarnya masih bnyk, tpi *Malas* nulis. Coba2 aja, atau tanya.
     message.channel.send(p);
   }
 
-  if (command == "stock" || command == "stok") {
+  if (command == "stock" || command == "stok" || command == "saham") {
     if (!searchString) return message.channel.send("Masukkan nama stok!");
 
     let stok = `${searchString.toUpperCase()}`;
@@ -2054,12 +1931,7 @@ Sebenarnya masih bnyk, tpi *Malas* nulis. Coba2 aja, atau tanya.
       `\`\`\`json\nSearch Result for ${dat.query}\n------------------\nCountry    : ${dat.country} (${dat.countryCode})\nRegion   : ${dat.regionName} (${dat.region})\nCity : ${dat.city}\nLatitude : ${dat.lat}\nLongitude : ${dat.lon}\nTimezone : ${dat.timezone}\nISP : ${dat.isp}\nOrganization : ${dat.org}\nAS : ${dat.as}\n------------------\n\`\`\``
     );
   }
-  if (message.content === "iam") {
-    message.channel.send("<@470195472158425110>");
-    message.channel.send("<@470195472158425110>");
-    message.channel.send("<@470195472158425110>");
-  }
-  if (command === "lyrics" || command === "l") {
+/*  if (command === "lyrics" || command === "l") {
     var api = `https://some-random-api.ml/lyrics?title=${searchString}`;
     let response, data;
     try {
@@ -2079,9 +1951,7 @@ Sebenarnya masih bnyk, tpi *Malas* nulis. Coba2 aja, atau tanya.
       `Kalo g muncul, mungkin lirikny lbih dri 2000kata.\nCoba ketik \`h.lyricst [Lagu]\`. Mungkin bisa.`
     );
   }
-  if (command === "google" || command === "gug") {
-  }
-
+*/
   if (command === "r" || command === "recent") {
     if (message.guild.id === 875388139148017715)
       return message.channel.send("khusus server gamew");
@@ -2109,7 +1979,7 @@ Sebenarnya masih bnyk, tpi *Malas* nulis. Coba2 aja, atau tanya.
         `_**Recent Tracks**_\n**1. ${data.track[0].name} - ${data.track[0].artist["#text"]}**\n  ${data.track[0].album["#text"]}\n**2. ${data.track[1].name} - ${data.track[1].artist["#text"]}**\n  ${data.track[1].album["#text"]}\n**3. ${data.track[2].name} - ${data.track[2].artist["#text"]}**\n  ${data.track[2].album["#text"]}\n**4. ${data.track[3].name} - ${data.track[3].artist["#text"]}**\n  ${data.track[3].album["#text"]}\n**5. ${data.track[4].name} - ${data.track[4].artist["#text"]}**\n  ${data.track[4].album["#text"]}`
       );
   }
-  if (command === "fb") {
+/*  if (command === "fb") {
     if (!searchString)
       return message.channel.send("masukan link fb (Video Only!)");
     const got = require("got");
@@ -2136,7 +2006,7 @@ Sebenarnya masih bnyk, tpi *Malas* nulis. Coba2 aja, atau tanya.
       message.channel.send(`${json.data[0].url}`);
     });
   }
-
+*/
   if (command === "play" || command === "p") {
     const voiceChannel = message.member.voice.channel;
     if (!voiceChannel)
