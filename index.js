@@ -938,7 +938,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
       .setAuthor(`Adzan Prayer Time | ${nama}`)
       .setDescription(`Today`)
       .addField(`Subuh`, data.data.timings.Fajr, false)
-      .addField(`Dzuhur`, data.data.timings.Dhuhr, false)
+      .addField(`Dzuhur`, data.data.timings.Dhuhr, true)
       .addField(`Ashar`, data.data.timings.Asr, true)
       .addField(`Magrib`, data.data.timings.Maghrib, true)
       .addField(`Isha`, data.data.timings.Isha, true)
