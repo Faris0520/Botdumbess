@@ -8,81 +8,29 @@ require("dotenv").config();
 require("./server.js");
 const axios = require("axios");
 const fetch = require("node-fetch");
-const superagent = require("superagent");
 const morse = require("morse-node").create("ITU");
 let owner = "695817459206324265";
 const dF = require("dateformat");
 var now = new Date();
 let nw = dF(now, "DD-MM-YYYY");
-const guild = "695851369277685760";
-const { Configuration, OpenAIApi } = require("openai");
 
 //-----------HANDLER Boi ------------//
 //----------------------------------//
 const bot = new Client();
 const PREFIX = "h.";
 const queue = new Map();
-const chanel = ["831770333501325332", "827581906140528660"];
 
 bot.on("warn", console.warn);
 bot.on("error", console.error);
-/*const getapp = guild => {
-  const app = bot.api.applications(bot.user.id);
-  if (guild) {
-    app.guilds(guild);
-  }
-  return app;
-};*/
 client.on("ready", async () => {
-  /*client.api.applications(client.user.id).guilds("875388139148017715").commands.post({
-        data: {
-            name: "ping",
-            description: "ping pong cing cong"
-            // possible options here e.g. options: [{...}]
-        }
-    });
-
-
-    client.ws.on('INTERACTION_CREATE', async interaction => {
-        const command = interaction.data.name.toLowerCase();
-        const args = interaction.data.options;
-
-        if (command === 'hello'){ 
-            // here you could do anything. in this sample
-            // i reply with an api interaction
-            client.api.interactions(interaction.id, interaction.token).callback.post({
-                data: {
-                    type: 4,
-                    data: {
-                        content: `ap iyh`
-                    }
-                }
-            })
-        }
-    });*/
   console.log(`[READY] ${client.user.tag} has been successfully booted up!`);
-  /* bot.user.setPresence({
-        status: 'mobile',
-        activity: {
-            name: "How to make slash command",
-            type: "STREAMING",
-            URL: "https://www.twitch.tv/chillhopmusic"
-        }
-    })})*/
   let setatus = [
     `in ${client.guilds.cache.size} servers`,
     `on ${client.channels.cache.size} channels`,
-    `with ${client.users.cache.size} dumbass`,
-    `Mobile Legends`,
-    `ROBLOX`,
-    `GitHub`,
-    `with you`,
-    `nhentai`,
-    `message logger was released!, now i can see ur chad`,
+    `with ${client.users.cache.size} users`,
   ];
   setInterval(() => {
     let index = Math.floor(Math.random() * (setatus.length - 1) + 1);
-    //${db.get(`status`)}
     client.user.setActivity(setatus[index], {
       type: "STREAMING",
       URL: "https://www.twitch.tv/chillhopmusic",
@@ -107,69 +55,9 @@ bot.on("voiceStateUpdate", (mold, mnew) => {
   }
 });
 
-require("dotenv").config();
-const discordToken = process.env.tke;
-const tokensaya = process.env.saya;
-const myRL = require("serverline");
-
-let isStarted = false;
-let currentPackageName;
-let refreshInterval;
-let tooke;
-
-function createRefreshInterval() {
-  if (refreshInterval) clearInterval(refreshInterval);
-
-  refreshInterval = setInterval(async () => {
-    if (!isStarted) return;
-    console.log("Updating...");
-    await setStatus(currentPackageName, "UPDATE");
-  }, 5 * 60 * 1000);
-}
-
-async function setStatus(packageName, update) {
-  if (!currentPackageName) {
-    console.error("No package name set");
-    return;
-  }
-  try {
-    await axios.post(
-      `https://discord.com/api/v6/presences`,
-      {
-        package_name: packageName,
-        update: update,
-      },
-      {
-        headers: {
-          Authorization: tokensaya,
-          "User-Agent":
-            "Mozilla/5.0 (Linux; Android 11) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/100.0.4896.127 Mobile OceanHero/6 Safari/537.36",
-          "Content-Type": "application/json",
-          "Cache-Control": "max-age=121",
-        },
-      }
-    );
-  } catch (err) {
-    console.error(err.message);
-  }
-}
 client.on("message", async (message) => {
-  /* if (message.channel.id === "875388139932356610"){
-    message.react(`<:afaiya:970203531464294430>`)
-  }*/
-
-  /*if (message.attachments.size > 0 && message.channel.id == "875388139932356610") {
-let p = ["775156054958014524"]
-if (message.author.id == p){
-message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/969208625841201202/IMG_20220428_190455.jpg")  
-  }}*/
   let meseg = message.content.toLowerCase();
   if (meseg === `<@${client.user.id}>` || meseg === `<@!${client.user.id}>`) {
-    const prefix = require("discord-prefix");
-    let defaultPrefix = PREFIX;
-    let guildPrefix = prefix.getPrefix(message.guild.id);
-
-    if (!guildPrefix) guildPrefix = defaultPrefix;
     message.channel.send(`My Prefix = \`h.\``);
   }
   // eslint-disable-line
@@ -192,29 +80,10 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
   if (message.content === "test") {
     message.react(`${emgj[ranem]}`);
   }
-  /*if (message.content === "spi" || message.content === "spi :eugh:" || message.content === "spi <:eugh:831477683426295811>"){
-    message.react(emgj[ranem])
-    message.react(emgj[ranem])
-  }
-  if (message.content === "sepi"){
-    message.react(emgj[ranem])
-  }
-  if (message.content === "<:eugh:831477683426295811>"){
-    message.react(emgj[ranem]) 
-  }
-  if (message.content === "<:ndaktau:831494322901352498>"){
-    message.react(`${emgj[ranem]}`)
-  }
-  if (message.content === "<:patk3:727906033061855232>"){
-    message.react(emgj[ranem])
-  }
-  if (message.content === "<:heeeeeqqq:730722268107505725>"){
-    message.react(emgj[ranem])
-  }*/
   if (message.author.bot) return;
 
   const args = message.content.split(" ");
-  const searchString = args.slice(1).join(" ");
+  const input = args.slice(1).join(" ");
   const url = args[1] ? args[1].replace(/<(.+)>/g, "$1") : "";
   const serverQueue = queue.get(message.guild.id);
   let color = "BLUE";
@@ -222,7 +91,6 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
   command = command.slice(PREFIX.length);
 
   const cops = require("./copas.json");
-
   function jawaa() {
     const randomIndex = Math.floor(Math.random() * cops.length);
     return cops[randomIndex].content;
@@ -247,175 +115,21 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
       });
   }
 
-  if (message.content === "link server" && message.guild.id === "875388139148017715") {
-    message.channel.send("discord.gg/PmcWWpGTR6");
-  }
-  if (message.content === "menkrep") {
-    /*    const url = `https://api.mcsrvstat.us/2/gamew.aternos.me`
-     const got = require("got")
-    let data = await got(url).then(res => JSON.parse(res.body));
-
-    message.channel.send(`${data.players.online}\n${data.players.list[0]} ${data.players.list[1]}`)
-    */
-    const url = `https://api.lolhuman.xyz/api/minecraft/gamew.aternos.me?apikey=854755d0039999bbaeee450c`;
-    const time = `https://timeapi.io/api/Time/current/zone?timeZone=Asia/Jakarta`;
-
-    const got = require("got");
-    let data = await got(url).then((res) => JSON.parse(res.body));
-    let datat = await got(time).then((res) => JSON.parse(res.body));
-
-    if (searchString == "gamew") {
-      if (data.result.version.length != 10) {
-        let e = new MessageEmbed()
-          .setTitle("Status `gamew.aternos.me`")
-          // .setThumbnail(client.users.avatarURL())
-          .setColor("RED")
-          .setDescription(
-            `Server lagi off yach <:iyah:944751227273633802> <:Anakkecil:963033396425162752>\n\n${datat.hour}:${datat.minute}:${datat.seconds} WIB`
-          )
-          .setFooter(`Ini realtime, tpi jangan spam!`);
-        message.channel.send(e);
-      } else if (data.result.version.length == 20) {
-        let e = new MessageEmbed()
-          .setTitle("Status `gamew.aternos.me`")
-          //.setThumbnail(client.users.avatarURL())
-          .setColor("GREEN")
-          .setDescription(
-            `Server sekarang **Online**, silakan join <:hehey:887529578397044796>\n\n${datat.hour}:${datat.minute}:${datat.seconds} WIB`
-          )
-          .setFooter(`Ini realtime!, tpi jangan spam!`);
-        message.channel.send(e);
-
-        ///
-        const mcs = `https://mcapi.us/server/status?ip=gamew.aternos.me`;
-        const pl = `https://api.mcsrvstat.us/debug/ping/gamew.aternos.me`;
-        let das = await got(mcs).then((res) => JSON.parse(res.body));
-        let ds = await got(pl).then((res) => JSON.parse(res.body));
-        let m = new MessageEmbed()
-          .setTitle("Gamew")
-          .setColor("GREEN")
-          .setThumbnail(`https://api.mcsrvstat.us/icon/gamew.aternos.me`)
-          .setDescription(
-            `\`gamew.aternos.me\`\n_${das.motd}_\n\nPlayers Online (${
-              ds.players.online
-            }/${ds.players.max}):\n ${ds.players.sample[0].name}\n ${
-              ds.players.sample[1].name || " "
-            }\n\n*cuman bisa nampilin 2 <:nosad:881562346319921194> `
-          )
-          .setFooter(`Ini akan berubah setiap 5 menit, jgn spam!, `);
-        message.channel.send(m);
-      }
-    }
-    /*
-    let e = new MessageEmbed()
-    .setTitle('Status `gamew.aternos.me`')
-   // .setThumbnail(client.users.avatarURL())
-        .setColor("RED")
-        .setDescription(`Server lagi off yach <:iyah:944751227273633802> <:Anakkecil:963033396425162752>\n\n${datat.hour}:${datat.minute}:${datat.seconds} WIB`)
-        .setFooter(`Ini realtime, tpi jangan spam!`)
-      message.channel.send(e)
-      } else if (data.result.version.length == 20){
-      let e = new MessageEmbed()
-        .setTitle('Status `gamew.aternos.me`')
-        //.setThumbnail(client.users.avatarURL())
-        .setColor("GREEN")
-        .setDescription(`Server sekarang **Online**, silakan join <:hehey:887529578397044796>\n\n${datat.hour}:${datat.minute}:${datat.seconds} WIB`)
-          .setFooter(`Ini realtime!, tpi jangan spam!`)
-      message.channel.send(e)
-
-      ///
-      const mcs = `https://mcapi.us/server/status?ip=${searchString}`
-      const pl = `https://api.mcsrvstat.us/debug/ping/${searchString}`
-          let das = await got(mcs).then(res => JSON.parse(res.body));
-          let ds = await got(pl).then(res => JSON.parse(res.body));
-      let m = new MessageEmbed()
-      .setTitle('Gamew')
-        .setColor("GREEN")
-      .setThumbnail(`https://api.mcsrvstat.us/icon/gamew.aternos.me`)
-      .setDescription(`\`gamew.aternos.me\`\n_${das.motd}_\n\nPlayers Online (${ds.players.online}/${ds.players.max}):\n ${(ds.players.sample[0].name)}\n ${(ds.players.sample[1].name||" ")}\n\n*cuman bisa nampilin 2 <:nosad:881562346319921194> `)
-      .setFooter(`Ini akan berubah setiap 5 menit, jgn spam!, `)
-      message.channel.send(m)
-      }
-*/
-  }
-
   // ------------------- OTHER COMMANDS -----------------------//
   if (message.content.startsWith("lic")) {
-    message.channel.send(`<a:lic:884363894519394304>${searchString}`);
+    message.channel.send(`<a:lic:884363894519394304>${input}`);
   }
+
   if (!message.content.startsWith(PREFIX)) return;
-  if (command === "todo") {
-    message.delete();
-    message.channel.send("gtw");
-  }
-
-  //  status
-
-  if (command == "g" && message.author.id === owner) {
-    if (isStarted) {
-      message.channel.send("Already started");
-      return;
-    }
-    if (!currentPackageName) {
-      message.channel.send("No package name set");
-      return;
-    }
-    console.log("Starting...");
-    message.channel.send(`\`${currentPackageName}, ok\``);
-    await setStatus(currentPackageName, "START");
-    isStarted = true;
-    createRefreshInterval();
-  }
-  if (command === "gset" && message.author.id === owner) {
-    console.log(`Setting... ${searchString}`);
-    message.channel.send(`\`ok, setting ${searchString}\``);
-    currentPackageName = searchString;
-  }
-  if (command === "gu" && message.author.id === owner) {
-    if (!isStarted) {
-      message.channel.send("Not started");
-      return;
-    }
-    if (!currentPackageName) {
-      message.channel.send("No package name set");
-      return;
-    }
-    console.log("Updating...");
-    message.channel.send("updating");
-    process.title = `DiscordMobilePlayingCLI - Running - ${currentPackageName}`;
-    await setStatus(currentPackageName, "UPDATE");
-  }
-  if (command === "gstop") {
-    if (!isStarted) {
-      message.channel.send("Not started");
-      return;
-    }
-    if (!currentPackageName) {
-      message.channel.send("No package name set");
-      return;
-    }
-    console.log("Stopping...");
-    message.channel.send("stopping");
-    await setStatus(currentPackageName, "STOP");
-    isStarted = false;
-    clearInterval(refreshInterval);
-    process.title = `DiscordMobilePlayingCLI - Idle`;
-  }
-  if (command === "ghelp") {
-    message.channel.send(
-      "h.g = mulai/nh.gset = set `package`/nh.gu = update/refresh/nh.gstop = stop"
-    );
-  }
-
   /////////////////////////////////////
   if (command === "clear") {
     if (message.author.id !== owner)
       return message.channel.send(`<@${ownerID}>`);
-    if (!searchString) return message.channel.send("masukkan jumlah!");
+    if (!input) return message.channel.send("masukkan jumlah!");
     message
       .delete()
       .then(() => {
-        message.channel.bulkDelete(searchString).then((messages) => {
+        message.channel.bulkDelete(input).then((messages) => {
           message.channel
             .send(`Cleared ${messages.size} message(s).`)
             .then((botMessage) => {
@@ -427,6 +141,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
       })
       .catch(console.error);
   }
+
   if (command === "serverinfo") {
     const d = new Date(message.guild.createdTimestamp);
     let day;
@@ -441,9 +156,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
     } else {
       month = d.getMonth();
     }
-
     const guild = message.guild;
-
     const Embed = new MessageEmbed()
       .setTitle(message.guild.name)
       .setThumbnail(message.guild.iconURL())
@@ -455,9 +168,9 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
         { name: "Highest Role", value: guild.roles.highest, inline: true },
       ])
       .setFooter(`Server Created = ${day}/${month}/${d.getFullYear()}`);
-
     message.channel.send(Embed);
   }
+
   if (command === "userinfo" || command === "ui") {
     var person = message.author;
     let memberinfo = message.guild.member(person);
@@ -499,8 +212,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
       );
     };
 
-    embed
-      .awaitReactions(filter, { max: 1, time: 60000, errors: ["time"] })
+    embed.awaitReactions(filter, { max: 1, time: 60000, errors: ["time"] })
       .then((collected) => {
         const reaction = collected.first();
         const spotify = new MessageEmbed()
@@ -587,7 +299,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
     }
   }
   if (command === "respect" || command === "f") {
-    if (!searchString) {
+    if (!input) {
       let p = new MessageEmbed()
         .setDescription("Tekan <a:r_pressf:843389937139449856> untuk memberi respect.")
         .setColor("GREEN");
@@ -622,7 +334,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
       let reason = args.join(" ");
       let p = new MessageEmbed()
         .setDescription(
-          `Tekan <a:r_pressf:843389937139449856> untuk memberi respect ke **${searchString}**`
+          `Tekan <a:r_pressf:843389937139449856> untuk memberi respect ke **${input}**`
         )
         .setColor("GREEN");
       return message.channel.send(p).then(async (msg) => {
@@ -648,7 +360,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
           const reaction = msg.reactions.cache.get("843389937139449856");
           const count = reaction ? reaction.count - 1 : 0; // Subtract 1 to exclude the bot's own reaction
           message.channel.send(
-            `**${count}** telah memberi respect ke **${searchString}** 🫡`
+            `**${count}** telah memberi respect ke **${input}** 🫡`
           );
         })
         .catch((error) => {
@@ -676,7 +388,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
     if (!message.author.id === owner)
       return message.channel.send("go away brrrrrr");
     bot.user
-      .setUsername(`${searchString}`)
+      .setUsername(`${input}`)
       .then((user) => {
         message.channel.send(
           `Username berhasil diubah. \nUsername: \`${user.username}\` `
@@ -729,7 +441,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
     return;
   }
   if (command === "ecdel") {
-    if (!searchString) return message.channel.send(`hmhm`);
+    if (!input) return message.channel.send(`hmhm`);
     let pesan = args.join(" ").slice(29);
     let channel = message.mentions.channels.first();
     channel.bulkDelete(pesan);
@@ -759,14 +471,14 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
   }
 
   if (command === "images" || command === "photos" || command === "image") {
-    /*   if (!searchString){
+    /*   if (!input){
         const got = require('got')
         const url = `https://api.unsplash.com/photos/random/?client_id=Qmb9rVSNnmGqM_9c8YkJM6mtLjs3AzBn0dotq7-H4RE`
        
         let dat = await got(url).then(res => JSON.parse(res.body))
         message.channel.send(dat.urls.regular)
        } else */
-    if (searchString === "raw") {
+    if (input === "raw") {
       const got = require("got");
       const url = `https://api.unsplash.com/photos/random/?client_id=Qmb9rVSNnmGqM_9c8YkJM6mtLjs3AzBn0dotq7-H4RE`;
 
@@ -779,30 +491,30 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
         .setFooter('Unsplash Image')
     message.channel.send(emb) */
       message.channel.send(dat.urls.raw);
-    } else if (searchString === "regular") {
+    } else if (input === "regular") {
       const got = require("got");
       const url = `https://api.unsplash.com/photos/random/?client_id=Qmb9rVSNnmGqM_9c8YkJM6mtLjs3AzBn0dotq7-H4RE`;
 
       let dat = await got(url).then((res) => JSON.parse(res.body));
       message.channel.send(dat.urls.regular);
-    } else if (searchString === "full") {
+    } else if (input === "full") {
       const got = require("got");
       const url = `https://api.unsplash.com/photos/random/?client_id=Qmb9rVSNnmGqM_9c8YkJM6mtLjs3AzBn0dotq7-H4RE`;
 
       let dat = await got(url).then((res) => JSON.parse(res.body));
       message.channel.send(dat.urls.full);
     } else if (
-      searchString !== "full" ||
-      searchString !== "raw" ||
-      searchString !== "regular"
+      input !== "full" ||
+      input !== "raw" ||
+      input !== "regular"
     ) {
-      if (!searchString)
+      if (!input)
         return message.channel.send(
           "Gambar apa yang ingin kamu cari?\nSearch    : `h.images [Gambar]`\nRandom : `h.images full | raw | regular` "
         );
       const got = require("got");
       try {
-        const url = `https://api.unsplash.com/search/photos?page=1&query=${searchString}&client_id=Qmb9rVSNnmGqM_9c8YkJM6mtLjs3AzBn0dotq7-H4RE`;
+        const url = `https://api.unsplash.com/search/photos?page=1&query=${input}&client_id=Qmb9rVSNnmGqM_9c8YkJM6mtLjs3AzBn0dotq7-H4RE`;
         let r = Math.floor(Math.random() * 7);
         let dat = await got(url).then((res) => JSON.parse(res.body));
         message.channel.send(dat.results[r].urls.regular);
@@ -888,10 +600,10 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
   if (command === "gantipp") {
     if (message.author.id !== owner)
       return message.channel.send(`khusus owner! <@${owner}> `);
-    if (!searchString) return message.channel.send("masukkan gambar");
+    if (!input) return message.channel.send("masukkan gambar");
     if (message.author.id == owner) {
       client.user
-        .setAvatar(searchString)
+        .setAvatar(input)
         .then((user) =>
           message.channel
             .send("Avatar berhasil diubah!")
@@ -900,20 +612,20 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
     }
   }
   if (command === "search") {
-    if (!searchString)
+    if (!input)
       return message.channel.send(
         "Cari Gambar di Unsplash. ||sbnrny mirip h.images 😅||\n`h.search [query]`"
       );
     const got = require("got");
-    const url = `https://api.unsplash.com/search/photos?page=1&query=${searchString}&client_id=Qmb9rVSNnmGqM_9c8YkJM6mtLjs3AzBn0dotq7-H4RE`;
+    const url = `https://api.unsplash.com/search/photos?page=1&query=${input}&client_id=Qmb9rVSNnmGqM_9c8YkJM6mtLjs3AzBn0dotq7-H4RE`;
     let r = Math.floor(Math.random() * 11);
     let dat = await got(url).then((res) => JSON.parse(res.body));
     message.channel.send(dat.results[r].urls.regular);
   }
 /*  if (command === "ss") {
-    if (!searchString) return message.channel.send("Masukkan url!");
+    if (!input) return message.channel.send("Masukkan url!");
     const axios = require("axios");
-    const url = `https://shot.screenshotapi.net/screenshot?&url=${searchString}&fresh=true&output=json&file_type=png&wait_for_event=load`;
+    const url = `https://shot.screenshotapi.net/screenshot?&url=${input}&fresh=true&output=json&file_type=png&wait_for_event=load`;
     const got = require("got");
     let data = await got(url).then((res) => JSON.parse(res.body));
     let w = new MessageEmbed()
@@ -926,11 +638,11 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
 */    
   if (command === "adzan") {
     let txt = args.join(" ");
-    if (!searchString)
+    if (!input)
       return message.channel.send(
         `\`.adzan <city>\` (Hanya tersedia kota" di indonesia. Kota negara lain tdk tersedia)`
       );
-    let nama = searchString.charAt(0).toUpperCase() + searchString.slice(1).toLowerCase()
+    let nama = input.charAt(0).toUpperCase() + string.slice(1).toLowerCase()
     const url = `http://api.aladhan.com/v1/timingsByCity?city=${txt}&country=Indonesia&method=8`;
     const got = require("got");
     let data = await got(url).then((res) => JSON.parse(res.body));
@@ -953,7 +665,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
     );
   }
   if (command === "igdl" || command === "ig") {
-    if (!searchString) return message.channel.send("masukkan link");
+    if (!input) return message.channel.send("masukkan link");
     const url = `https://api.lolhuman.xyz/api/instagram?apikey=3f342f50d0fb2f0cbfdc7848&url=${args[1]}`;
     const got = require("got");
     let data = await got(url).then((res) => JSON.parse(res.body));
@@ -984,7 +696,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
     }
   }
   if (command === "igdl" || command === "ig2") {
-    if (!searchString) return message.channel.send("masukkan link");
+    if (!input) return message.channel.send("masukkan link");
     const url = `https://api.lolhuman.xyz/api/instagram?apikey=854755d0039999bbaeee450c&url=${args[1]}`;
     const got = require("got");
     let data = await got(url).then((res) => JSON.parse(res.body));
@@ -1037,15 +749,15 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
 }\`\`\` `)*/
   }
   if (command === "wallpaper") {
-    if (!searchString)
+    if (!input)
       return message.channel.send(`wallpaper apa yg mau dicari?`);
-    const url = `https://wallhaven.cc/api/v1/search?q=${searchString}`;
+    const url = `https://wallhaven.cc/api/v1/search?q=${input}`;
     const got = require("got");
     let data = await got(url).then((res) => JSON.parse(res.body));
     let r = Math.floor(Math.random() * 15);
     const embed = new MessageEmbed()
       .setColor("BLUE")
-      .setTitle(`${searchString}`)
+      .setTitle(`${input}`)
       .setURL(data.data[r].url)
       .addField(`Category :`, `${data.data[r].category}`, true)
       .addField(`Views :`, `${data.data[r].views}`, true)
@@ -1061,16 +773,16 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
       message.channel.send("Wallpaper tidak ditemukan!\n-#Source: Wallhaven");
     }
   }
-  if (command === "morsee" || searchString[0] === "encode") {
-    if (!searchString[1])
+  if (command === "morsee" || input[0] === "encode") {
+    if (!input[1])
       return message.channel.send(
         "Mengubah Teks ke Kode Morse.\nKetik `h.morsee [Teks]` tanpa `[]`."
       );
-    const translate = morse.encode(searchString);
+    const translate = morse.encode(input);
     const embed = new MessageEmbed()
       .setTitle("Morse Encode (Teks - Morse)")
       .setColor("BLUE")
-      .addField("Teks", searchString, false)
+      .addField("Teks", input, false)
       .addField("Morse", `\`${translate}\``, false)
       .setFooter(
         `Hi ${message.author.username} | Alternatif : \`h.morsee\``,
@@ -1079,15 +791,15 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
     message.channel.send(embed);
     message.channel.send(`\`${translate}\``);
   } else if (command === "morse-decode" || command === "morsed") {
-    if (!searchString)
+    if (!input)
       return message.channel.send(
         "Mengubah Kode morse ke Teks.\nKetik `h.morsed [Morse]` tanpa `[]`."
       );
-    const translate = morse.decode(searchString);
+    const translate = morse.decode(input);
     const embed = new MessageEmbed()
       .setTitle("Morse Decode (Morse - Teks)")
       .setColor("BLUE")
-      .addField("Morse", searchString, false)
+      .addField("Morse", input, false)
       .addField("Text", translate, false)
       .setFooter(
         `Hi ${message.author.username} | Alternatif : \`h.morsed\``,
@@ -1102,18 +814,18 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
   }
   if (command === "say" && message.author.id == owner) {
     message.delete({ timeout: 100 });
-    message.channel.send(searchString);
+    message.channel.send(input);
   } else if (command === "say" && message.author.id != owner) {
-    if (!searchString)
+    if (!input)
       return message.channel.send(
         `mau ngomong ap, ${message.author.username}?`
       );
-    message.channel.send(`${searchString} \n\n- **${message.author.tag}**`);
+    message.channel.send(`${input} \n\n- **${message.author.tag}**`);
   }
 
   let user = message.mentions.users.first();
   if (command === "spam" && user == owner) {
-    if (!searchString)
+    if (!input)
       return message.channel.send(
         `lu mau w spam apaan bro? ${message.author.username}`
       );
@@ -1124,11 +836,11 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
     message.author.id !== owner
   ) {
     message.delete({ timeout: 100 });
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
     message.channel.send(`huh. <@${message.author.id}>`);
   } else if (
     command === "spam" &&
@@ -1136,25 +848,25 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
   ) {
     message.channel.send("dont spam in general dud");
   } else if (command === "spam" && message.author.id === owner) {
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
   }
   if (command === "yt") {
-    const url = `https://api.lolhuman.xyz/api/ytreels?apikey=3f342f50d0fb2f0cbfdc7848&url=${searchString}`;
+    const url = `https://api.lolhuman.xyz/api/ytreels?apikey=3f342f50d0fb2f0cbfdc7848&url=${input}`;
     const got = require("got");
     let data = await got(url).then((res) => JSON.parse(res.body));
   }
 
   /*
   if (command == "redid" || command === "reddit") {
-    const url = `https://www.reddit.com/r/${searchString}.json`
+    const url = `https://www.reddit.com/r/${input}.json`
     const got = require("got");
     let data = await got(url).then(res => JSON.parse(res.body));
     let r = Math.floor(Math.random() * 31);
-    if (!searchString[0])
+    if (!input[0])
       return message.reply("**Please provide a subreddit.**");
     const color = message.guild.me.displayHexColor;
     var dat = data.data.children[r].data;
@@ -1186,9 +898,9 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
   } */
   if (command === "reddid" || command === "reddit" || command === "redid") {
     const got = require("got");
-    const url = `https://www.reddit.com/r/${searchString}/top/.json?sort=top&t=week&limit=60`;
+    const url = `https://www.reddit.com/r/${input}/top/.json?sort=top&t=week&limit=60`;
     let data = await got(url).then((res) => JSON.parse(res.body));
-    if (!searchString[0]) return message.channel.send("Subreddit?");
+    if (!input[0]) return message.channel.send("Subreddit?");
     var index = data.data.children[Math.floor(Math.random() * 50) + 1].data;
 
     var image = index.preview.images[0].source.url.replace("&amp;", "&");
@@ -1289,7 +1001,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
     message.channel.send(target);
   }
   if (command === "sudo") {
-    if (!searchString) return message.channel.send("||ndak tau udah||");
+    if (!input) return message.channel.send("||ndak tau udah||");
     const member =
       message.mentions.members.first() || client.users.fetch(args[1]);
     if (!member) return message.reply("Can't find this user");
@@ -1357,8 +1069,8 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
     message.channel.send(p).catch(console.error);
   }
   if (command === "kbbi") {
-    if (!searchString) return message.channel.send("mau cari ap ngab?");
-    let web = `https://kbbi-api-zhirrr.vercel.app/api/kbbi?text=${searchString}`;
+    if (!input) return message.channel.send("mau cari ap ngab?");
+    let web = `https://kbbi-api-zhirrr.vercel.app/api/kbbi?text=${input}`;
     const got = require("got");
     let data = await got(web)
       .then((res) => JSON.parse(res.body))
@@ -1371,14 +1083,14 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
   }
   if (command === "test") {
     message.channel.send(
-      `${searchString[0]} | ${searchString[1]} | ${searchString[2]} | ${searchString}`
+      `${input[0]} | ${input[1]} | ${input[2]} | ${input}`
     );
     message.channel.send(`${args[0]} | ${args[1]} | ${args[2] || " "} `);
     message.channel.send(`${message.author.tag} | ${message.author.username}`);
   }
 
   /*  if (command === "manga") { //eror
-    if (!searchString) return message.channel.send("mau cari ap ngab?");
+    if (!input) return message.channel.send("mau cari ap ngab?");
     if (args[1] === "recomm") {
       let web = `https://mangamint.kaedenoki.net/api/recommended`;
       const got = require("got");
@@ -1422,109 +1134,109 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
   }*/
   if (command === "spams" && message.author.id == owner) {
     message.delete({ timeout: 100 });
-    const spp = await message.channel.send(`${searchString}`);
-    spp.channel.send(`${searchString}`);
+    const spp = await message.channel.send(`${input}`);
+    spp.channel.send(`${input}`);
     spp.delete({ timeout: 100 });
-    spp.channel.send(`${searchString}`);
+    spp.channel.send(`${input}`);
     spp.delete({ timeout: 100 });
-    spp.channel.send(`${searchString}`);
+    spp.channel.send(`${input}`);
     spp.delete({ timeout: 100 });
-    spp.channel.send(`${searchString}`);
+    spp.channel.send(`${input}`);
     spp.delete({ timeout: 100 });
-    spp.channel.send(`${searchString}`);
+    spp.channel.send(`${input}`);
     spp.delete({ timeout: 100 });
   }
 
   if (command === "spam100" && message.author.id == owner) {
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
-    message.channel.send(`${searchString}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
+    message.channel.send(`${input}`);
     message.channel.send(`Tugas ku sudah selesai, bang <@${owner}> :thumbsup:`);
   } else if (command === "spam100" && message.author.id != owner) {
     message.channel.send("go away brrrrr");
@@ -1534,7 +1246,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
     let p = new MessageEmbed().setDescription(
       "Lebih baik langsung di channelny ae :/\n\nGatau channelny?, tanya paris"
     );
-    const url = `https://api.udit.gq/api/chatbot?message=${searchString}&gender=male&name=${message.author.username}`;
+    const url = `https://api.udit.gq/api/chatbot?message=${input}&gender=male&name=${message.author.username}`;
     let response, data;
     try {
       response = await axios.get(url);
@@ -1558,18 +1270,18 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
   if (command === "choose") {
     if (!args[0]) return message.channel.send("Please Give Me Text!");
 
-    if (!searchString.toLowerCase().includes(" ")) {
+    if (!input.toLowerCase().includes(" ")) {
       return message.channel.send("Please Give Me 2nd Choice. jgn lebih :/");
     }
 
-    if (searchString.toLowerCase().endsWith(" ")) {
+    if (input.toLowerCase().endsWith(" ")) {
       return message.channel.send("Please Give Me 2nd Choice!. jgn lebih :/");
     }
 
-    if (searchString.length > 500)
+    if (input.length > 500)
       return message.channel.send("wuh santai ngab | Limit : 500");
 
-    let LowerCaseOr = searchString
+    let LowerCaseOr = input
       .replace("Or", "or")
       .replace("oR", "or")
       .replace("OR", "or");
@@ -1584,11 +1296,11 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
       apiKey: process.env.OPENAI
     });
   
-    if (!searchString)
+    if (!input)
       return message.channel.send("Mohon berikan pertanyaan atau pesan untuk AI.");
   
     const completion = await openai.chat.completions.create({
-      messages: [{ role: "user", content: `${searchString}` }],
+      messages: [{ role: "user", content: `${input}` }],
       model: "gpt-4o",
     });
   
@@ -1614,13 +1326,13 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
       apiKey: process.env.OPENAI
     });
 
-    const url = `https://api.github.com/users/${searchString}`;
-    const rep = `https://api.github.com/users/${searchString}/repos?sort=updated`;
+    const url = `https://api.github.com/users/${input}`;
+    const rep = `https://api.github.com/users/${input}/repos?sort=updated`;
     const got = require("got");
     let profileResponse = await got(url).then((res) => JSON.parse(res.body));
     let repoResponse = await got(rep).then((res) => JSON.parse(res.body));
 
-    if (!searchString)
+    if (!input)
       return message.channel.send("Masukkan username github.");
   
     data = {
@@ -1646,7 +1358,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
                 })).slice(0, 50)}
 
     const completion = await openai.chat.completions.create({
-      messages: [{ role: "user", content: `berikan roasting singkat dengan kejam, menyindir, serta menyakitkan dalam bahasa gaul untuk profile github berikut : ${searchString}. Berikut detailnya: "${JSON.stringify(data)}". (berikan response dalam bahasa indonesia dan jangan berikan pujian atau saran)` }],
+      messages: [{ role: "user", content: `berikan roasting singkat dengan kejam, menyindir, serta menyakitkan dalam bahasa gaul untuk profile github berikut : ${input}. Berikut detailnya: "${JSON.stringify(data)}". (berikan response dalam bahasa indonesia dan jangan berikan pujian atau saran)` }],
       model: "gpt-4o",
     });
   
@@ -1661,26 +1373,26 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
       apiKey: process.env.OPENAI
     });
   
-    if (!searchString)
+    if (!input)
       return message.channel.send("Mohon berikan pertanyaan atau pesan untuk AI.");
   
     const response = await openai.images.generate({
       model: "dall-e-3",
-      prompt: `${searchString}`,
+      prompt: `${input}`,
       n: 1,
       size: "1024x1024",
     });
 
-    const image = new Discord.MessageAttachment(`${response.data[0].url}`, `${searchString}.png`);
+    const image = new Discord.MessageAttachment(`${response.data[0].url}`, `${input}.png`);
     message.channel.send(image);
     */
     message.channel.send("Command ini telah dinonaktifkan.");
   }
   if (command === "wangy") {
-    if (!searchString) return message.channel.send("Masukkan nama!");
-    let idk = searchString.replace(
-      searchString,
-      String.call.bind(searchString.toUpperCase)
+    if (!input) return message.channel.send("Masukkan nama!");
+    let idk = input.replace(
+      input,
+      String.call.bind(input.toUpperCase)
     );
     message.channel.send(
       `${idk} WANGY WANGY WANGY\n\nWANGY WANGY WANGY HU HA HU HA HU HA, aaaah baunya ${idk} wangi aku mau nyiumin aroma wanginya ${idk} AAAAAAAAH - Rambutnya.. aaah rambutnya juga pengen aku elus-elus ~AAAAAH ${idk} manis banget AAAAAAAAH TATAPAN ${idk} BEGITU MENGGODAAAAAAAAA.. GUA RELA JADI BUDAK SIMP HANYA DEMI ${idk} TERDJINTA AAAAAAA apa ? ${idk} itu gak nyata ? Cuma karakter 2 dimensi katamu ? nggak, ngak ngak ngak ngak NGAAAAAAAAK GUA GAK PERCAYA ITU DIA NYATA ! GUA GAK PEDULI SAMA KENYATAAN POKOKNYA GAK PEDULI. ${idk} ngeliat gw ... ${idk} NGELIATIN GW! ${idk}... kamu percaya sama aku ? aaaaaaaaaaah syukur ${idk}\n\ngak malu memiliki aku aaaaaah YEAAAAAAAAAAAH GUA\n\n\nMASIH PUNYA ${idk}, ${idk} AKU SAYANG ${idk} AKU CINTA ${idk} AKU AKU INGIN ${idk} MENJADI BIDADARIKUUUUUUU!!!!!!!!!!!!!`
@@ -1710,12 +1422,12 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
   if (command === "afk") {
     const db = require("quick.db");
     try {
-      let reason = searchString;
+      let reason = input;
       if (reason.toLowerCase().includes(`discord.gg`)) {
         return message.reply(`You can\'t have links in your reason`);
       }
       let afkcheck = db.fetch(`afk_${message.guild.id}_${message.author.id}`);
-      if (!searchString) {
+      if (!input) {
         reason = "AFK";
       }
       if (afkcheck == null) {
@@ -1788,9 +1500,9 @@ Sebenarnya masih bnyk, tpi *Malas* nulis. Coba2 aja, atau tanya.
   }
 
   if (command === "ytmp3") {
-    if (!searchString) return message.channel.send("Masukkan link youtube.`");
+    if (!input) return message.channel.send("Masukkan link youtube.`");
     const got = require("got");
-    const url = `https://api.lolhuman.xyz/api/ytaudio?apikey=5119194f07cdf52d5c57d3d0&url=${searchString}`;
+    const url = `https://api.lolhuman.xyz/api/ytaudio?apikey=5119194f07cdf52d5c57d3d0&url=${input}`;
     let dat = await got(url).then((res) => JSON.parse(res.body));
     try {
       let ytm = message.channel;
@@ -1817,12 +1529,12 @@ Sebenarnya masih bnyk, tpi *Malas* nulis. Coba2 aja, atau tanya.
     }
   }
   if (command === "google" || command === "gugel") {
-    if (!searchString)
+    if (!input)
       return message.channel.send(
         "mau cari afh? <:hmm:959422267236945970> || jangan sring dipake, ad limitny perhari ||"
       );
     const got = require("got");
-    const url = `https://api.lolhuman.xyz/api/gsearch?apikey=3f342f50d0fb2f0cbfdc7848&query=${searchString}`;
+    const url = `https://api.lolhuman.xyz/api/gsearch?apikey=3f342f50d0fb2f0cbfdc7848&query=${input}`;
     let data = await got(url).then((res) => JSON.parse(res.body));
 
     let p = new MessageEmbed()
@@ -1830,7 +1542,7 @@ Sebenarnya masih bnyk, tpi *Malas* nulis. Coba2 aja, atau tanya.
         "Google Search",
         "https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png"
       )
-      .setTitle(`${searchString}`)
+      .setTitle(`${input}`)
       .setDescription(
         `**[${data.result[0].title}](${data.result[0].link})**\n\`${data.result[0].link}\`\n${data.result[0].desc}\n\n**[${data.result[1].title}](${data.result[1].link})**\n\`${data.result[1].link}\`\n${data.result[1].desc}\n\n**[${data.result[2].title}](${data.result[2].link})**\n\`${data.result[2].link}\`\n${data.result[2].desc}\n\n**[${data.result[3].title}](${data.result[3].link})**\n\`${data.result[3].link}\`\n${data.result[3].desc}\n\n**[${data.result[4].title}](${data.result[4].link})**\n\`${data.result[4].link}\`\n${data.result[4].desc}`
       )
@@ -1839,9 +1551,9 @@ Sebenarnya masih bnyk, tpi *Malas* nulis. Coba2 aja, atau tanya.
   }
 
   if (command == "stock" || command == "stok" || command == "saham") {
-    if (!searchString) return message.channel.send("Masukkan nama stok!");
+    if (!input) return message.channel.send("Masukkan nama stok!");
 
-    let stok = `${searchString.toUpperCase()}`;
+    let stok = `${input.toUpperCase()}`;
     let link = `https://api.chart-img.com/v1/tradingview/advanced-chart?key=eU0wk2N1a24X4WutKduR19QiOYs1oSvm3dDHNhUD&symbol=nasdaq:${stok}&interval=5m&style=line`;
     let link2 = `http://api.marketstack.com/v1/tickers/${stok}/intraday?access_key=891320bd915705bf7d49ca0af19abfc4`;
     let link3 = `https://api.polygon.io/v3/reference/tickers/${stok}?apiKey=JbQ9qI1RzLjAQDDVQ9KUdfxHxiopBhpO`;
@@ -1871,9 +1583,9 @@ Sebenarnya masih bnyk, tpi *Malas* nulis. Coba2 aja, atau tanya.
   }
 
   if (command === "ytdl") {
-    if (!searchString) return message.channel.send("Masukkan link youtube.");
+    if (!input) return message.channel.send("Masukkan link youtube.");
     const got = require("got");
-    const url = `https://api.lolhuman.xyz/api/ytreels?apikey=3f342f50d0fb2f0cbfdc7848&url=${searchString}`;
+    const url = `https://api.lolhuman.xyz/api/ytreels?apikey=3f342f50d0fb2f0cbfdc7848&url=${input}`;
     let dat = await got(url).then((res) => JSON.parse(res.body));
     message.channel.send("loading... if stuck, error.");
     try {
@@ -1904,9 +1616,9 @@ Sebenarnya masih bnyk, tpi *Malas* nulis. Coba2 aja, atau tanya.
     }
   }
   if (command === "tt") {
-    if (!searchString) return message.channel.send("Masukkan link Tiktok!");
+    if (!input) return message.channel.send("Masukkan link Tiktok!");
     const got = require("got");
-    const url = `https://api.lolhuman.xyz/api/tiktokwm?apikey=3f342f50d0fb2f0cbfdc7848&url=${searchString}`;
+    const url = `https://api.lolhuman.xyz/api/tiktokwm?apikey=3f342f50d0fb2f0cbfdc7848&url=${input}`;
     let dat = await got(url).then((res) => JSON.parse(res.body));
     message.channel.send("loading... if this stuck, ok error.");
     try {
@@ -1922,17 +1634,17 @@ Sebenarnya masih bnyk, tpi *Malas* nulis. Coba2 aja, atau tanya.
   }
 
   if (command === "ip") {
-    if (!searchString)
+    if (!input)
       return message.channel.send("masukkan ip\ngtw ip? yaudah");
     const got = require("got");
-    const url = `http://ip-api.com/json/${searchString}?fields=status,message,country,countryCode,region,regionName,city,zip,lat,lon,timezone,isp,org,as,query`;
+    const url = `http://ip-api.com/json/${input}?fields=status,message,country,countryCode,region,regionName,city,zip,lat,lon,timezone,isp,org,as,query`;
     let dat = await got(url).then((res) => JSON.parse(res.body));
     message.channel.send(
       `\`\`\`json\nSearch Result for ${dat.query}\n------------------\nCountry    : ${dat.country} (${dat.countryCode})\nRegion   : ${dat.regionName} (${dat.region})\nCity : ${dat.city}\nLatitude : ${dat.lat}\nLongitude : ${dat.lon}\nTimezone : ${dat.timezone}\nISP : ${dat.isp}\nOrganization : ${dat.org}\nAS : ${dat.as}\n------------------\n\`\`\``
     );
   }
 /*  if (command === "lyrics" || command === "l") {
-    var api = `https://some-random-api.ml/lyrics?title=${searchString}`;
+    var api = `https://some-random-api.ml/lyrics?title=${input}`;
     let response, data;
     try {
       response = await axios.get(api);
@@ -1960,7 +1672,7 @@ Sebenarnya masih bnyk, tpi *Malas* nulis. Coba2 aja, atau tanya.
     let dat = await got(url).then((res) => JSON.parse(res.body));
     let data = dat.recenttracks;
 
-    if (searchString === "embed") {
+    if (input === "embed") {
       let embed = new MessageEmbed()
         .setAuthor(
           "farrs",
@@ -1980,10 +1692,10 @@ Sebenarnya masih bnyk, tpi *Malas* nulis. Coba2 aja, atau tanya.
       );
   }
 /*  if (command === "fb") {
-    if (!searchString)
+    if (!input)
       return message.channel.send("masukan link fb (Video Only!)");
     const got = require("got");
-    const url = `https://api.lolhuman.xyz/api/facebook?apikey=3f342f50d0fb2f0cbfdc7848&url=${searchString}`;
+    const url = `https://api.lolhuman.xyz/api/facebook?apikey=3f342f50d0fb2f0cbfdc7848&url=${input}`;
     let dat = await got(url).then((res) => JSON.parse(res.body));
 
     ttd = new Discord.MessageAttachment(dat.result, `facebook-botdumbes.mp4`);
@@ -1992,13 +1704,13 @@ Sebenarnya masih bnyk, tpi *Malas* nulis. Coba2 aja, atau tanya.
   }
   if (command === "epbi") {
     const { facebook } = require("./fb.js");
-    if (!searchString)
+    if (!input)
       return message.channel.send(
         `uhm.. url nya mana?\n\ncontoh:\nh.fb https://www.facebook.com/alanwalkermusic/videos/277641643524720`
       );
-    if (!searchString.match(/https:\/\/.*(facebook.com|fb.watch)/gi))
+    if (!input.match(/https:\/\/.*(facebook.com|fb.watch)/gi))
       return message.channel.send(`url salah`);
-    facebook(searchString).then(async (res) => {
+    facebook(input).then(async (res) => {
       let fb = JSON.stringify(res);
       let json = JSON.parse(fb);
       // m.reply(require('util').format(json))
@@ -2035,11 +1747,11 @@ Sebenarnya masih bnyk, tpi *Malas* nulis. Coba2 aja, atau tanya.
         },
       });
     }
-    if (!url || !searchString)
+    if (!url || !input)
       return message.channel.send({
         embed: {
           color: "RED",
-          description: "Please searchString link/title to play music",
+          description: "Please input link/title to play music",
         },
       });
     if (url.match(/^https?:\/\/(www.youtube.com|youtube.com)\/playlist(.*)$/)) {
@@ -2060,7 +1772,7 @@ Sebenarnya masih bnyk, tpi *Malas* nulis. Coba2 aja, atau tanya.
         var video = await youtube.getVideo(url);
       } catch (error) {
         try {
-          var videos = await youtube.searchVideos(searchString, 10);
+          var videos = await youtube.searchVideos(input, 10);
           var video = await youtube.getVideoByID(videos[0].id);
           if (!video)
             return message.channel.send({
@@ -2110,11 +1822,11 @@ Sebenarnya masih bnyk, tpi *Malas* nulis. Coba2 aja, atau tanya.
         },
       });
     }
-    if (!url || !searchString)
+    if (!url || !input)
       return message.channel.send({
         embed: {
           color: "RED",
-          description: "Please searchString link/title to search music",
+          description: "Please input link/title to search music",
         },
       });
     if (url.match(/^https?:\/\/(www.youtube.com|youtube.com)\/playlist(.*)$/)) {
@@ -2135,7 +1847,7 @@ Sebenarnya masih bnyk, tpi *Malas* nulis. Coba2 aja, atau tanya.
         var video = await youtube.getVideo(url);
       } catch (error) {
         try {
-          var videos = await youtube.searchVideos(searchString, 10);
+          var videos = await youtube.searchVideos(input, 10);
           let index = 0;
           let embedPlay = new MessageEmbed()
             .setColor("BLUE")
@@ -2515,12 +2227,12 @@ bot.user.setActivity("bit.ly/faris0520w", {
 /*client.once("ready", async () => {
   const data = {
     name: "echo",
-    description: "Replies with your searchString!",
+    description: "Replies with your input!",
     options: [
       {
-        name: "searchString",
+        name: "input",
         type: "STRING",
-        description: "The searchString which should be echoed back",
+        description: "The input which should be echoed back",
         required: true
       }
     ]
