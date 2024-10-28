@@ -1,1 +1,3 @@
-welcum to projek soumoe
+# Suxmoe
+
+A discord bot.
