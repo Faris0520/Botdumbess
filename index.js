@@ -954,16 +954,17 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
   }
   if (command === "igdl" || command === "ig") {
     if (!searchString) return message.channel.send("masukkan link");
-    const url = `https://api.lolhuman.xyz/api/instagram?apikey=3f342f50d0fb2f0cbfdc7848&url=${args[1]}`;
+    const url = `https://api.ryzendesu.vip/api/downloader/aiodown?url=${searchString}`;
     const got = require("got");
     let data = await got(url).then((res) => JSON.parse(res.body));
 
     try {
-      let ttc = new Discord.MessageAttachment(data.result[0], `instagram.mp4`);
-      let ttc2 = new Discord.MessageAttachment(data.result[1], `instagram.mp4`);
+      let ttc = new Discord.MessageAttachment(data.quality.url, `instagram.mp4`);
+     /* let ttc2 = new Discord.MessageAttachment(data.result[1], `instagram.mp4`);
       let ttc3 = new Discord.MessageAttachment(data.result[2], `instagram.mp4`);
       let ttc4 = new Discord.MessageAttachment(data.result[3], `instagram.mp4`);
       let ttc5 = new Discord.MessageAttachment(data.result[4], `instagram.mp4`);
+      */
 
       const member = message.author;
       if (!member) return message.reply("error unexpected");
