@@ -952,6 +952,10 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
       "Morse Translator.\nText -> Morse = `h.morsee`\nMorse -> Text = `h.morsed`"
     );
   }
+  if (command === "video"){
+    let a = new Discord.MessageAttachment(`${searchString}`, `video.mp4`);
+    message.channel.send(a);
+  }
   if (command === "igdl" || command === "ig") {
     if (!searchString) return message.channel.send("masukkan link");
     const url = `https://api.ryzendesu.vip/api/downloader/aiodown?url=${searchString}`;
