@@ -990,19 +990,24 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
   }
   if (command === "tesig"){
     if (!searchString) return message.channel.send('masukkan link')
-      var settings = {
-        "url": `https://embedez.com/api/v1/providers/combined?q=${searchString}`,
-        "method": "GET",
-        "timeout": 0,
-        "headers": {
-          "Authorization": "Bearer ez_key_e51df9be256fceb1c5448825548b4e8ee9e30c13e2c737c0983a12a989f2d13033707bbd6d34eabc2105f0f9e4d7745e9b8407144696549f0ea42aad62a85f97"
-        },
-      };
-      
-      $.ajax(settings).done(function (response) {
-        console.log(response);
-        message.channel.send(`${response.content.media[0].source.url}`)
-      });
+      const got = require('got');
+
+      const url = `https://embedez.com/api/v1/providers/combined?q=${searchString}`;
+      const token = 'ez_key_e51df9be256fceb1c5448825548b4e8ee9e30c13e2c737c0983a12a989f2d13033707bbd6d34eabc2105f0f9e4d7745e9b8407144696549f0ea42aad62a85f97';
+
+      (async () => {
+        try {
+        const response = await got(url, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        console.log(response.body);
+        message.channel.send(`${result.content.media[0].source.url}`)
+    } catch (error) {
+        console.error(error.response.body);
+    }
+    })();
   }
   if (command === "igdl" || command === "ig2") {
     if (!searchString) return message.channel.send("masukkan link");
