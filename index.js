@@ -1001,7 +1001,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
       
       $.ajax(settings).done(function (response) {
         console.log(response);
-        message.channel.send(`${response.content.media[0].source.url}`))
+        message.channel.send(`${response.content.media[0].source.url}`)
       });
   }
   if (command === "igdl" || command === "ig2") {
