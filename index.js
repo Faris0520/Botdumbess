@@ -1003,9 +1003,9 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
             }
         });
         console.log(response.body);
-        message.channel.send(`${response.content.media[0].source.url}`)
+        message.channel.send(`${response.data.content.media[0].source.url}`)
     } catch (error) {
-        console.error(error.response.body);
+        console.error();
     }
     })();
   }
