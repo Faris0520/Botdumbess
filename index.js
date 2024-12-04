@@ -988,6 +988,25 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
       message.channel.send(`Error, coba lagi!. ||<@${owner}>||`);
     }
   }
+  if (command === "tesig"){
+    if (!searchString) return message.channel.send('masukkan link')
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", "Bearer ez_key_e51df9be256fceb1c5448825548b4e8ee9e30c13e2c737c0983a12a989f2d13033707bbd6d34eabc2105f0f9e4d7745e9b8407144696549f0ea42aad62a85f97");
+    
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow"
+    };
+    
+    fetch(`https://embedez.com/api/v1/providers/combined?q=${searchString}`, requestOptions)
+      .then((response) => response.text())
+      .then((result) => 
+        console.log(result),
+      message.channel.send(`${result.content.media[0].source.url}`))
+      .catch((error) => console.error(error));
+
+  }
   if (command === "igdl" || command === "ig2") {
     if (!searchString) return message.channel.send("masukkan link");
     const url = `https://api.lolhuman.xyz/api/instagram?apikey=854755d0039999bbaeee450c&url=${args[1]}`;
