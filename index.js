@@ -41,8 +41,6 @@ client.on("ready", async () => {
             // possible options here e.g. options: [{...}]
         }
     });
-
-
     client.ws.on('INTERACTION_CREATE', async interaction => {
         const command = interaction.data.name.toLowerCase();
         const args = interaction.data.options;
@@ -165,11 +163,6 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
   }}*/
   let meseg = message.content.toLowerCase();
   if (meseg === `<@${client.user.id}>` || meseg === `<@!${client.user.id}>`) {
-    const prefix = require("discord-prefix");
-    let defaultPrefix = PREFIX;
-    let guildPrefix = prefix.getPrefix(message.guild.id);
-
-    if (!guildPrefix) guildPrefix = defaultPrefix;
     message.channel.send(`My Prefix = \`h.\``);
   }
   // eslint-disable-line
@@ -1632,6 +1625,83 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
     } else {
       // Mengirim pesan jika kurang dari atau sama dengan 1999 karakter
       message.channel.send(responseText);
+    } 
+  }
+  if (command === "ai") {
+  const got = require('got');
+
+  if (!searchString)
+    return message.channel.send("Mohon berikan pertanyaan atau pesan untuk AI.");
+  
+  // Replace `YOUR_ANTHROPIC_KEY` with an environment variable or other secure method of handling the API key
+  const anthropicApiKey = process.env.ANTHROPIC_API_KEY;
+  
+  try {
+    const response = await got.post('https://api.anthropic.com/v0/complete', {
+      json: {
+        prompt: searchString,
+        model: "claude-v0", // Replace with the correct model you intend to use
+        max_tokens_to_sample: 1000, // Adjust as needed
+      },
+      headers: {
+        'Authorization': `Bearer ${anthropicApiKey}`,
+        'Content-Type': 'application/json'
+      }
+    }).json();
+
+    const responseText = response.completion;
+    
+    // Memeriksa panjang pesan dan membaginya jika lebih dari 1999 karakter
+    if (responseText.length > 1999) {
+      let partLength = 1999;
+      for (let i = 0; i < responseText.length; i += partLength) {
+        const part = responseText.substring(i, i + partLength);
+        message.channel.send(part);
+      }
+    } else {
+      message.channel.send(responseText);
+    }
+  } catch (error) {
+    console.error('Error fetching AI response:', error);
+    message.channel.send('Terjadi kesalahan saat memperoleh respon dari AI.');
+  }
+}
+if (command === "claude") {
+    if (!searchString)
+      return message.channel.send("Please provide a question or message for AI.");
+      
+    try {
+      const response = await got.post('https://api.anthropic.com/v1/messages', {
+        headers: {
+          'x-api-key': process.env.ANTHROPIC_API_KEY,
+          'anthropic-version': '2023-06-01',
+          'content-type': 'application/json'
+        },
+        json: {
+          model: "claude-3-5-sonnet-20241022",
+          max_tokens: 1024,
+          messages: [
+            {role: "user", content: searchString}
+          ]
+        }
+      }).json();
+  
+      const responseText = response.content[0].text;
+  
+      // Memeriksa panjang pesan dan membaginya jika lebih dari 1999 karakter
+      if (responseText.length > 1999) {
+        let partLength = 1999;
+        for (let i = 0; i < responseText.length; i += partLength) {
+          const part = responseText.substring(i, i + partLength);
+          await message.channel.send(part);
+        }
+      } else {
+        await message.channel.send(responseText);
+      }
+  
+    } catch (error) {
+      console.error('Error:', error);
+      message.channel.send("Sorry, there was an error processing your request.");
     }
   }
   if (command === "roast"){
