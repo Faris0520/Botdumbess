@@ -1627,45 +1627,6 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
       message.channel.send(responseText);
     } 
   }
-  if (command === "ai") {
-  const got = require('got');
-
-  if (!searchString)
-    return message.channel.send("Mohon berikan pertanyaan atau pesan untuk AI.");
-  
-  // Replace `YOUR_ANTHROPIC_KEY` with an environment variable or other secure method of handling the API key
-  const anthropicApiKey = process.env.ANTHROPIC_API_KEY;
-  
-  try {
-    const response = await got.post('https://api.anthropic.com/v0/complete', {
-      json: {
-        prompt: searchString,
-        model: "claude-v0", // Replace with the correct model you intend to use
-        max_tokens_to_sample: 1000, // Adjust as needed
-      },
-      headers: {
-        'Authorization': `Bearer ${anthropicApiKey}`,
-        'Content-Type': 'application/json'
-      }
-    }).json();
-
-    const responseText = response.completion;
-    
-    // Memeriksa panjang pesan dan membaginya jika lebih dari 1999 karakter
-    if (responseText.length > 1999) {
-      let partLength = 1999;
-      for (let i = 0; i < responseText.length; i += partLength) {
-        const part = responseText.substring(i, i + partLength);
-        message.channel.send(part);
-      }
-    } else {
-      message.channel.send(responseText);
-    }
-  } catch (error) {
-    console.error('Error fetching AI response:', error);
-    message.channel.send('Terjadi kesalahan saat memperoleh respon dari AI.');
-  }
-}
 if (command === "claude") {
   const got = require('got');
     if (!searchString)
