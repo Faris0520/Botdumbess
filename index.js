@@ -1674,7 +1674,7 @@ if (command === "claude") {
     try {
       const response = await got.post('https://api.anthropic.com/v1/messages', {
         headers: {
-          'x-api-key': process.env.ANTHROPIC_API_KEY,
+          'x-api-key': process.env.ANTHROPIC,
           'anthropic-version': '2023-06-01',
           'content-type': 'application/json'
         },
