@@ -1667,6 +1667,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
   }
 }
 if (command === "claude") {
+  const got = require('got');
     if (!searchString)
       return message.channel.send("Please provide a question or message for AI.");
       
