@@ -753,7 +753,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
 
   if (command === "images" || command === "photos" || command === "image") {
     /*   if (!searchString){
-        const got = require('got')
+        const got = (await import("got")).default;
         const url = `https://api.unsplash.com/photos/random/?client_id=Qmb9rVSNnmGqM_9c8YkJM6mtLjs3AzBn0dotq7-H4RE`
        
         let dat = await got(url).then(res => JSON.parse(res.body))
@@ -958,6 +958,15 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
       'Accept-Language': 'en-US,en;q=0.9',
       'Referer': 'https://www.google.com/',
     };
+    const cloudscraper = require('cloudscraper');
+
+const url = `https://api.ryzendesu.vip/api/downloader/igdl?url=${searchString}`;
+
+cloudscraper.get(url)
+  .then((response) => {
+    let data = JSON.parse(response);
+    console.log(data);
+  })
     let data = await axios.get(url, { headers }).then((res) => res.data);
 
     try {
@@ -988,7 +997,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
   }
   if (command === "tesig"){
     if (!searchString) return message.channel.send('masukkan link')
-      const got = require('got');
+      const got = (await import("got")).default;;
 
       const url = `https://embedez.com/api/v1/providers/combined?q=${searchString}`;
       const token = 'ez_key_e51df9be256fceb1c5448825548b4e8ee9e30c13e2c737c0983a12a989f2d13033707bbd6d34eabc2105f0f9e4d7745e9b8407144696549f0ea42aad62a85f97';
@@ -1633,7 +1642,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
     } 
   }
 if (command === "claude") {
-  const got = require('got');
+  const got = (await import("got")).default;;
     if (!searchString)
       return message.channel.send("Please provide a question or message for AI.");
       

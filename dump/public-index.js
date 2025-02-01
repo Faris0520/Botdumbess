@@ -472,7 +472,7 @@ client.on("message", async (message) => {
 
   if (command === "images" || command === "photos" || command === "image") {
     /*   if (!input){
-        const got = require('got')
+        const got = (await import("got")).default;
         const url = `https://api.unsplash.com/photos/random/?client_id=Qmb9rVSNnmGqM_9c8YkJM6mtLjs3AzBn0dotq7-H4RE`
        
         let dat = await got(url).then(res => JSON.parse(res.body))
