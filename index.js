@@ -245,7 +245,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
   }
   if (message.content === "menkrep") {
     /*    const url = `https://api.mcsrvstat.us/2/gamew.aternos.me`
-     const got = require("got")
+     const got = (await import("got")).default;
     let data = await got(url).then(res => JSON.parse(res.body));
 
     message.channel.send(`${data.players.online}\n${data.players.list[0]} ${data.players.list[1]}`)
@@ -253,7 +253,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
     const url = `https://api.lolhuman.xyz/api/minecraft/gamew.aternos.me?apikey=854755d0039999bbaeee450c`;
     const time = `https://timeapi.io/api/Time/current/zone?timeZone=Asia/Jakarta`;
 
-    const got = require("got");
+    const got = (await import("got")).default;;
     let data = await got(url).then((res) => JSON.parse(res.body));
     let datat = await got(time).then((res) => JSON.parse(res.body));
 
@@ -651,7 +651,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
   }}
   if (command == "gempa") {
     const url = `https://cuaca-gempa-rest-api.vercel.app/quake`;
-    const got = require("got");
+    const got = (await import("got")).default;;
     let data = await got(url).then((res) => JSON.parse(res.body));
     let em = new MessageEmbed()
       .setTitle("Gempa terkini")
@@ -760,7 +760,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
         message.channel.send(dat.urls.regular)
        } else */
     if (searchString === "raw") {
-      const got = require("got");
+      const got = (await import("got")).default;;
       const url = `https://api.unsplash.com/photos/random/?client_id=Qmb9rVSNnmGqM_9c8YkJM6mtLjs3AzBn0dotq7-H4RE`;
 
       let dat = await got(url).then((res) => JSON.parse(res.body));
@@ -773,13 +773,13 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
     message.channel.send(emb) */
       message.channel.send(dat.urls.raw);
     } else if (searchString === "regular") {
-      const got = require("got");
+      const got = (await import("got")).default;;
       const url = `https://api.unsplash.com/photos/random/?client_id=Qmb9rVSNnmGqM_9c8YkJM6mtLjs3AzBn0dotq7-H4RE`;
 
       let dat = await got(url).then((res) => JSON.parse(res.body));
       message.channel.send(dat.urls.regular);
     } else if (searchString === "full") {
-      const got = require("got");
+      const got = (await import("got")).default;;
       const url = `https://api.unsplash.com/photos/random/?client_id=Qmb9rVSNnmGqM_9c8YkJM6mtLjs3AzBn0dotq7-H4RE`;
 
       let dat = await got(url).then((res) => JSON.parse(res.body));
@@ -793,7 +793,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
         return message.channel.send(
           "Gambar apa yang ingin kamu cari?\nSearch    : `h.images [Gambar]`\nRandom : `h.images full | raw | regular` "
         );
-      const got = require("got");
+      const got = (await import("got")).default;;
       try {
         const url = `https://api.unsplash.com/search/photos?page=1&query=${searchString}&client_id=Qmb9rVSNnmGqM_9c8YkJM6mtLjs3AzBn0dotq7-H4RE`;
         let r = Math.floor(Math.random() * 7);
@@ -897,7 +897,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
       return message.channel.send(
         "Cari Gambar di Unsplash. ||sbnrny mirip h.images 😅||\n`h.search [query]`"
       );
-    const got = require("got");
+    const got = (await import("got")).default;;
     const url = `https://api.unsplash.com/search/photos?page=1&query=${searchString}&client_id=Qmb9rVSNnmGqM_9c8YkJM6mtLjs3AzBn0dotq7-H4RE`;
     let r = Math.floor(Math.random() * 11);
     let dat = await got(url).then((res) => JSON.parse(res.body));
@@ -907,7 +907,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
     if (!searchString) return message.channel.send("Masukkan url!");
     const axios = require("axios");
     const url = `https://shot.screenshotapi.net/screenshot?&url=${searchString}&fresh=true&output=json&file_type=png&wait_for_event=load`;
-    const got = require("got");
+    const got = (await import("got")).default;;
     let data = await got(url).then((res) => JSON.parse(res.body));
     let w = new MessageEmbed()
       .setAuthor(data.url)
@@ -925,7 +925,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
       );
     let nama = searchString.charAt(0).toUpperCase() + searchString.slice(1).toLowerCase()
     const url = `http://api.aladhan.com/v1/timingsByCity?city=${txt}&country=Indonesia&method=8`;
-    const got = require("got");
+    const got = (await import("got")).default;;
     let data = await got(url).then((res) => JSON.parse(res.body));
     var hmm = new MessageEmbed()
       .setAuthor(`Adzan Prayer Time | ${nama}`)
@@ -952,7 +952,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
   if (command === "igdl" || command === "ig") {
     if (!searchString) return message.channel.send("masukkan link");
     const url = `https://api.ryzendesu.vip/api/downloader/igdl?url=${searchString}`;
-    const got = require("got");
+    const got = (await import("got")).default;;
     let data = await got(url).then((res) => JSON.parse(res.body));
 
     try {
@@ -1005,7 +1005,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
   if (command === "igdl" || command === "ig2") {
     if (!searchString) return message.channel.send("masukkan link");
     const url = `https://api.lolhuman.xyz/api/instagram?apikey=854755d0039999bbaeee450c&url=${args[1]}`;
-    const got = require("got");
+    const got = (await import("got")).default;;
     let data = await got(url).then((res) => JSON.parse(res.body));
 
     try {
@@ -1035,14 +1035,14 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
   }
   if (command === "api") {
     const url = `https://api.lolhuman.xyz/api/checkapikey?apikey=3f342f50d0fb2f0cbfdc7848`;
-    const got = require("got");
+    const got = (await import("got")).default;;
     let data = await got(url).then((res) => JSON.parse(res.body));
 
     message.channel.send(`Today: ${data.result.today}`);
   }
   if (command === "api2") {
     const url = `https://api.lolhuman.xyz/api/checkapikey?apikey=854755d0039999bbaeee450c`;
-    const got = require("got");
+    const got = (await import("got")).default;;
     let data = await got(url).then((res) => JSON.parse(res.body));
 
     message.channel.send(`Today: ${data.result.today}`);
@@ -1059,7 +1059,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
     if (!searchString)
       return message.channel.send(`wallpaper apa yg mau dicari?`);
     const url = `https://wallhaven.cc/api/v1/search?q=${searchString}`;
-    const got = require("got");
+    const got = (await import("got")).default;;
     let data = await got(url).then((res) => JSON.parse(res.body));
     let r = Math.floor(Math.random() * 15);
     const embed = new MessageEmbed()
@@ -1163,14 +1163,14 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
   }
   if (command === "yt") {
     const url = `https://api.lolhuman.xyz/api/ytreels?apikey=3f342f50d0fb2f0cbfdc7848&url=${searchString}`;
-    const got = require("got");
+    const got = (await import("got")).default;;
     let data = await got(url).then((res) => JSON.parse(res.body));
   }
 
   /*
   if (command == "redid" || command === "reddit") {
     const url = `https://www.reddit.com/r/${searchString}.json`
-    const got = require("got");
+    const got = (await import("got")).default;;
     let data = await got(url).then(res => JSON.parse(res.body));
     let r = Math.floor(Math.random() * 31);
     if (!searchString[0])
@@ -1204,7 +1204,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
     message.channel.send(reddit);
   } */
   if (command === "reddid" || command === "reddit" || command === "redid") {
-    const got = require("got");
+    const got = (await import("got")).default;;
     const url = `https://www.reddit.com/r/${searchString}/top/.json?sort=top&t=week&limit=60`;
     let data = await got(url).then((res) => JSON.parse(res.body));
     if (!searchString[0]) return message.channel.send("Subreddit?");
@@ -1257,7 +1257,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
     ];
     const rnd = Math.floor(Math.random() * url.length);
     let hu = url[rnd];
-    const got = require("got");
+    const got = (await import("got")).default;;
     let data = await got(hu).then((res) => JSON.parse(res.body));
     let r = Math.floor(Math.random() * 99);
     const color = message.guild.me.displayHexColor;
@@ -1273,7 +1273,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
   }
   if (command === "indonesia" || command === "indo") {
     const hu = `https://reddit.com/r/indonesia/hot/.json?limit=100`;
-    const got = require("got");
+    const got = (await import("got")).default;;
     let data = await got(hu).then((res) => JSON.parse(res.body));
     let r = Math.floor(Math.random() * 99);
     const color = message.guild.me.displayHexColor;
@@ -1378,7 +1378,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
   if (command === "kbbi") {
     if (!searchString) return message.channel.send("mau cari ap ngab?");
     let web = `https://kbbi-api-zhirrr.vercel.app/api/kbbi?text=${searchString}`;
-    const got = require("got");
+    const got = (await import("got")).default;;
     let data = await got(web)
       .then((res) => JSON.parse(res.body))
       .catch((e) => message.channel.send(e));
@@ -1400,7 +1400,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
     if (!searchString) return message.channel.send("mau cari ap ngab?");
     if (args[1] === "recomm") {
       let web = `https://mangamint.kaedenoki.net/api/recommended`;
-      const got = require("got");
+      const got = (await import("got")).default;;
       let data = await got(web)
         .then(res => JSON.parse(res.body))
         .catch(e => message.channel.send(e));
@@ -1418,7 +1418,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
       let web = `https://mangamint.kaedenoki.net/api/search/${args
         .slice(20)
         .join(" ")}`;
-      const got = require("got");
+      const got = (await import("got")).default;;
       let data = await got(web)
         .then(res => JSON.parse(res.body))
         .catch(e => message.channel.send(e));
@@ -1674,7 +1674,7 @@ if (command === "claude") {
 
     const url = `https://api.github.com/users/${searchString}`;
     const rep = `https://api.github.com/users/${searchString}/repos?sort=updated`;
-    const got = require("got");
+    const got = (await import("got")).default;;
     let profileResponse = await got(url).then((res) => JSON.parse(res.body));
     let repoResponse = await got(rep).then((res) => JSON.parse(res.body));
 
@@ -1747,7 +1747,7 @@ if (command === "claude") {
 
   if (command === "wikihow") {
     const url = `https://kagchi-api.glitch.me/wikihow`;
-    const got = require("got");
+    const got = (await import("got")).default;;
     let data = await got(url).then((res) => JSON.parse(res.body));
     var o = new MessageEmbed()
       .setAuthor(client.user.username, client.user.avatarURL())
@@ -1794,7 +1794,7 @@ if (command === "claude") {
 /*  if (command === "tk" || command === "daily") {
     message.delete();
     const url = `https://cinnabar.icaksh.my.id/public/daily/tawiki`;
-    const got = require("got");
+    const got = (await import("got")).default;;
     let data = await got(url).then((res) => JSON.parse(res.body));
     let r = Math.floor(Math.random() * 4);
     message.channel.send(
@@ -1847,7 +1847,7 @@ Sebenarnya masih bnyk, tpi *Malas* nulis. Coba2 aja, atau tanya.
 
   if (command === "ytmp3") {
     if (!searchString) return message.channel.send("Masukkan link youtube.`");
-    const got = require("got");
+    const got = (await import("got")).default;;
     const url = `https://api.lolhuman.xyz/api/ytaudio?apikey=5119194f07cdf52d5c57d3d0&url=${searchString}`;
     let dat = await got(url).then((res) => JSON.parse(res.body));
     try {
@@ -1879,7 +1879,7 @@ Sebenarnya masih bnyk, tpi *Malas* nulis. Coba2 aja, atau tanya.
       return message.channel.send(
         "mau cari afh? <:hmm:959422267236945970> || jangan sring dipake, ad limitny perhari ||"
       );
-    const got = require("got");
+    const got = (await import("got")).default;;
     const url = `https://api.lolhuman.xyz/api/gsearch?apikey=3f342f50d0fb2f0cbfdc7848&query=${searchString}`;
     let data = await got(url).then((res) => JSON.parse(res.body));
 
@@ -1904,7 +1904,7 @@ Sebenarnya masih bnyk, tpi *Malas* nulis. Coba2 aja, atau tanya.
     let link2 = `http://api.marketstack.com/v1/tickers/${stok}/intraday?access_key=891320bd915705bf7d49ca0af19abfc4`;
     let link3 = `https://api.polygon.io/v3/reference/tickers/${stok}?apiKey=JbQ9qI1RzLjAQDDVQ9KUdfxHxiopBhpO`;
 
-    const got = require("got");
+    const got = (await import("got")).default;;
     let price = await got(link2).then((res) => JSON.parse(res.body));
     let data = await got(link3).then((res) => JSON.parse(res.body));
 
@@ -1930,7 +1930,7 @@ Sebenarnya masih bnyk, tpi *Malas* nulis. Coba2 aja, atau tanya.
 
   if (command === "ytdl") {
     if (!searchString) return message.channel.send("Masukkan link youtube.");
-    const got = require("got");
+    const got = (await import("got")).default;;
     const url = `https://api.lolhuman.xyz/api/ytreels?apikey=3f342f50d0fb2f0cbfdc7848&url=${searchString}`;
     let dat = await got(url).then((res) => JSON.parse(res.body));
     message.channel.send("loading... if stuck, error.");
@@ -1963,7 +1963,7 @@ Sebenarnya masih bnyk, tpi *Malas* nulis. Coba2 aja, atau tanya.
   }
   if (command === "tt") {
     if (!searchString) return message.channel.send("Masukkan link Tiktok!");
-    const got = require("got");
+    const got = (await import("got")).default;;
     const url = `https://api.lolhuman.xyz/api/tiktokwm?apikey=3f342f50d0fb2f0cbfdc7848&url=${searchString}`;
     let dat = await got(url).then((res) => JSON.parse(res.body));
     message.channel.send("loading... if this stuck, ok error.");
@@ -1982,7 +1982,7 @@ Sebenarnya masih bnyk, tpi *Malas* nulis. Coba2 aja, atau tanya.
   if (command === "ip") {
     if (!searchString)
       return message.channel.send("masukkan ip\ngtw ip? yaudah");
-    const got = require("got");
+    const got = (await import("got")).default;;
     const url = `http://ip-api.com/json/${searchString}?fields=status,message,country,countryCode,region,regionName,city,zip,lat,lon,timezone,isp,org,as,query`;
     let dat = await got(url).then((res) => JSON.parse(res.body));
     message.channel.send(
@@ -2013,7 +2013,7 @@ Sebenarnya masih bnyk, tpi *Malas* nulis. Coba2 aja, atau tanya.
   if (command === "r" || command === "recent") {
     if (message.guild.id === 875388139148017715)
       return message.channel.send("khusus server gamew");
-    const got = require("got");
+    const got = (await import("got")).default;;
     const url = `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=Faris0520&api_key=632b8cddfcbbb1e846cd1bbb8b88c01c&format=json`;
     let dat = await got(url).then((res) => JSON.parse(res.body));
     let data = dat.recenttracks;
@@ -2040,7 +2040,7 @@ Sebenarnya masih bnyk, tpi *Malas* nulis. Coba2 aja, atau tanya.
 /*  if (command === "fb") {
     if (!searchString)
       return message.channel.send("masukan link fb (Video Only!)");
-    const got = require("got");
+    const got = (await import("got")).default;;
     const url = `https://api.lolhuman.xyz/api/facebook?apikey=3f342f50d0fb2f0cbfdc7848&url=${searchString}`;
     let dat = await got(url).then((res) => JSON.parse(res.body));
 
