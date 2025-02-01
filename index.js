@@ -952,12 +952,11 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
   if (command === "igdl" || command === "ig") {
     if (!searchString) return message.channel.send("masukkan link");
     const url = `https://api.ryzendesu.vip/api/downloader/igdl?url=${searchString}`;
-    const got = (await import("got")).default;;
-    let data = await got(url).then((res) => JSON.parse(res.body));
+    let data = await axios.get(url).then((res) => res.data);
 
     try {
       let ttc = new Discord.MessageAttachment(data.data.url, `instagram.mp4`);
-     /* let ttc2 = new Discord.MessageAttachment(data.result[1], `instagram.mp4`);
+      /* let ttc2 = new Discord.MessageAttachment(data.result[1], `instagram.mp4`);
       let ttc3 = new Discord.MessageAttachment(data.result[2], `instagram.mp4`);
       let ttc4 = new Discord.MessageAttachment(data.result[3], `instagram.mp4`);
       let ttc5 = new Discord.MessageAttachment(data.result[4], `instagram.mp4`);
@@ -978,7 +977,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
           }, 600000); 
         });
     } catch (error) {
-      console.error('Error:', error.response ? error.response.body : error.message);
+      console.error('Error:', error.response ? error.response.data : error.message);
     }
   }
   if (command === "tesig"){
@@ -2050,6 +2049,8 @@ Sebenarnya masih bnyk, tpi *Malas* nulis. Coba2 aja, atau tanya.
   }
   if (command === "epbi") {
     const { facebook } = require("./fb.js");
+const axios = require('axios');
+const axios = require('axios');
     if (!searchString)
       return message.channel.send(
         `uhm.. url nya mana?\n\ncontoh:\nh.fb https://www.facebook.com/alanwalkermusic/videos/277641643524720`
