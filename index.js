@@ -956,7 +956,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
     let data = await got(url).then((res) => JSON.parse(res.body));
 
     try {
-      let ttc = new Discord.MessageAttachment(data.url, `instagram.mp4`);
+      let ttc = new Discord.MessageAttachment(data.data.url, `instagram.mp4`);
      /* let ttc2 = new Discord.MessageAttachment(data.result[1], `instagram.mp4`);
       let ttc3 = new Discord.MessageAttachment(data.result[2], `instagram.mp4`);
       let ttc4 = new Discord.MessageAttachment(data.result[3], `instagram.mp4`);
