@@ -977,8 +977,8 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
             webhook.delete();
           }, 600000); 
         });
-    } catch (e) {
-      message.channel.send(`Error, coba lagi!. ||<@${owner}>||`);
+    } catch (error) {
+      console.error('Error:', error.response ? error.response.body : error.message);
     }
   }
   if (command === "tesig"){
