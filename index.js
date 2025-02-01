@@ -958,15 +958,6 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
       'Accept-Language': 'en-US,en;q=0.9',
       'Referer': 'https://www.google.com/',
     };
-    const cloudscraper = require('cloudscraper');
-
-const url = `https://api.ryzendesu.vip/api/downloader/igdl?url=${searchString}`;
-
-cloudscraper.get(url)
-  .then((response) => {
-    let data = JSON.parse(response);
-    console.log(data);
-  })
     let data = await axios.get(url, { headers }).then((res) => res.data);
 
     try {
