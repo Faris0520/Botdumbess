@@ -1662,7 +1662,8 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
       message.channel.send(responseText);
     } 
   }
-if (command === "r1") {
+if (command === "r1") {    
+  const OpenAI = require("openai");
   const openai = new OpenAI({
     baseURL: 'https://api.deepinfra.com/v1/openai',
     apiKey: process.env.DEEP, // Menggunakan variabel lingkungan untuk keamanan
