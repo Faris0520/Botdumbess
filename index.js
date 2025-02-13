@@ -1626,6 +1626,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
     if (
       args[1] === "4o"
     ) {
+      const searchString = args.join(" ").slice(7);
       const OpenAI = require("openai");
       const openai = new OpenAI({
         apiKey: process.env.OPENAI,
@@ -1658,6 +1659,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
       }
     }
     if (args[1] === "o1") {
+      const searchString = args.join(" ").slice(7);
       let ch = `1339532565886926888`;
       const OpenAI = require("openai");
       const openai = new OpenAI({
@@ -1696,6 +1698,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
       log.send(a);
     }
     if (args[1] === "r1") {
+      const searchString = args.join(" ").slice(7);
       let ch = `1339532565886926888`;
       const OpenAI = require("openai");
       const openai = new OpenAI({
@@ -1749,6 +1752,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
       return;
     }
     if (args[1] === "r1-70b") {
+      const searchString = args.join(" ").slice(11);
       let ch = `1339532565886926888`;
       const OpenAI = require("openai");
       const openai = new OpenAI({
