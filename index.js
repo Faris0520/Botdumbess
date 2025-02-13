@@ -1657,14 +1657,14 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
       for (let i = 0; i < responseText.length; i += partLength) {
         const part = responseText.substring(i, i + partLength);
         message.channel.send(part);
-        let log = bot.channels.cache.get(ch);
+        let log = client.channels.cache.get(ch);
         let a = `<@${message.author.id}> menggunakan o1 di server **${message.guild.name}**\n\`${searchString}\`\n`
         log.send(a);
       }
     } else {
       // Mengirim pesan jika kurang dari atau sama dengan 1999 karakter
       message.channel.send(responseText);
-      let log = bot.channels.cache.get(ch);
+      let log = client.channels.cache.get(ch);
       let a = `<@${message.author.id}> menggunakan o1 di server **${message.guild.name}**\n\`${searchString}\`\n`
       log.send(a);
     }
@@ -1712,7 +1712,7 @@ function formatThinkBlockquote(text) {
         message.channel.send("Terjadi kesalahan saat memproses permintaan AI.");
     }
     //-----------------------------------------------------------------//
-    let log = bot.channels.cache.get(ch);
+    let log = client.channels.cache.get(ch);
     let a = `<@${message.author.id}> menggunakan r1 di server **${message.guild.name}**\n\`${searchString}\`\n`
     log.send(a);
     return;
@@ -2696,7 +2696,7 @@ client.on("messageDelete", (message) => {
   if (!message.partial) {
     if (!message.content) return;
     console.log(
-      `It had content: "${message.content}" || from ${message.author.username}`
+      `It had content: "${message.content}" || from ${message.author.username} || in ${message.guild.name}`
     );
     let log = client.channels.cache.get("840513794119434271");
     let d = new MessageEmbed()
