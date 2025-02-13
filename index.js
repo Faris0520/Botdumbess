@@ -1646,7 +1646,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
       model: "o1-mini-2024-09-12",
     });
   
-    console.log(completion.choices[0]);
+    console.log(searchString, completion.choices[0]);
     const responseText = completion.choices[0].message.content;
   
     // Memeriksa panjang pesan dan membaginya jika lebih dari 1999 karakter
@@ -1686,8 +1686,8 @@ function formatThinkBlockquote(text) {
             model: "deepseek-ai/DeepSeek-R1",
         });
 
-        console.log(completion.choices[0]);
-        const responseText = completion.choices[0].message.content;
+        console.log(searchString, completion.choices[0]);
+        let responseText = completion.choices[0].message.content;
         responseText = formatThinkBlockquote(responseText);
 
         // Memeriksa panjang pesan dan membaginya jika lebih dari 1999 karakter
