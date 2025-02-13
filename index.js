@@ -1673,7 +1673,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
   
     const completion = await openai.completions.create({
       prompt: searchString, // Gunakan prompt, bukan messages
-      model: "gpt-4o-realtime-preview",
+      model: "gpt-4o-realtime-preview-2024-12-17",
     });    
   
     console.log(completion.choices[0]);
