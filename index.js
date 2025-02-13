@@ -1671,13 +1671,13 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
     if (!searchString)
       return message.channel.send("Mohon berikan pertanyaan atau pesan untuk AI.");
   
-    const completion = await openai.completions.create({
-      prompt: searchString, // Use 'prompt' instead of 'messages'
-      model: "gpt-4o-realtime-preview",
+    const completion = await openai.chat.completions.create({
+      messages: [{ role: "user", content: searchString }], // Use 'messages' for chat completions
+      model: "gpt-4o-realtime-preview", // Ensure this model is supported
     });
   
     console.log(completion.choices[0]);
-    const responseText = completion.choices[0].text; // Use 'text' instead of 'message.content'
+    const responseText = completion.choices[0].message.content; // Access the content correctly
   
     // Memeriksa panjang pesan dan membaginya jika lebih dari 1999 karakter
     if (responseText.length > 1999) {
