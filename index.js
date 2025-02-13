@@ -1642,7 +1642,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
       return message.channel.send("Mohon berikan pertanyaan atau pesan untuk AI.");
   
     const completion = await openai.chat.completions.create({
-      messages: [{ role: "user", content: `${searchString}` }],
+      messages: [{ role: "user", content: `${searchString}\n-# o1-mini-2024-09-12` }],
       model: "o1-mini-2024-09-12",
     });
   
@@ -1677,7 +1677,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
     });    
   
     console.log(completion.choices[0]);
-    const responseText = completion.choices[0].message.content; // Access the content correctly
+    const responseText = completion.choices[0].message.content + "\n -# gpt-4o-realtime-preview"; // Access the content correctly
   
     // Memeriksa panjang pesan dan membaginya jika lebih dari 1999 karakter
     if (responseText.length > 1999) {
