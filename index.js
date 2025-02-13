@@ -1662,36 +1662,42 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
       message.channel.send(responseText);
     } 
   }
-  if (command === "ai3") {
-    const OpenAI = require("openai");
-    const openai = new OpenAI({
-      apiKey: process.env.OPENAI
-    });
-  
-    if (!searchString)
-      return message.channel.send("Mohon berikan pertanyaan atau pesan untuk AI.");
-  
-    const completion = await openai.completions.create({
-      prompt: searchString, // Gunakan prompt, bukan messages
-      model: "gpt-4o-realtime-preview-2024-12-17",
-    });    
-  
-    console.log(completion.choices[0]);
-    const responseText = completion.choices[0].message.content + "\n -# gpt-4o-realtime-preview"; // Access the content correctly
-  
-    // Memeriksa panjang pesan dan membaginya jika lebih dari 1999 karakter
-    if (responseText.length > 1999) {
-      // Membagi pesan menjadi potongan-potongan
-      let partLength = 1999;
-      for (let i = 0; i < responseText.length; i += partLength) {
-        const part = responseText.substring(i, i + partLength);
-        message.channel.send(part);
-      }
-    } else {
-      // Mengirim pesan jika kurang dari atau sama dengan 1999 karakter
-      message.channel.send(responseText);
-    } 
+if (command === "r1") {
+  const openai = new OpenAI({
+    baseURL: 'https://api.deepinfra.com/v1/openai',
+    apiKey: process.env.DEEP, // Menggunakan variabel lingkungan untuk keamanan
+});
+    if (!searchString) {
+        return message.channel.send("Mohon berikan pertanyaan atau pesan untuk AI.");
+    }
+
+    try {
+        const completion = await openai.chat.completions.create({
+            messages: [{ role: "user", content: searchString }],
+            model: "deepseek-ai/DeepSeek-R1",
+        });
+
+        console.log(completion.choices[0]);
+        const price = completion.usage.prompt_tokens
+        const price2 = completion.usage.completion_tokens
+        const responseText = completion.choices[0].message.content + `\n-# ${price} - ${price2}`;
+
+        // Memeriksa panjang pesan dan membaginya jika lebih dari 1999 karakter
+        if (responseText.length > 1999) {
+            let partLength = 1999;
+            for (let i = 0; i < responseText.length; i += partLength) {
+                const part = responseText.substring(i, i + partLength);
+                message.channel.send(part);
+            }
+        } else {
+            message.channel.send(responseText);
+        }
+    } catch (error) {
+        console.error("Error saat mengakses AI:", error);
+        message.channel.send("Terjadi kesalahan saat memproses permintaan AI.");
+    }
 }
+
 if (command === "claude") {
   const got = (await import("got")).default;;
     if (!searchString)
