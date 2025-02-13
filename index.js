@@ -1676,10 +1676,13 @@ if (command === "r1") {
 
 function formatThinkBlockquote(text) {
   return text.replace(/<think>([\s\S]*?)<\/think>/g, (match, content) => {
-      // Menambahkan ">" di setiap baris dalam konten <think>
-      return content.split("\n").map(line => `> ${line}`).join("\n");
+      return content
+          .split("\n") // Pisahkan teks menjadi array berdasarkan newline (\n)
+          .map(line => line.trim() ? `-# ${line}` : "") // Tambahkan -# hanya jika ada teks
+          .join("\n"); // Gabungkan kembali dengan newline
   });
 }
+
     if (!searchString) {
         return message.channel.send("Mohon berikan pertanyaan atau pesan untuk AI.");
     }
@@ -1724,10 +1727,13 @@ if (command === "r1-70b") {
 
 function formatThinkBlockquote(text) {
   return text.replace(/<think>([\s\S]*?)<\/think>/g, (match, content) => {
-      // Menambahkan ">" di setiap baris dalam konten <think>
-      return content.split("\n").map(line => `-# ${line}`).join("\n");
+      return content
+          .split("\n") // Pisahkan teks menjadi array berdasarkan newline (\n)
+          .map(line => line.trim() ? `-# ${line}` : "") // Tambahkan -# hanya jika ada teks
+          .join("\n"); // Gabungkan kembali dengan newline
   });
 }
+
     if (!searchString) {
         return message.channel.send("Mohon berikan pertanyaan atau pesan untuk AI.");
     }
