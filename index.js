@@ -1671,10 +1671,10 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
     if (!searchString)
       return message.channel.send("Mohon berikan pertanyaan atau pesan untuk AI.");
   
-    const completion = await openai.chat.completions.create({
-      messages: [{ role: "user", content: searchString }], // Use 'messages' for chat completions
-      model: "gpt-4o-realtime-preview", // Ensure this model is supported
-    });
+    const completion = await openai.completions.create({
+      prompt: searchString, // Gunakan prompt, bukan messages
+      model: "gpt-4o-realtime-preview",
+    });    
   
     console.log(completion.choices[0]);
     const responseText = completion.choices[0].message.content; // Access the content correctly
