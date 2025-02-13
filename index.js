@@ -1643,7 +1643,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
   
     const completion = await openai.chat.completions.create({
       messages: [{ role: "user", content: `${searchString}` }],
-      model: "o1",
+      model: "o1-2024-12-17",
     });
   
     console.log(completion.choices[0]);
@@ -1671,7 +1671,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
     if (!searchString)
       return message.channel.send("Mohon berikan pertanyaan atau pesan untuk AI.");
   
-    const completion = await openai.chat.completions.create({
+    const completion = await openai.completions.create({
       messages: [{ role: "user", content: `${searchString}` }],
       model: "gpt-4o-realtime-preview",
     });
