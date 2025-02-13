@@ -1725,7 +1725,7 @@ if (command === "r1-70b") {
 function formatThinkBlockquote(text) {
   return text.replace(/<think>([\s\S]*?)<\/think>/g, (match, content) => {
       // Menambahkan ">" di setiap baris dalam konten <think>
-      return content.split("\n").map(line => `> ${line}`).join("\n");
+      return content.split("\n").map(line => `-# ${line}`).join("\n");
   });
 }
     if (!searchString) {
