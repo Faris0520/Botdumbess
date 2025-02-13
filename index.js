@@ -1633,6 +1633,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
     } 
   }
   if (command === "o1") {
+    let ch = `1339532565886926888`
     const OpenAI = require("openai");
     const openai = new OpenAI({
       apiKey: process.env.OPENAI
@@ -1656,13 +1657,20 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
       for (let i = 0; i < responseText.length; i += partLength) {
         const part = responseText.substring(i, i + partLength);
         message.channel.send(part);
+        let log = bot.channels.cache.get(ch);
+        let a = `<@${message.author.id}> menggunakan o1 di server **${message.guild.name}**\n\`${searchString}\`\n`
+        log.send(a);
       }
     } else {
       // Mengirim pesan jika kurang dari atau sama dengan 1999 karakter
       message.channel.send(responseText);
-    } 
+      let log = bot.channels.cache.get(ch);
+      let a = `<@${message.author.id}> menggunakan o1 di server **${message.guild.name}**\n\`${searchString}\`\n`
+      log.send(a);
+    }
   }
 if (command === "r1") {    
+  let ch = `1339532565886926888`
   const OpenAI = require("openai");
   const openai = new OpenAI({
     baseURL: 'https://api.deepinfra.com/v1/openai',
@@ -1675,7 +1683,6 @@ function formatThinkBlockquote(text) {
       return content.split("\n").map(line => `> ${line}`).join("\n");
   });
 }
-
     if (!searchString) {
         return message.channel.send("Mohon berikan pertanyaan atau pesan untuk AI.");
     }
@@ -1704,6 +1711,11 @@ function formatThinkBlockquote(text) {
         console.error("Error saat mengakses AI:", error);
         message.channel.send("Terjadi kesalahan saat memproses permintaan AI.");
     }
+    //-----------------------------------------------------------------//
+    let log = bot.channels.cache.get(ch);
+    let a = `<@${message.author.id}> menggunakan r1 di server **${message.guild.name}**\n\`${searchString}\`\n`
+    log.send(a);
+    return;
 }
 
 if (command === "claude") {
