@@ -1714,7 +1714,54 @@ function formatThinkBlockquote(text) {
     log.send(a);
     return;
 }
+if (command === "r1-70b") {    
+  let ch = `1339532565886926888`
+  const OpenAI = require("openai");
+  const openai = new OpenAI({
+    baseURL: 'https://api.deepinfra.com/v1/openai',
+    apiKey: process.env.DEEP, // Menggunakan variabel lingkungan untuk keamanan
+});
 
+function formatThinkBlockquote(text) {
+  return text.replace(/<think>([\s\S]*?)<\/think>/g, (match, content) => {
+      // Menambahkan ">" di setiap baris dalam konten <think>
+      return content.split("\n").map(line => `> ${line}`).join("\n");
+  });
+}
+    if (!searchString) {
+        return message.channel.send("Mohon berikan pertanyaan atau pesan untuk AI.");
+    }
+
+    try {
+        const completion = await openai.chat.completions.create({
+            messages: [{ role: "user", content: searchString }],
+            model: "deepseek-ai/DeepSeek-R1-Distill-Llama-70B",
+        });
+
+        console.log(searchString, completion.choices[0]);
+        let responseText = completion.choices[0].message.content;
+        responseText = formatThinkBlockquote(responseText);
+
+        // Memeriksa panjang pesan dan membaginya jika lebih dari 1999 karakter
+        if (responseText.length > 1999) {
+            let partLength = 1999;
+            for (let i = 0; i < responseText.length; i += partLength) {
+                const part = responseText.substring(i, i + partLength);
+                message.channel.send(part);
+            }
+        } else {
+            message.channel.send(responseText);
+        }
+    } catch (error) {
+        console.error("Error saat mengakses AI:", error);
+        message.channel.send("Terjadi kesalahan saat memproses permintaan AI.");
+    }
+    //-----------------------------------------------------------------//
+    let log = client.channels.cache.get(ch);
+    let a = `<@${message.author.id}> menggunakan r1 70b di server **${message.guild.name}**\n\`${searchString}\`\n`
+    log.send(a);
+    return;
+}
 if (command === "claude") {
   const got = (await import("got")).default;;
     if (!searchString)
