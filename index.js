@@ -1657,17 +1657,14 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
       for (let i = 0; i < responseText.length; i += partLength) {
         const part = responseText.substring(i, i + partLength);
         message.channel.send(part);
-        let log = client.channels.cache.get(ch);
-        let a = `<@${message.author.id}> menggunakan o1 di server **${message.guild.name}**\n\`${searchString}\`\n`
-        log.send(a);
       }
     } else {
       // Mengirim pesan jika kurang dari atau sama dengan 1999 karakter
       message.channel.send(responseText);
-      let log = client.channels.cache.get(ch);
-      let a = `<@${message.author.id}> menggunakan o1 di server **${message.guild.name}**\n\`${searchString}\`\n`
-      log.send(a);
     }
+    let log = client.channels.cache.get(ch);
+    let a = `<@${message.author.id}> menggunakan o1 di server **${message.guild.name}**\n\`${searchString}\`\n`
+    log.send(a);
   }
 if (command === "r1") {    
   let ch = `1339532565886926888`
