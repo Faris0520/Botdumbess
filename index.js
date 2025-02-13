@@ -1632,7 +1632,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
       message.channel.send(responseText);
     } 
   }
-  if (command === "ai2") {
+  if (command === "o1") {
     const OpenAI = require("openai");
     const openai = new OpenAI({
       apiKey: process.env.OPENAI
