@@ -1668,6 +1668,14 @@ if (command === "r1") {
     baseURL: 'https://api.deepinfra.com/v1/openai',
     apiKey: process.env.DEEP, // Menggunakan variabel lingkungan untuk keamanan
 });
+
+function formatThinkBlockquote(text) {
+  return text.replace(/<think>([\s\S]*?)<\/think>/g, (match, content) => {
+      // Menambahkan ">" di setiap baris dalam konten <think>
+      return content.split("\n").map(line => `> ${line}`).join("\n");
+  });
+}
+
     if (!searchString) {
         return message.channel.send("Mohon berikan pertanyaan atau pesan untuk AI.");
     }
@@ -1679,9 +1687,8 @@ if (command === "r1") {
         });
 
         console.log(completion.choices[0]);
-        const price = completion.usage.prompt_tokens
-        const price2 = completion.usage.completion_tokens
-        const responseText = completion.choices[0].message.content + `\n-# ${price} - ${price2}`;
+        const responseText = completion.choices[0].message.content;
+        responseText = formatThinkBlockquote(responseText);
 
         // Memeriksa panjang pesan dan membaginya jika lebih dari 1999 karakter
         if (responseText.length > 1999) {
