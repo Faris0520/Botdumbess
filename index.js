@@ -1620,10 +1620,10 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
     message.channel.send(Result);
   }
   if (command === "ai") {
-    if (searchString[0] != "4o" || searchString[0] != "o1" || searchString[0] != "r1" || searchString[0] != "r1-70b") return 
-    message.channel.send("**AI List**\n- GPT-4o \`h.ai 4o hai\`\n- GPT-o1 \`h.ai o1 hai\`\n- Deepseek-R1 \`h.ai r1 hai\`\n- Deepseek-R1-70B \`h.ai r1-70b hai\`");
+    if (args[1] !== "4o" || args[1] !== "o1" || args[1] !== "r1" || args[1] !== "r1-70b") return
+      message.channel.send("**AI List**\n- GPT-4o \`h.ai 4o hai\`\n- GPT-o1 \`h.ai o1 hai\`\n- Deepseek-R1 \`h.ai r1 hai\`\n- Deepseek-R1-70B \`h.ai r1-70b hai\`");
     if (
-      searchString[0] === "4o"
+      args[1] === "4o"
     ) {
       const OpenAI = require("openai");
       const openai = new OpenAI({
@@ -1656,7 +1656,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
         message.channel.send(responseText);
       }
     }
-    if (searchString[0] === "o1") {
+    if (args[1] === "o1") {
       let ch = `1339532565886926888`;
       const OpenAI = require("openai");
       const openai = new OpenAI({
@@ -1694,7 +1694,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
       let a = `<@${message.author.id}> menggunakan o1 di server **${message.guild.name}**\n\`${searchString}\`\n`;
       log.send(a);
     }
-    if (searchString === "r1") {
+    if (args[1] === "r1") {
       let ch = `1339532565886926888`;
       const OpenAI = require("openai");
       const openai = new OpenAI({
@@ -1747,7 +1747,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
       log.send(a);
       return;
     }
-    if (searchString === "r1-70b") {
+    if (args[1] === "r1-70b") {
       let ch = `1339532565886926888`;
       const OpenAI = require("openai");
       const openai = new OpenAI({
