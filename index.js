@@ -967,12 +967,12 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
       // Buat attachment dari URL video yang didapatkan
       let ttc = new Discord.MessageAttachment(data.url, 'instagram.mp4');
     
-      const member = msg.author;
-      if (!member) return msg.reply('error unexpected');
+      const member = message.author;
+      if (!member) return message.reply('error unexpected');
       let memer = member.nickname || member.username;
     
       // Membuat webhook dan mengirim pesan beserta attachment
-      msg.channel
+      message.channel
         .createWebhook(memer, {
           avatar: member.displayAvatarURL({ dynamic: true }),
         })
@@ -984,7 +984,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
         });
     } catch (e) {
       console.error(e);
-      msg.channel.send(`Error, coba lagi!. ||<@${owner}>||`);
+      message.channel.send(`Error, coba lagi!. ||<@${owner}>||`);
     }    
   }
   if (command === "tesig"){
