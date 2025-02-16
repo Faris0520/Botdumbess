@@ -949,42 +949,43 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
     let a = new Discord.MessageAttachment(`${searchString}`, `video.mp4`);
     message.channel.send(a);
   }
-  if (command === "igdl" || command === "ig") {
-    if (!searchString) return message.channel.send("masukkan link");
-    const url = `https://api.ryzendesu.vip/api/downloader/igdl?url=${searchString}`;
-    const headers = {
-      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
-      'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
-      'Accept-Language': 'en-US,en;q=0.9',
-      'Referer': 'https://www.google.com/',
-    };
-    let data = await axios.get(url, { headers }).then((res) => res.data);
+  if (command === "ig") {
+    const axios = require('axios'); // Pastikan axios sudah terpasang
 
+    // Pastikan args[1] berisi URL yang valid
+    const url = `https://api.ryzendesu.vip/api/downloader/igdl?url=${args[1]}`;
+    
     try {
-      let ttc = new Discord.MessageAttachment(data.data.url, `instagram.mp4`);
-      /* let ttc2 = new Discord.MessageAttachment(data.result[1], `instagram.mp4`);
-      let ttc3 = new Discord.MessageAttachment(data.result[2], `instagram.mp4`);
-      let ttc4 = new Discord.MessageAttachment(data.result[3], `instagram.mp4`);
-      let ttc5 = new Discord.MessageAttachment(data.result[4], `instagram.mp4`);
-      */
-
-      const member = message.author;
-      if (!member) return message.reply("error unexpected");
+      // Lakukan request menggunakan axios
+      const response = await axios.get(url, {
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36'
+        }
+      });
+      const data = response.data.data[0]; // Data hasil response
+    
+      // Buat attachment dari URL video yang didapatkan
+      let ttc = new Discord.MessageAttachment(data.url, 'instagram.mp4');
+    
+      const member = msg.author;
+      if (!member) return msg.reply('error unexpected');
       let memer = member.nickname || member.username;
-      message.delete();
-      message.channel
+    
+      // Membuat webhook dan mengirim pesan beserta attachment
+      msg.channel
         .createWebhook(memer, {
           avatar: member.displayAvatarURL({ dynamic: true }),
         })
         .then((webhook) => {
-          webhook.send(`${args[2] || "  "}`, data.data.url);
+          webhook.send(`${args[2] || "  "}`, ttc);
           setTimeout(() => {
             webhook.delete();
-          }, 600000); 
+          }, 600000);
         });
-    } catch (error) {
-      console.error('Error:', error.response ? error.response.data : error.message);
-    }
+    } catch (e) {
+      console.error(e);
+      msg.channel.send(`Error, coba lagi!. ||<@${owner}>||`);
+    }    
   }
   if (command === "tesig"){
     if (!searchString) return message.channel.send('masukkan link')
