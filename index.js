@@ -949,7 +949,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
     let a = new Discord.MessageAttachment(`${searchString}`, `video.mp4`);
     message.channel.send(a);
   }
-  if (command === "ig") {
+  if (command === "igdl") {
     const axios = require('axios'); // Pastikan axios sudah terpasang
 
     // Pastikan args[1] berisi URL yang valid
