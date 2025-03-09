@@ -1822,6 +1822,41 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
       message.channel.send(responseText);
     } 
   }
+  if (command === "o3") {
+    let ch = `1339532565886926888`
+    const OpenAI = require("openai");
+    const openai = new OpenAI({
+      apiKey: process.env.OPENAI
+    });
+  
+    if (!searchString)
+      return message.channel.send("Mohon berikan pertanyaan atau pesan untuk AI.");
+  
+    const completion = await openai.chat.completions.create({
+      messages: [{ role: "user", content: `${searchString}\n-# o1-mini-2024-09-12` }],
+      model: "o3-mini-2025-01-31",
+    });
+  
+    console.log(searchString, completion.choices[0]);
+    const responseText = completion.choices[0].message.content;
+  
+    // Memeriksa panjang pesan dan membaginya jika lebih dari 1999 karakter
+    if (responseText.length > 1999) {
+      // Membagi pesan menjadi potongan-potongan
+      let partLength = 1999;
+      for (let i = 0; i < responseText.length; i += partLength) {
+        const part = responseText.substring(i, i + partLength);
+        message.channel.send(part);
+      }
+    } else {
+      // Mengirim pesan jika kurang dari atau sama dengan 1999 karakter
+      message.channel.send(responseText);
+    }
+    let log = client.channels.cache.get(ch);
+    let a = `<@${message.author.id}> menggunakan o3 di server **${message.guild.name}**\n\`${searchString}\`\n`
+    log.send(a);
+  }
+
   if (command === "o1") {
     let ch = `1339532565886926888`
     const OpenAI = require("openai");
@@ -1895,7 +1930,7 @@ function formatThinkBlockquote(text) {
                 message.channel.send(part);
             }
         } else {
-            message.channel.send(responseText);
+            message.channel.send(`${responseText}\n-# DeepSeek-R1`);
         }
     } catch (error) {
         console.error("Error saat mengakses AI:", error);
@@ -1971,7 +2006,7 @@ if (command === "claude") {
           'content-type': 'application/json'
         },
         json: {
-          model: "claude-3-5-sonnet-20241022",
+          model: "claude-3-7-sonnet-20250219",
           max_tokens: 1024,
           messages: [
             {role: "user", content: searchString}
@@ -1989,7 +2024,7 @@ if (command === "claude") {
           await message.channel.send(part);
         }
       } else {
-        await message.channel.send(responseText);
+        await message.channel.send(`${responseText}\n-# Claude 3.7 Sonnet`);
       }
   
     } catch (error) {
