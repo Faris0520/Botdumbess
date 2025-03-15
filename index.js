@@ -906,7 +906,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
 if (command === "ss") {
     if (!searchString) return message.channel.send("Masukkan url!");
     const axios = require("axios");
-    const url = `https://api.screenshotmachine.com/?key=b3ce7b&url=${searchString}&dimension=1920x1080`;
+    const url = `https://api.screenshotmachine.com/?key=b3ce7b&url=${searchString}&dimension=1920x1080&delay=2000`;
     let a = new Discord.MessageAttachment(url, `image.jpg`)
     message.channel.send(a)
   }   
