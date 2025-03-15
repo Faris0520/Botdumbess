@@ -903,20 +903,13 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
     let dat = await got(url).then((res) => JSON.parse(res.body));
     message.channel.send(dat.results[r].urls.regular);
   }
-/*  if (command === "ss") {
+if (command === "ss") {
     if (!searchString) return message.channel.send("Masukkan url!");
     const axios = require("axios");
-    const url = `https://shot.screenshotapi.net/screenshot?&url=${searchString}&fresh=true&output=json&file_type=png&wait_for_event=load`;
-    const got = (await import("got")).default;;
-    let data = await got(url).then((res) => JSON.parse(res.body));
-    let w = new MessageEmbed()
-      .setAuthor(data.url)
-      .setImage(data.screenshot)
-      .setColor("BLUE")
-      .setFooter("Web Screenshot");
-    message.channel.send(w);
-  }
-*/    
+    const url = `https://api.screenshotmachine.com/?key=b3ce7b&url=screenshotmachine.com&dimension=1920x1080`;
+    let a = new Discord.MessageAttachment(url, image.jpg)
+    message.channel.send(a)
+  }   
   if (command === "adzan") {
     let txt = args.join(" ");
     if (!searchString)
