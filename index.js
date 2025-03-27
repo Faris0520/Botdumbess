@@ -2084,7 +2084,7 @@ if (command === "claude") {
     const response = await openai.images.generate({
       model: "dall-e-3",
       prompt: `${searchString}`,
-      n: 1,
+      n: 2,
       size: "1024x1024",
     });
 
