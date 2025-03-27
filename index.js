@@ -2072,8 +2072,8 @@ if (command === "claude") {
   
     message.channel.send(`${m}`)
   }
-  if (command === "aimage") {
-    /*const OpenAI = require("openai");
+  if (command === "dalle") {
+    const OpenAI = require("openai");
     const openai = new OpenAI({
       apiKey: process.env.OPENAI
     });
@@ -2088,10 +2088,9 @@ if (command === "claude") {
       size: "1024x1024",
     });
 
-    const image = new Discord.MessageAttachment(`${response.data[0].url}`, `${searchString}.png`);
-    message.channel.send(image);
-    */
-    message.channel.send("Command ini telah dinonaktifkan.");
+    const image = new Discord.MessageAttachment(`${response.data[0].url}`, `${searchString}.png`)
+    const image2 = new Discord.MessageAttachment(`${response.data[1].url}`, `${searchString}.png`);
+    message.channel.send(image, image2);
   }
   if (command === "wangy") {
     if (!searchString) return message.channel.send("Masukkan nama!");
