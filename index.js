@@ -2089,7 +2089,7 @@ if (command === "claude") {
     });
 
     const image = new Discord.MessageAttachment(`${response.data[0].url}`, `${searchString}.png`)
-    message.channel.send(image, image2);
+    message.channel.send(image);
   }
   if (command === "wangy") {
     if (!searchString) return message.channel.send("Masukkan nama!");
