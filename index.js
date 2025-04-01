@@ -744,10 +744,11 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
     ];
     let result = Math.floor(Math.random() * repl.length);
     var ping = Date.now() - message.createdTimestamp;
-    if (ping > 500) p = "MF >:";
-    if (ping < 500) p = "Nice! <:ndaktau:831494322901352498>";
+    var dcping = client.ws.ping;
+    if (ping || dcping > 500) p = "MF >:";
+    if (ping || dcping < 500) p = "Nice! <:ndaktau:831494322901352498>";
     message.channel.send(
-      `:mega: *${repl[result]}* - My ping: **${ping}** ms (${p})`
+      `:mega: *${repl[result]}* - Bot Ping: **${ping}** ms, API Ping: ${dcping} (${p})`
     );
   }
 
