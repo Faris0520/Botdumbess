@@ -2337,7 +2337,7 @@ Sebenarnya masih bnyk, tpi *Malas* nulis. Coba2 aja, atau tanya.
       return message.channel.send(`Error! \n \`\`\`bash\n${e}\n\`\`\``);
     }
   }
-  if (command === "brat") {
+/*  if (command === "brat") {
     const axios = require('axios'); // Pastikan axios sudah terpasang
 
     // Pastikan args[1] berisi URL yang valid
@@ -2365,7 +2365,7 @@ Sebenarnya masih bnyk, tpi *Malas* nulis. Coba2 aja, atau tanya.
       console.error(e);
       message.channel.send(`Error, coba lagi!. ||<@${owner}>||`);
     }    
-  }
+  }/*
   if (command === "ip") {
     if (!searchString)
       return message.channel.send("masukkan ip\ngtw ip? yaudah");
