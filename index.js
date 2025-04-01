@@ -2256,6 +2256,7 @@ Sebenarnya masih bnyk, tpi *Malas* nulis. Coba2 aja, atau tanya.
 
   if (command == "stock" || command == "stok" || command == "saham") {
     if (!searchString) return message.channel.send("Masukkan nama stok!");
+    message.channel.send("Lagi error.")
 
     let stok = `${searchString.toUpperCase()}`;
     let link = `https://api.chart-img.com/v1/tradingview/advanced-chart?key=eU0wk2N1a24X4WutKduR19QiOYs1oSvm3dDHNhUD&symbol=nasdaq:${stok}&interval=5m&style=line`;
@@ -2336,7 +2337,35 @@ Sebenarnya masih bnyk, tpi *Malas* nulis. Coba2 aja, atau tanya.
       return message.channel.send(`Error! \n \`\`\`bash\n${e}\n\`\`\``);
     }
   }
+  if (command === "brat") {
+    const axios = require('axios'); // Pastikan axios sudah terpasang
 
+    // Pastikan args[1] berisi URL yang valid
+    const url = `https://api.ryzendesu.vip/api/image/brat?text=${args[1]}`;
+    
+    try {
+      // Lakukan request menggunakan axios
+      const response = await axios.get(url, {
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36'
+        }
+      });
+      const data = response.data.data[0]; // Data hasil response
+    
+      // Buat attachment dari URL video yang didapatkan
+      let ttc = new Discord.MessageAttachment(url, `brat ${memer}.jpg`);
+    
+      const member = message.author;
+      if (!member) return message.reply('error unexpected');
+      let memer = member.nickname || member.username;
+    
+      // Membuat webhook dan mengirim pesan beserta attachment
+      message.channel.send(ttc)
+    } catch (e) {
+      console.error(e);
+      message.channel.send(`Error, coba lagi!. ||<@${owner}>||`);
+    }    
+  }
   if (command === "ip") {
     if (!searchString)
       return message.channel.send("masukkan ip\ngtw ip? yaudah");
@@ -2347,27 +2376,6 @@ Sebenarnya masih bnyk, tpi *Malas* nulis. Coba2 aja, atau tanya.
       `\`\`\`json\nSearch Result for ${dat.query}\n------------------\nCountry    : ${dat.country} (${dat.countryCode})\nRegion   : ${dat.regionName} (${dat.region})\nCity : ${dat.city}\nLatitude : ${dat.lat}\nLongitude : ${dat.lon}\nTimezone : ${dat.timezone}\nISP : ${dat.isp}\nOrganization : ${dat.org}\nAS : ${dat.as}\n------------------\n\`\`\``
     );
   }
-/*  if (command === "lyrics" || command === "l") {
-    var api = `https://some-random-api.ml/lyrics?title=${searchString}`;
-    let response, data;
-    try {
-      response = await axios.get(api);
-      data = response.data;
-    } catch (e) {
-      return message.channel.send(`Error ngab`);
-    }
-    let p = new MessageEmbed()
-      .setAuthor(data.title, bot.user.avatarURL())
-      .setThumbnail(data.thumbnail.genius)
-      .setDescription(`${data.lyrics}\n\n[𝗦𝗼𝘂𝗿𝗰𝗲](${data.links.genius})`)
-      .setColor("BLUE")
-      .setFooter(data.author, message.author.avatarURL());
-    message.channel.send(p);
-    message.channel.send(
-      `Kalo g muncul, mungkin lirikny lbih dri 2000kata.\nCoba ketik \`h.lyricst [Lagu]\`. Mungkin bisa.`
-    );
-  }
-*/
   if (command === "r" || command === "recent") {
     if (message.guild.id === 875388139148017715)
       return message.channel.send("khusus server gamew");
