@@ -748,7 +748,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
     if (ping || dcping > 500) p = "MF >:";
     if (ping || dcping < 500) p = "Nice! <:ndaktau:831494322901352498>";
     message.channel.send(
-      `:mega: *${repl[result]}* - Bot Ping: **${ping}** ms, API Ping: ${dcping} (${p})`
+      `:mega: *${repl[result]}* - Bot Ping: **${ping}** ms, API Ping: ${dcping}ms (${p})`
     );
   }
 
