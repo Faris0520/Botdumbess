@@ -2123,7 +2123,7 @@ if (command === "claude") {
     );
   }
 
-  if (command === "afk") {
+/*  if (command === "afk") {
     const db = require("quick.db");
     try {
       let reason = searchString;
@@ -2148,7 +2148,7 @@ if (command === "claude") {
       console.log(err);
     }
   }
-
+*/
 /*  if (command === "tk" || command === "daily") {
     message.delete();
     const url = `https://cinnabar.icaksh.my.id/public/daily/tawiki`;
