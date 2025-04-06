@@ -74,9 +74,7 @@ client.on("ready", async () => {
     `Mobile Legends`,
     `ROBLOX`,
     `GitHub`,
-    `with you`,
-    `nhentai`,
-    `message logger was released!, now i can see ur chad`,
+    `with you`
   ];
   setInterval(() => {
     let index = Math.floor(Math.random() * (setatus.length - 1) + 1);
