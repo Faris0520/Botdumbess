@@ -218,7 +218,8 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
     const randomIndex = Math.floor(Math.random() * cops.length);
     return cops[randomIndex].content;
   }
-
+  
+  if (message.guild.id === "875388139148017715") {
   if (
     message.content === "cct" ||
     message.content === "cps" ||
@@ -236,7 +237,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
           webhook.delete();
         }, 60000);
       });
-  }
+  }}
 
   if (message.content === "link server" && message.guild.id === "875388139148017715") {
     message.channel.send("discord.gg/PmcWWpGTR6");
