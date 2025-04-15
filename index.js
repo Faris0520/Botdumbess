@@ -234,7 +234,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
         webhook.send(jawaa());
         setTimeout(() => {
           webhook.delete();
-        }, 600000);
+        }, 60000);
       });
   }
 
