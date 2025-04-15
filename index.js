@@ -219,7 +219,20 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
     return cops[randomIndex].content;
   }
   
-  if (message.guild.id === "875388139148017715") {
+  if (message.guild.id === "875388139148017715" && message.content === "yapping"){
+      message.delete();
+      message.channel
+        .createWebhook(message.author.username, {
+          avatar: message.author.displayAvatarURL({ dynamic: true }),
+        })
+        .then((webhook) => {
+          webhook.send(cops[11].content);
+          setTimeout(() => {
+            webhook.delete();
+          }, 60000);
+        });
+    }
+
   if (
     message.content === "cct" ||
     message.content === "cps" ||
@@ -237,7 +250,7 @@ message.channel.send("https://cdn.discordapp.com/attachments/967061747011846244/
           webhook.delete();
         }, 60000);
       });
-  }}
+  }
 
   if (message.content === "link server" && message.guild.id === "875388139148017715") {
     message.channel.send("discord.gg/PmcWWpGTR6");
