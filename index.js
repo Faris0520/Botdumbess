@@ -23,7 +23,7 @@ client.on("ready", async () => {
     `Mobile Legends`,
     `ROBLOX`,
     `GitHub`,
-    `with you`
+    `with you`,
   ];
   setInterval(() => {
     let index = Math.floor(Math.random() * (setatus.length - 1) + 1);
@@ -88,7 +88,7 @@ client.on("message", async (message) => {
   const input = args.slice(1).join(" ");
   let command = message.content.toLowerCase().split(" ")[0];
   command = command.slice(PREFIX.length);
-/*
+  /*
   const cops = require("./copas.json");
 
   function jawaa() {
@@ -193,13 +193,13 @@ client.on("message", async (message) => {
     if (message.member.presence.activities[0].name === "Spotify") {
       embed.react("<:r_spotify:843373295046885386>");
       const spotify = new MessageEmbed()
-      .setAuthor("Listening to Spotify")
-      .setColor(`GREEN`)
-      .setThumbnail(person.presence.activities[0].assets.largeImageURL())
-      .setDescription(
-        `${person.presence.activities[0].details}\nby ${person.presence.activities[0].state}\n**${person.presence.activities[0].assets.largeText}**`
-      );
-    message.channel.send(spotify);
+        .setAuthor("Listening to Spotify")
+        .setColor(`GREEN`)
+        .setThumbnail(person.presence.activities[0].assets.largeImageURL())
+        .setDescription(
+          `${person.presence.activities[0].details}\nby ${person.presence.activities[0].state}\n**${person.presence.activities[0].assets.largeText}**`
+        );
+      message.channel.send(spotify);
     }
 
     const filter = (reaction, user) => {
@@ -299,7 +299,9 @@ client.on("message", async (message) => {
   if (command === "respect" || command === "f") {
     if (!input) {
       let p = new MessageEmbed()
-        .setDescription("Tekan <a:r_pressf:843389937139449856> untuk memberi respect.")
+        .setDescription(
+          "Tekan <a:r_pressf:843389937139449856> untuk memberi respect."
+        )
         .setColor("GREEN");
       return message.channel.send(p).then(async (msg) => {
         await msg.react("<a:r_pressf:843389937139449856>");
@@ -318,15 +320,16 @@ client.on("message", async (message) => {
           return reaction.emoji.id === "843389937139449856";
         };
 
-        msg.awaitReactions({ filter, time: 30000 })
-        .then((collected) => {
-          const reaction = collected.get("843389937139449856");
-          const count = reaction ? reaction.count - 1 : 0; // Subtract 1 to exclude the bot's own reaction
-          message.channel.send(`**${count}** orang telah memberi respect 🫡`);
-        })
-        .catch((error) => {
-          console.error('Failed to collect reactions:', error);
-        });
+        msg
+          .awaitReactions({ filter, time: 30000 })
+          .then((collected) => {
+            const reaction = collected.get("843389937139449856");
+            const count = reaction ? reaction.count - 1 : 0; // Subtract 1 to exclude the bot's own reaction
+            message.channel.send(`**${count}** orang telah memberi respect 🫡`);
+          })
+          .catch((error) => {
+            console.error("Failed to collect reactions:", error);
+          });
       });
     } else {
       let reason = args.join(" ");
@@ -353,22 +356,23 @@ client.on("message", async (message) => {
         };
 
         const reactions = msg
-        .awaitReactions(filter, { time: 60000 })
-        .then((collected) => {
-          const reaction = msg.reactions.cache.get("843389937139449856");
-          const count = reaction ? reaction.count - 1 : 0; // Subtract 1 to exclude the bot's own reaction
-          message.channel.send(
-            `**${count}** telah memberi respect ke **${input}** 🫡`
-          );
-        })
-        .catch((error) => {
-          console.error('Failed to collect reactions:', error);
-        });
-    });
-  }}
+          .awaitReactions(filter, { time: 60000 })
+          .then((collected) => {
+            const reaction = msg.reactions.cache.get("843389937139449856");
+            const count = reaction ? reaction.count - 1 : 0; // Subtract 1 to exclude the bot's own reaction
+            message.channel.send(
+              `**${count}** telah memberi respect ke **${input}** 🫡`
+            );
+          })
+          .catch((error) => {
+            console.error("Failed to collect reactions:", error);
+          });
+      });
+    }
+  }
   if (command == "gempa") {
     const url = `https://cuaca-gempa-rest-api.vercel.app/quake`;
-    const got = (await import("got")).default;;
+    const got = (await import("got")).default;
     let data = await got(url).then((res) => JSON.parse(res.body));
     let em = new MessageEmbed()
       .setTitle("Gempa terkini")
@@ -406,32 +410,28 @@ client.on("message", async (message) => {
 
   if (command === "images" || command === "photos" || command === "image") {
     if (input === "raw") {
-      const got = (await import("got")).default;;
+      const got = (await import("got")).default;
       const url = `https://api.unsplash.com/photos/random/?client_id=Qmb9rVSNnmGqM_9c8YkJM6mtLjs3AzBn0dotq7-H4RE`;
 
       let dat = await got(url).then((res) => JSON.parse(res.body));
       const emb = new MessageEmbed();
       message.channel.send(dat.urls.raw);
     } else if (input === "regular") {
-      const got = (await import("got")).default;;
+      const got = (await import("got")).default;
       const url = `https://api.unsplash.com/photos/random/?client_id=Qmb9rVSNnmGqM_9c8YkJM6mtLjs3AzBn0dotq7-H4RE`;
       let dat = await got(url).then((res) => JSON.parse(res.body));
       message.channel.send(dat.urls.regular);
     } else if (input === "full") {
-      const got = (await import("got")).default;;
+      const got = (await import("got")).default;
       const url = `https://api.unsplash.com/photos/random/?client_id=Qmb9rVSNnmGqM_9c8YkJM6mtLjs3AzBn0dotq7-H4RE`;
       let dat = await got(url).then((res) => JSON.parse(res.body));
       message.channel.send(dat.urls.full);
-    } else if (
-      input !== "full" ||
-      input !== "raw" ||
-      input !== "regular"
-    ) {
+    } else if (input !== "full" || input !== "raw" || input !== "regular") {
       if (!input)
         return message.channel.send(
           "Gambar apa yang ingin kamu cari?\nSearch    : `h.images [Gambar]`\nRandom : `h.images full | raw | regular` "
         );
-      const got = (await import("got")).default;;
+      const got = (await import("got")).default;
       try {
         const url = `https://api.unsplash.com/search/photos?page=1&query=${input}&client_id=Qmb9rVSNnmGqM_9c8YkJM6mtLjs3AzBn0dotq7-H4RE`;
         let r = Math.floor(Math.random() * 11);
@@ -442,12 +442,12 @@ client.on("message", async (message) => {
       }
     }
   }
-if (command === "ss") {
+  if (command === "ss") {
     if (!input) return message.channel.send("Masukkan url!");
     const axios = require("axios");
     const url = `https://api.screenshotmachine.com/?key=b3ce7b&url=${input}&dimension=1920x1080&delay=5000&cacheLimit=0`;
-    let a = new Discord.MessageAttachment(url, `image.jpg`)
-    message.channel.send(a)
+    let a = new Discord.MessageAttachment(url, `image.jpg`);
+    message.channel.send(a);
   }
   if (command === "adzan") {
     let txt = args.join(" ");
@@ -455,9 +455,9 @@ if (command === "ss") {
       return message.channel.send(
         `\`.adzan <city>\` (Hanya tersedia kota" di indonesia. Kota negara lain tdk tersedia)`
       );
-    let nama = input.charAt(0).toUpperCase() + input.slice(1).toLowerCase()
+    let nama = input.charAt(0).toUpperCase() + input.slice(1).toLowerCase();
     const url = `http://api.aladhan.com/v1/timingsByCity?city=${txt}&country=Indonesia&method=8`;
-    const got = (await import("got")).default;;
+    const got = (await import("got")).default;
     let data = await got(url).then((res) => JSON.parse(res.body));
     var hmm = new MessageEmbed()
       .setAuthor(`Adzan Prayer Time | ${nama}`)
@@ -472,9 +472,9 @@ if (command === "ss") {
       .setColor(`BLUE`);
     message.channel.send(hmm);
   }
-  if (command === "ig") { 
+  if (command === "ig") {
     input = args.slice(2).join(" ");
-    const axios = require('axios'); 
+    const axios = require("axios");
 
     const url = `https://api.ryzendesu.vip/api/downloader/igdl?url=${args[1]}`;
     const member = message.author;
@@ -483,31 +483,33 @@ if (command === "ss") {
     try {
       const response = await axios.get(url, {
         headers: {
-          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36'
-        }
+          "User-Agent":
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36",
+        },
       });
       const data = response.data.data[0];
 
-      if (!member) return message.reply('Error unexpected');
+      if (!member) return message.reply("Error unexpected");
       message.delete();
       console.log(data);
 
       try {
         let fileSizeLimit = 8 * 1024 * 1024;
-        let fileSize = await getFileSize(data.url); 
+        let fileSize = await getFileSize(data.url);
 
         if (fileSize > fileSizeLimit) {
-            let url = data.url;
-			    let modifiedUrl = url.replace("dl=1", "dl=0");
+          let url = data.url;
+          let modifiedUrl = url.replace("dl=1", "dl=0");
           message.channel.send(`[${input || "_"}](${modifiedUrl})`);
         } else {
-          let ttc = new Discord.MessageAttachment(data.url, 'instagram.mp4');
+          let ttc = new Discord.MessageAttachment(data.url, "instagram.mp4");
           await message.channel.send(`${input + "\n-# " + memer}`, ttc);
         }
       } catch (e) {
-        if (e.code === 40005) { // Entity request too large
-            let url = data.url;
-			let modifiedUrl = url.replace("dl=1", "dl=0");
+        if (e.code === 40005) {
+          // Entity request too large
+          let url = data.url;
+          let modifiedUrl = url.replace("dl=1", "dl=0");
           msg.channel.send(`[${input} + "_"}](${modifiedUrl})`);
         } else {
           console.error(e);
@@ -517,25 +519,24 @@ if (command === "ss") {
     } catch (e) {
       console.error(e);
       msg.channel.send(`Error, coba lagi!.`);
-    } 
-}
-
-// Fungsi untuk mendapatkan ukuran file sebelum diunggah
-async function getFileSize(url) {
-  const axios = require('axios');
-  try {
-    let response = await axios.head(url);
-    return parseInt(response.headers['content-length'], 10);
-  } catch (error) {
-    console.error("Gagal mendapatkan ukuran file:", error);
-    return Infinity;
+    }
   }
-}
+
+  // Fungsi untuk mendapatkan ukuran file sebelum diunggah
+  async function getFileSize(url) {
+    const axios = require("axios");
+    try {
+      let response = await axios.head(url);
+      return parseInt(response.headers["content-length"], 10);
+    } catch (error) {
+      console.error("Gagal mendapatkan ukuran file:", error);
+      return Infinity;
+    }
+  }
   if (command === "wallpaper") {
-    if (!input)
-      return message.channel.send(`wallpaper apa yg mau dicari?`);
+    if (!input) return message.channel.send(`wallpaper apa yg mau dicari?`);
     const url = `https://wallhaven.cc/api/v1/search?q=${input}`;
-    const got = (await import("got")).default;;
+    const got = (await import("got")).default;
     let data = await got(url).then((res) => JSON.parse(res.body));
     let r = Math.floor(Math.random() * 15);
     const embed = new MessageEmbed()
@@ -552,7 +553,7 @@ async function getFileSize(url) {
       .setImage(`${data.data[r].thumbs.large}`)
       .setFooter(`Wallhaven.cc`);
     message.channel.send(embed);
-    if (data.meta.total === 0){
+    if (data.meta.total === 0) {
       message.channel.send("Wallpaper tidak ditemukan!\n-#Source: Wallhaven");
     }
   }
@@ -612,7 +613,7 @@ async function getFileSize(url) {
     log.send(d);
   }
   if (command === "wdel") {
-      // Use this command responsibly! This will delete the channel webhook.
+    // Use this command responsibly! This will delete the channel webhook.
     message.channel
       .fetchWebhooks()
       .then((webhooks) => {
@@ -668,23 +669,25 @@ async function getFileSize(url) {
     message.channel.send(Result);
   }
   if (command === "ai") {
-    // Need OpenAI APIKEY to operate this command. 
+    // Need OpenAI APIKEY to operate this command.
     const OpenAI = require("openai");
     const openai = new OpenAI({
-      apiKey: process.env.OPENAI
+      apiKey: process.env.OPENAI,
     });
-  
+
     if (!input)
-      return message.channel.send("Mohon berikan pertanyaan atau pesan untuk AI.");
-  
+      return message.channel.send(
+        "Mohon berikan pertanyaan atau pesan untuk AI."
+      );
+
     const completion = await openai.chat.completions.create({
       messages: [{ role: "user", content: `${input}` }],
       model: "gpt-4.1",
     });
-  
+
     console.log(completion.choices[0]);
     const responseText = `${completion.choices[0].message.content}\n-# GPT-4.1`;
-  
+
     if (responseText.length > 1999) {
       // Membagi pesan menjadi potongan-potongan
       let partLength = 1999;
@@ -695,26 +698,28 @@ async function getFileSize(url) {
     } else {
       // Mengirim pesan jika kurang dari atau sama dengan 1999 karakter
       message.channel.send(responseText);
-    } 
+    }
   }
   if (command === "4o") {
-    // Need OpenAI APIKEY to operate this command. 
+    // Need OpenAI APIKEY to operate this command.
     const OpenAI = require("openai");
     const openai = new OpenAI({
-      apiKey: process.env.OPENAI
+      apiKey: process.env.OPENAI,
     });
-  
+
     if (!input)
-      return message.channel.send("Mohon berikan pertanyaan atau pesan untuk AI.");
-  
+      return message.channel.send(
+        "Mohon berikan pertanyaan atau pesan untuk AI."
+      );
+
     const completion = await openai.chat.completions.create({
       messages: [{ role: "user", content: `${input}` }],
       model: "gpt-4o",
     });
-  
+
     console.log(completion.choices[0]);
     const responseText = `${completion.choices[0].message.content}\n-# GPT-4o`;
-  
+
     // Memeriksa panjang pesan dan membaginya jika lebih dari 1999 karakter
     if (responseText.length > 1999) {
       // Membagi pesan menjadi potongan-potongan
@@ -726,26 +731,29 @@ async function getFileSize(url) {
     } else {
       // Mengirim pesan jika kurang dari atau sama dengan 1999 karakter
       message.channel.send(responseText);
-    } 
+    }
   }
   if (command === "o3") {
-    // Need OpenAI APIKEY to operate this command. 
+    // Need OpenAI APIKEY to operate this command.
     const OpenAI = require("openai");
     const openai = new OpenAI({
-      apiKey: process.env.OPENAI
+      apiKey: process.env.OPENAI,
     });
-  
+
     if (!input)
-      return message.channel.send("Mohon berikan pertanyaan atau pesan untuk AI.");
-  
+      return message.channel.send(
+        "Mohon berikan pertanyaan atau pesan untuk AI."
+      );
+
     const completion = await openai.chat.completions.create({
       messages: [{ role: "user", content: `${input}` }],
       model: "o3-mini-2025-01-31",
     });
-  
+
     console.log(input, completion.choices[0]);
-    const responseText = completion.choices[0].message.content + '\n-# o3-mini-2025-01-31';
-  
+    const responseText =
+      completion.choices[0].message.content + "\n-# o3-mini-2025-01-31";
+
     if (responseText.length > 1999) {
       let partLength = 1999;
       for (let i = 0; i < responseText.length; i += partLength) {
@@ -757,23 +765,26 @@ async function getFileSize(url) {
     }
   }
   if (command === "o1") {
-    // Need OpenAI APIKEY to operate this command. 
+    // Need OpenAI APIKEY to operate this command.
     const OpenAI = require("openai");
     const openai = new OpenAI({
-      apiKey: process.env.OPENAI
+      apiKey: process.env.OPENAI,
     });
-  
+
     if (!input)
-      return message.channel.send("Mohon berikan pertanyaan atau pesan untuk AI.");
-  
+      return message.channel.send(
+        "Mohon berikan pertanyaan atau pesan untuk AI."
+      );
+
     const completion = await openai.chat.completions.create({
       messages: [{ role: "user", content: `${input}` }],
       model: "o1-mini-2024-09-12",
     });
-  
+
     console.log(input, completion.choices[0]);
-    const responseText = completion.choices[0].message.content + '\n-# o1-mini-2024-09-12';
-  
+    const responseText =
+      completion.choices[0].message.content + "\n-# o1-mini-2024-09-12";
+
     if (responseText.length > 1999) {
       let partLength = 1999;
       for (let i = 0; i < responseText.length; i += partLength) {
@@ -784,121 +795,131 @@ async function getFileSize(url) {
       message.channel.send(responseText);
     }
   }
-if (command === "r1") {    
-  // Need DeepInfra APIKEY to operate this command. 
-  const OpenAI = require("openai");
-  const openai = new OpenAI({
-    baseURL: 'https://api.deepinfra.com/v1/openai',
-    apiKey: process.env.DEEP,
-});
+  if (command === "r1") {
+    // Need DeepInfra APIKEY to operate this command.
+    const OpenAI = require("openai");
+    const openai = new OpenAI({
+      baseURL: "https://api.deepinfra.com/v1/openai",
+      apiKey: process.env.DEEP,
+    });
 
-function formatThinkBlockquote(text) {
-  return text.replace(/<think>([\s\S]*?)<\/think>/g, (match, content) => {
-      return content
+    function formatThinkBlockquote(text) {
+      return text.replace(/<think>([\s\S]*?)<\/think>/g, (match, content) => {
+        return content
           .split("\n")
-          .map(line => line.trim() ? `-# ${line}` : "") 
+          .map((line) => (line.trim() ? `-# ${line}` : ""))
           .join("\n");
-  });
-}
+      });
+    }
     if (!input) {
-        return message.channel.send("Mohon berikan pertanyaan atau pesan untuk AI.");
+      return message.channel.send(
+        "Mohon berikan pertanyaan atau pesan untuk AI."
+      );
     }
 
     try {
-        const completion = await openai.chat.completions.create({
-            messages: [{ role: "user", content: input }],
-            model: "deepseek-ai/DeepSeek-R1",
-        });
+      const completion = await openai.chat.completions.create({
+        messages: [{ role: "user", content: input }],
+        model: "deepseek-ai/DeepSeek-R1",
+      });
 
-        console.log(input, completion.choices[0]);
-        let responseText = completion.choices[0].message.content + '\n-# DeepSeek-R1';
-        responseText = formatThinkBlockquote(responseText);
+      console.log(input, completion.choices[0]);
+      let responseText =
+        completion.choices[0].message.content + "\n-# DeepSeek-R1";
+      responseText = formatThinkBlockquote(responseText);
 
-        if (responseText.length > 1999) {
-            let partLength = 1999;
-            for (let i = 0; i < responseText.length; i += partLength) {
-                const part = responseText.substring(i, i + partLength);
-                message.channel.send(part);
-            }
-        } else {
-            message.channel.send(`${responseText}`);
+      if (responseText.length > 1999) {
+        let partLength = 1999;
+        for (let i = 0; i < responseText.length; i += partLength) {
+          const part = responseText.substring(i, i + partLength);
+          message.channel.send(part);
         }
+      } else {
+        message.channel.send(`${responseText}`);
+      }
     } catch (error) {
-        console.error("Error saat mengakses AI:", error);
-        message.channel.send("Terjadi kesalahan saat memproses permintaan AI.");
+      console.error("Error saat mengakses AI:", error);
+      message.channel.send("Terjadi kesalahan saat memproses permintaan AI.");
     }
     //-----------------------------------------------------------------//
     return;
-}
-if (command === "r1-70b") {    
-  // Need DeepInfra APIKEY to operate this command. 
-  const OpenAI = require("openai");
-  const openai = new OpenAI({
-    baseURL: 'https://api.deepinfra.com/v1/openai',
-    apiKey: process.env.DEEP,
-});
+  }
+  if (command === "r1-70b") {
+    // Need DeepInfra APIKEY to operate this command.
+    const OpenAI = require("openai");
+    const openai = new OpenAI({
+      baseURL: "https://api.deepinfra.com/v1/openai",
+      apiKey: process.env.DEEP,
+    });
 
-function formatThinkBlockquote(text) {
-  return text.replace(/<think>([\s\S]*?)<\/think>/g, (match, content) => {
-      return content
+    function formatThinkBlockquote(text) {
+      return text.replace(/<think>([\s\S]*?)<\/think>/g, (match, content) => {
+        return content
           .split("\n")
-          .map(line => line.trim() ? `-# ${line}` : "") 
+          .map((line) => (line.trim() ? `-# ${line}` : ""))
           .join("\n");
-  });
-}
+      });
+    }
     if (!input) {
-        return message.channel.send("Mohon berikan pertanyaan atau pesan untuk AI.");
+      return message.channel.send(
+        "Mohon berikan pertanyaan atau pesan untuk AI."
+      );
     }
 
     try {
-        const completion = await openai.chat.completions.create({
-            messages: [{ role: "user", content: input }],
-            model: "deepseek-ai/DeepSeek-R1-Distill-Llama-70B",
-        });
+      const completion = await openai.chat.completions.create({
+        messages: [{ role: "user", content: input }],
+        model: "deepseek-ai/DeepSeek-R1-Distill-Llama-70B",
+      });
 
-        console.log(input, completion.choices[0]);
-        let responseText = completion.choices[0].message.content + '\n-# deepseek-ai/DeepSeek-R1-Distill-Llama-70B';
-        responseText = formatThinkBlockquote(responseText);
+      console.log(input, completion.choices[0]);
+      let responseText =
+        completion.choices[0].message.content +
+        "\n-# deepseek-ai/DeepSeek-R1-Distill-Llama-70B";
+      responseText = formatThinkBlockquote(responseText);
 
-        if (responseText.length > 1999) {
-            let partLength = 1999;
-            for (let i = 0; i < responseText.length; i += partLength) {
-                const part = responseText.substring(i, i + partLength);
-                message.channel.send(part);
-            }
-        } else {
-            message.channel.send(responseText);
+      if (responseText.length > 1999) {
+        let partLength = 1999;
+        for (let i = 0; i < responseText.length; i += partLength) {
+          const part = responseText.substring(i, i + partLength);
+          message.channel.send(part);
         }
+      } else {
+        message.channel.send(responseText);
+      }
     } catch (error) {
-        console.error("Error saat mengakses AI:", error);
-        message.channel.send("Terjadi kesalahan saat memproses permintaan AI.");
+      console.error("Error saat mengakses AI:", error);
+      message.channel.send("Terjadi kesalahan saat memproses permintaan AI.");
     }
     return;
-}
-if (command === "claude") {
-  // Need Anthropic APIKEY to operate this command. 
-  const got = (await import("got")).default;;
+  }
+  if (command === "claude") {
+    // Need Anthropic APIKEY to operate this command.
+    const got = (await import("got")).default;
     if (!input)
-      return message.channel.send("Please provide a question or message for AI.");
-      
+      return message.channel.send(
+        "Please provide a question or message for AI."
+      );
+
     try {
-      const response = await got.post('https://api.anthropic.com/v1/messages', {
-        headers: {
-          'x-api-key': process.env.ANTHROPIC,
-          'anthropic-version': '2023-06-01',
-          'content-type': 'application/json'
-        },
-        json: {
-          model: "claude-3-7-sonnet-20250219",
-          max_tokens: 1024,
-          messages: [
-            {role: "user", content: input}
-          ]
-        }
-      }).json();
-  
-      const responseText = response.content[0].text + '\n-# claude-3-7-sonnet-20250219';
-  
+      const response = await got
+        .post("https://api.anthropic.com/v1/messages", {
+          headers: {
+            "x-api-key": process.env.ANTHROPIC,
+            "anthropic-version": "2023-06-01",
+            "content-type": "application/json",
+          },
+          json: {
+            model: "claude-3-7-sonnet-20250219",
+            max_tokens: 1024,
+            messages: [{ role: "user", content: input }],
+          },
+        })
+        .json();
+
+      const responseText =
+        response.content[0].text + "\n-# claude-3-7-sonnet-20250219";
+
       if (responseText.length > 1999) {
         let partLength = 1999;
         for (let i = 0; i < responseText.length; i += partLength) {
@@ -908,70 +929,82 @@ if (command === "claude") {
       } else {
         await message.channel.send(`${responseText}`);
       }
-  
     } catch (error) {
-      console.error('Error:', error);
-      message.channel.send("Sorry, there was an error processing your request.");
+      console.error("Error:", error);
+      message.channel.send(
+        "Sorry, there was an error processing your request."
+      );
     }
   }
-  if (command === "roast"){
+  if (command === "roast") {
     // Need OpenAI APIKEY to operate this command.
     const OpenAI = require("openai");
     const openai = new OpenAI({
-      apiKey: process.env.OPENAI
+      apiKey: process.env.OPENAI,
     });
 
     const url = `https://api.github.com/users/${input}`;
     const rep = `https://api.github.com/users/${input}/repos?sort=updated`;
-    const got = (await import("got")).default;;
+    const got = (await import("got")).default;
     let profileResponse = await got(url).then((res) => JSON.parse(res.body));
     let repoResponse = await got(rep).then((res) => JSON.parse(res.body));
 
-    if (!input)
-      return message.channel.send("Masukkan username github.");
-  
+    if (!input) return message.channel.send("Masukkan username github.");
+
     data = {
-      "name": profileResponse.name,
-      "bio": profileResponse.bio,
-      "company": profileResponse.company,
-      "location": profileResponse.location,
-      "followers": profileResponse.followers,
-      "following": profileResponse.following,
-      "public_repos": profileResponse.public_repos,
-      "created_at": profileResponse.created_at,
-      "updated_at": profileResponse.updated_at,
-      "repositories": repoResponse.map(repo => ({
-                    "name": repo.name,
-                    "description": repo.description,
-                    "language": repo.language,
-                    "stargazers_count": repo.stargazers_count,
-                    "open_issues_count": repo.open_issues_count,
-                    "license": repo.license,
-                    "fork": repo.fork,
-                    "created_at": repo.created_at,
-                    "updated_at": repo.updated_at
-                })).slice(0, 50)}
+      name: profileResponse.name,
+      bio: profileResponse.bio,
+      company: profileResponse.company,
+      location: profileResponse.location,
+      followers: profileResponse.followers,
+      following: profileResponse.following,
+      public_repos: profileResponse.public_repos,
+      created_at: profileResponse.created_at,
+      updated_at: profileResponse.updated_at,
+      repositories: repoResponse
+        .map((repo) => ({
+          name: repo.name,
+          description: repo.description,
+          language: repo.language,
+          stargazers_count: repo.stargazers_count,
+          open_issues_count: repo.open_issues_count,
+          license: repo.license,
+          fork: repo.fork,
+          created_at: repo.created_at,
+          updated_at: repo.updated_at,
+        }))
+        .slice(0, 50),
+    };
 
     const completion = await openai.chat.completions.create({
-      messages: [{ role: "user", content: `berikan roasting singkat dengan kejam, menyindir, serta menyakitkan dalam bahasa gaul untuk profile github berikut : ${input}. Berikut detailnya: "${JSON.stringify(data)}". (berikan response dalam bahasa indonesia dan jangan berikan pujian atau saran)` }],
+      messages: [
+        {
+          role: "user",
+          content: `berikan roasting singkat dengan kejam, menyindir, serta menyakitkan dalam bahasa gaul untuk profile github berikut : ${input}. Berikut detailnya: "${JSON.stringify(
+            data
+          )}". (berikan response dalam bahasa indonesia dan jangan berikan pujian atau saran)`,
+        },
+      ],
       model: "gpt-4o",
     });
-  
+
     console.log(completion.choices[0]);
     const m = completion.choices[0].message.content;
-  
-    message.channel.send(`${m}`)
+
+    message.channel.send(`${m}`);
   }
   if (command === "dalle") {
-    // Need OpenAI APIKEY to operate this command. 
+    // Need OpenAI APIKEY to operate this command.
     const OpenAI = require("openai");
     const openai = new OpenAI({
-      apiKey: process.env.OPENAI
+      apiKey: process.env.OPENAI,
     });
-  
+
     if (!input)
-      return message.channel.send("Mohon berikan pertanyaan atau pesan untuk AI.");
-  
+      return message.channel.send(
+        "Mohon berikan pertanyaan atau pesan untuk AI."
+      );
+
     const response = await openai.images.generate({
       model: "dall-e-3",
       prompt: `${input}`,
@@ -979,15 +1012,15 @@ if (command === "claude") {
       size: "1024x1024",
     });
 
-    const image = new Discord.MessageAttachment(`${response.data[0].url}`, `${input}.png`)
+    const image = new Discord.MessageAttachment(
+      `${response.data[0].url}`,
+      `${input}.png`
+    );
     message.channel.send(image);
   }
   if (command === "wangy") {
     if (!input) return message.channel.send("Masukkan nama!");
-    let idk = input.replace(
-      input,
-      String.call.bind(input.toUpperCase)
-    );
+    let idk = input.replace(input, String.call.bind(input.toUpperCase));
     message.channel.send(
       `${idk} WANGY WANGY WANGY\n\nWANGY WANGY WANGY HU HA HU HA HU HA, aaaah baunya ${idk} wangi aku mau nyiumin aroma wanginya ${idk} AAAAAAAAH - Rambutnya.. aaah rambutnya juga pengen aku elus-elus ~AAAAAH ${idk} manis banget AAAAAAAAH TATAPAN ${idk} BEGITU MENGGODAAAAAAAAA.. GUA RELA JADI BUDAK SIMP HANYA DEMI ${idk} TERDJINTA AAAAAAA apa ? ${idk} itu gak nyata ? Cuma karakter 2 dimensi katamu ? nggak, ngak ngak ngak ngak NGAAAAAAAAK GUA GAK PERCAYA ITU DIA NYATA ! GUA GAK PEDULI SAMA KENYATAAN POKOKNYA GAK PEDULI. ${idk} ngeliat gw ... ${idk} NGELIATIN GW! ${idk}... kamu percaya sama aku ? aaaaaaaaaaah syukur ${idk}\n\ngak malu memiliki aku aaaaaah YEAAAAAAAAAAAH GUA\n\n\nMASIH PUNYA ${idk}, ${idk} AKU SAYANG ${idk} AKU CINTA ${idk} AKU AKU INGIN ${idk} MENJADI BIDADARIKUUUUUUU!!!!!!!!!!!!!`
     );
@@ -1037,7 +1070,7 @@ Sebenarnya masih bnyk, tpi *Malas* nulis. Coba2 aja, atau tanya ke owner.
 
   if (command === "ytmp3") {
     if (!input) return message.channel.send("Masukkan link youtube.`");
-    const got = (await import("got")).default;;
+    const got = (await import("got")).default;
     const url = `https://api.lolhuman.xyz/api/ytaudio?apikey=5119194f07cdf52d5c57d3d0&url=${input}`;
     let dat = await got(url).then((res) => JSON.parse(res.body));
     try {
@@ -1069,7 +1102,7 @@ Sebenarnya masih bnyk, tpi *Malas* nulis. Coba2 aja, atau tanya ke owner.
       return message.channel.send(
         "mau cari afh? <:hmm:959422267236945970> || jangan sring dipake, ad limitny perhari ||"
       );
-    const got = (await import("got")).default;;
+    const got = (await import("got")).default;
     const url = `https://api.lolhuman.xyz/api/gsearch?apikey=3f342f50d0fb2f0cbfdc7848&query=${input}`;
     let data = await got(url).then((res) => JSON.parse(res.body));
 
@@ -1085,7 +1118,7 @@ Sebenarnya masih bnyk, tpi *Malas* nulis. Coba2 aja, atau tanya ke owner.
       .setColor("#36393F");
     message.channel.send(p);
   }
-/*
+  /*
   if (command == "stock" || command == "stok" || command == "saham") {
     if (!input) return message.channel.send("Masukkan nama stok!");
     message.channel.send("Lagi error.")
@@ -1119,74 +1152,89 @@ Sebenarnya masih bnyk, tpi *Malas* nulis. Coba2 aja, atau tanya ke owner.
     return;
   }
 */
-if (command === "ytdl") { 
-  const urlPattern = /https?:\/\/\S+/;
-  if (urlPattern.test(args[1])) {
-    input = args.slice(2).join(" ");
-    const axios = require('axios'); 
+  if (command === "ytdl") {
+    const urlPattern = /https?:\/\/\S+/;
+    if (urlPattern.test(args[1])) {
+      input = args.slice(2).join(" ");
+      const axios = require("axios");
 
-    const url = `https://api.ryzendesu.vip/api/downloader/ytmp4?url=${args[1]}&quality=480`;
-    const member = message.author;
-    let memer = member.nickname || member.username;
-
-    try {
-      const response = await axios.get(url, {
-        headers: {
-          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36'
-        }
-      });
-      const data = response.data;
-
-      if (!member) return msg.reply('Error unexpected');
-      console.log(data);
+      const url = `https://api.ryzendesu.vip/api/downloader/ytmp4?url=${args[1]}&quality=480`;
+      const member = message.author;
+      let memer = member.nickname || member.username;
 
       try {
-        let fileSizeLimit = 8 * 1024 * 1024;
-        let fileSize = await getFileSize(data.url); 
+        const response = await axios.get(url, {
+          headers: {
+            "User-Agent":
+              "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36",
+          },
+        });
+        const data = response.data;
 
-        if (fileSize > fileSizeLimit) {
+        if (!member) return msg.reply("Error unexpected");
+        console.log(data);
+
+        try {
+          let fileSizeLimit = 8 * 1024 * 1024;
+          let fileSize = await getFileSize(data.url);
+
+          if (fileSize > fileSizeLimit) {
             let url = data.url;
-          msg.channel.send(`# ${data.title}\n${data.author}\n\n-#${data.description}\n#-<${data.videoUrl}>\n\n[${"Download"}](${url})`, `${data.thumbnail}.jpg`);
-        } else {
-          let ttc = new Discord.MessageAttachment(data.url, 'youtube.mp4');
-          await msg.channel.send(`# ${data.title}\n${data.author}\n\n-#${data.description}\n-#<${data.videoUrl}>`, ttc);
+            msg.channel.send(
+              `# ${data.title}\n${data.author}\n\n-#${data.description}\n#-<${
+                data.videoUrl
+              }>\n\n[${"Download"}](${url})`,
+              `${data.thumbnail}.jpg`
+            );
+          } else {
+            let ttc = new Discord.MessageAttachment(data.url, "youtube.mp4");
+            await msg.channel.send(
+              `# ${data.title}\n${data.author}\n\n-#${data.description}\n-#<${data.videoUrl}>`,
+              ttc
+            );
+          }
+        } catch (e) {
+          if (e.code === 40005) {
+            // Entity request too large
+            let url = data.url;
+            msg.channel.send(
+              `Judul	: ${data.title}\nAuthor	: ${data.author}\nDeskripsi	: ${
+                data.description
+              }\nURL	: ${data.videoUrl}\n\n[${"Download"}](${url})`,
+              data.thumbnail
+            );
+          } else {
+            console.error(e);
+            msg.channel.send(`Error, ${e}`);
+          }
         }
       } catch (e) {
-        if (e.code === 40005) { // Entity request too large
-            let url = data.url;
-          msg.channel.send(`Judul	: ${data.title}\nAuthor	: ${data.author}\nDeskripsi	: ${data.description}\nURL	: ${data.videoUrl}\n\n[${"Download"}](${url})`, data.thumbnail);
-        } else {
-          console.error(e);
-          msg.channel.send(`Error, ${e}`);
-        }
+        console.error(e);
+        msg.channel.send(`Error, ${e}`);
       }
-    } catch (e) {
-      console.error(e);
-      msg.channel.send(`Error, ${e}`);
-    }    
-  }
+    }
 
-async function getFileSize(url) {
-  const axios = require('axios');
-  try {
-    let response = await axios.head(url);
-    return parseInt(response.headers['content-length'], 10);
-  } catch (error) {
-    console.error("Gagal mendapatkan ukuran file:", error);
-    return Infinity;
+    async function getFileSize(url) {
+      const axios = require("axios");
+      try {
+        let response = await axios.head(url);
+        return parseInt(response.headers["content-length"], 10);
+      } catch (error) {
+        console.error("Gagal mendapatkan ukuran file:", error);
+        return Infinity;
+      }
+    }
   }
-}}
   if (command === "ip") {
-    if (!input)
-      return message.channel.send("Masukkan ip");
-    const got = (await import("got")).default;;
+    if (!input) return message.channel.send("Masukkan ip");
+    const got = (await import("got")).default;
     const url = `http://ip-api.com/json/${input}?fields=status,message,country,countryCode,region,regionName,city,zip,lat,lon,timezone,isp,org,as,query`;
     let dat = await got(url).then((res) => JSON.parse(res.body));
     message.channel.send(
       `\`\`\`json\nSearch Result for ${dat.query}\n------------------\nCountry    : ${dat.country} (${dat.countryCode})\nRegion   : ${dat.regionName} (${dat.region})\nCity : ${dat.city}\nLatitude : ${dat.lat}\nLongitude : ${dat.lon}\nTimezone : ${dat.timezone}\nISP : ${dat.isp}\nOrganization : ${dat.org}\nAS : ${dat.as}\n------------------\n\`\`\``
     );
   }
-})
+});
 client.login(discordToken);
 
 process.on("unhandledRejection", (reason, promise) => {
