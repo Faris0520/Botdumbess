@@ -1,4 +1,4 @@
-# Suxmoe
+# Botdumbess
 
 A discord bot.
 
