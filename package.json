@@ -1,7 +1,7 @@
 {
-  "name": "farrs",
+  "name": "botdumbess",
   "version": "1.1.0",
-  "description": "A dedicated music bot example project for Zhycorp Development made by iCrawl",
+  "description": "A dedicated discord bot made by iCrawl",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,20 +9,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zhycorp/music-bot-example.git"
+    "url": "git+https://github.com/faris0520/botdumbess.git"
   },
   "keywords": [
     "JavaScript",
     "NodeJS",
-    "Npm",
-    "Zhycorp"
+    "Npm"
   ],
   "author": "iCrawl",
   "license": "by-nc-nd/4.0",
   "bugs": {
-    "url": "https://github.com/zhycorp/music-bot-example/issues"
+    "url": "https://github.com/faris0520/botdumbess/issues"
   },
-  "homepage": "https://github.com/zhycorp/music-bot-example#readme",
+  "homepage": "https://github.com/faris0520/botdumbess#readme",
   "engines": {
     "node": "16.x"
   },
