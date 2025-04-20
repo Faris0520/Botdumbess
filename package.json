@@ -49,12 +49,12 @@
     "serverline": "^1.6.0",
     "simple-youtube-api": "^5.2.1",
     "something-random-on-discord": "^3.4.4",
-    "superagent": "",
+    "superagent": ">=3.7.0",
     "unirest": "^0.6.0",
     "weather-js": "^2.0.0",
     "ytdl-core": "^4.7.0",
     "openai": "^4.56.0",
-    "axios": "1.7.9"
+    "axios": "1.8.2"
   },
   "devDependencies": {
     "node": "^16.6.1"
