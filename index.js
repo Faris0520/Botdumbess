@@ -689,7 +689,7 @@ client.on("message", async (message) => {
         messages: [
           {
             role: "user",
-            content: `${imageUrl}\n${input}`,
+            content: `${imageUrl}\n${input}. Ketika mengirimkkan kode latex, pastikan menggunakan snippet kode agar lebih rapi.`,
           },
         ],
         model: "gpt-4.1",
@@ -712,7 +712,7 @@ client.on("message", async (message) => {
     } else {
       // Jika tidak ada gambar, proses teks seperti biasa
       const completion = await openai.chat.completions.create({
-        messages: [{ role: "user", content: `${input}` }],
+        messages: [{ role: "user", content: `${input}. Ketika mengirimkkan kode latex, pastikan menggunakan snippet kode agar lebih rapi` }],
         model: "gpt-4.1",
       });
   
