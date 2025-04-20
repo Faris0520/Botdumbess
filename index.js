@@ -674,30 +674,62 @@ client.on("message", async (message) => {
     const openai = new OpenAI({
       apiKey: process.env.OPENAI,
     });
-
-    if (!input)
-      return message.channel.send(
-        "Mohon berikan pertanyaan atau pesan untuk AI."
-      );
-
-    const completion = await openai.chat.completions.create({
-      messages: [{ role: "user", content: `${input}` }],
-      model: "gpt-4.1",
-    });
-
-    console.log(completion.choices[0]);
-    const responseText = `${completion.choices[0].message.content}\n-# GPT-4.1`;
-
-    if (responseText.length > 1999) {
-      // Membagi pesan menjadi potongan-potongan
-      let partLength = 1999;
-      for (let i = 0; i < responseText.length; i += partLength) {
-        const part = responseText.substring(i, i + partLength);
-        message.channel.send(part);
+  
+    if (!input) {
+      return message.channel.send("Mohon berikan pertanyaan atau pesan untuk AI.");
+    }
+  
+    // Cek jika pengguna mengunggah gambar
+    if (message.attachments.size > 0) {
+      const attachment = message.attachments.first();
+      const imageUrl = attachment.url;
+  
+      // Mengirimkan gambar dan teks ke GPT-4.1
+      const completion = await openai.chat.completions.create({
+        messages: [
+          {
+            role: "user",
+            content: `${imageUrl}\n${input}`,
+          },
+        ],
+        model: "gpt-4.1",
+      });
+  
+      console.log(completion.choices[0]);
+      const responseText = `${completion.choices[0].message.content}\n-# GPT-4.1`;
+  
+      if (responseText.length > 1999) {
+        // Membagi pesan menjadi potongan-potongan
+        let partLength = 1999;
+        for (let i = 0; i < responseText.length; i += partLength) {
+          const part = responseText.substring(i, i + partLength);
+          message.channel.send(part);
+        }
+      } else {
+        // Mengirim pesan jika kurang dari atau sama dengan 1999 karakter
+        message.channel.send(responseText);
       }
     } else {
-      // Mengirim pesan jika kurang dari atau sama dengan 1999 karakter
-      message.channel.send(responseText);
+      // Jika tidak ada gambar, proses teks seperti biasa
+      const completion = await openai.chat.completions.create({
+        messages: [{ role: "user", content: `${input}` }],
+        model: "gpt-4.1",
+      });
+  
+      console.log(completion.choices[0]);
+      const responseText = `${completion.choices[0].message.content}\n-# GPT-4.1`;
+  
+      if (responseText.length > 1999) {
+        // Membagi pesan menjadi potongan-potongan
+        let partLength = 1999;
+        for (let i = 0; i < responseText.length; i += partLength) {
+          const part = responseText.substring(i, i + partLength);
+          message.channel.send(part);
+        }
+      } else {
+        // Mengirim pesan jika kurang dari atau sama dengan 1999 karakter
+        message.channel.send(responseText);
+      }
     }
   }
   if (command === "4o") {
