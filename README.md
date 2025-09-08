@@ -1,6 +1,6 @@
 # Botdumbess
 
-A simple discord bot. (Sandwich code tbh)
+A simple discord bot. (Sandwich code tbh, not for newbie.)
 
 <img src="https://github.com/user-attachments/assets/60250ee6-6bb4-4eb2-9334-49f6adae45e9" width=500>
 
