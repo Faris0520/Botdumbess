@@ -1,3 +1,10 @@
+> [!WARNING]
+> **This Discord.js version of this bot is deprecated**
+> 
+> This bot uses discord.js v12. Some features or syntax may not work with newer Discord API versions. For best results, use Node.js v12–14 and refer to the [discord.js v12 documentation](https://discordjs.guide/additional-info/changes-in-v12.html).
+>
+> *I will try to recreate the code using the latest version in the near future.*
+
 # Botdumbess
 
 A simple discord bot.
@@ -5,10 +12,6 @@ A simple discord bot.
 <img src="https://github.com/user-attachments/assets/60250ee6-6bb4-4eb2-9334-49f6adae45e9" width=500>
 
 https://discord.com/oauth2/authorize?client_id=727354971707932702&permissions=8&scope=bot
-
-> [!WARNING]
-> ⚠️ **This Discord.js version of this bot is deprecated** 
-> This bot uses discord.js v12. Some features or syntax may not work with newer Discord API versions. For best results, use Node.js v12–14 and refer to the [discord.js v12 documentation](https://discordjs.guide/additional-info/changes-in-v12.html).
 
 ## ✨ Features
 
