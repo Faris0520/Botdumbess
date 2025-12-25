@@ -2,6 +2,8 @@
 > **This Discord.js version of this bot is deprecated**
 > 
 > This bot uses discord.js v12. Some features or syntax may not work with newer Discord API versions. For best results, use Node.js v12–14 and refer to the [discord.js v12 documentation](https://discordjs.guide/additional-info/changes-in-v12.html).
+>
+> *I will try to recreate the code using the latest version in the near future.*
 
 # Botdumbess
 
