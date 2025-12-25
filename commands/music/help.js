@@ -10,21 +10,21 @@ module.exports = {
       )
       .setTitle("Command List").setDescription(`
 _**==> New Command**_
- \`h.ig\` \`h.ytdl\` \`h.ytmp3\` 
+ \`a.ig\` \`a.ytdl\` \`a.ytmp3\` 
  \` (This command have limitation)\`
 
 **Images**
- \`h.search\` \`h.ss\` \`h.reddit\`
- \`h.images\` \`h.avatar\` \`h.wikihow\`
+ \`a.search\` \`a.ss\` \`a.reddit\`
+ \`a.images\` \`a.avatar\` \`a.wikihow\`
 
 **Misc**
- \`h.ask\` \`h.morse\` \`h.wink\`
- \`h.adzan\` \`h.choose\` \`h.wangy\` 
- \`h.anime\` \`h.respect\` \`h.kbbi\`
+ \`a.ask\` \`a.morse\` \`a.wink\`
+ \`a.adzan\` \`a.choose\` \`a.wangy\` 
+ \`a.anime\` \`a.respect\` \`a.kbbi\`
 
 **Tools**
- \`h.ping\` \`h.invite\` \`h.userinfo\`
- \`h.say\` \`h.echo\` \`h.sudo\`
+ \`a.ping\` \`a.invite\` \`a.userinfo\`
+ \`a.say\` \`a.echo\` \`a.sudo\`
 
  
 Sebenarnya masih bnyk, tpi *Malas* nulis. Coba2 aja, atau tanya ke owner.

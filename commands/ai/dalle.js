@@ -3,7 +3,7 @@ module.exports = {
   aliases: [],
   async execute({ message, input, Discord }) {
     const OpenAI = require('openai');
-    const openai = new OpenAI({ apiKey: process.env.OPENAI });
+    const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
     if (!input) return message.channel.send('Mohon berikan pertanyaan atau pesan untuk AI.');
     const response = await openai.images.generate({
       model: 'dall-e-3',

@@ -7,7 +7,7 @@ require('dotenv').config();
 
 // === Bot and Client ===
 const client = new Discord.Client({ ws: { properties: { $browser: 'Discord iOS' } } });
-const PREFIX = 'h.';
+const PREFIX = 'a.';
 const queue = new Map();
 let owner = 'OWNER';
 const discordToken = process.env.TOKEN;
@@ -15,17 +15,23 @@ const discordToken = process.env.TOKEN;
 // === Command Handler Loader ===
 const commands = new Map();
 const commandsPath = path.join(__dirname, 'commands');
-fs.readdirSync(commandsPath).forEach(file => {
-  if (file.endsWith('.js')) {
-    const command = require(path.join(commandsPath, file));
-    if (command && command.name) {
-      commands.set(command.name, command);
-      if (Array.isArray(command.aliases)) {
-        command.aliases.forEach(alias => commands.set(alias, command));
+function loadCommands(dir) {
+  fs.readdirSync(dir).forEach(file => {
+    const fullPath = path.join(dir, file);
+    if (fs.statSync(fullPath).isDirectory()) {
+      loadCommands(fullPath);
+    } else if (file.endsWith('.js')) {
+      const command = require(fullPath);
+      if (command && command.name) {
+        commands.set(command.name, command);
+        if (Array.isArray(command.aliases)) {
+          command.aliases.forEach(alias => commands.set(alias, command));
+        }
       }
     }
-  }
-});
+  });
+}
+loadCommands(commandsPath);
 
 // === Bot Events ===
 client.on('ready', async () => {
@@ -65,7 +71,7 @@ client.on('message', async (message) => {
   // Respond to mention with prefix
   let meseg = message.content.toLowerCase();
   if (meseg === `<@${client.user.id}>` || meseg === `<@!${client.user.id}>`) {
-    message.channel.send(`My Prefix = \`h.\``);
+    message.channel.send(`My Prefix = \`a.\``);
     return;
   }
   if (message.author.bot) return;

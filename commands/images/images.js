@@ -18,7 +18,7 @@ module.exports = {
     } else if (input !== "full" || input !== "raw" || input !== "regular") {
       if (!input)
         return message.channel.send(
-          "Gambar apa yang ingin kamu cari?\nSearch    : `h.images [Gambar]`\nRandom : `h.images full | raw | regular` "
+          "Gambar apa yang ingin kamu cari?\nSearch    : `a.images [Gambar]`\nRandom : `a.images full | raw | regular` "
         );
       try {
         const url = `https://api.unsplash.com/search/photos?page=1&query=${input}&client_id=Qmb9rVSNnmGqM_9c8YkJM6mtLjs3AzBn0dotq7-H4RE`;

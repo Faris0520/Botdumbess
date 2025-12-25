@@ -3,7 +3,7 @@ module.exports = {
   aliases: [],
   async execute({ message, input }) {
     const OpenAI = require('openai');
-    const openai = new OpenAI({ apiKey: process.env.OPENAI });
+    const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
     const url = `https://api.github.com/users/${input}`;
     const rep = `https://api.github.com/users/${input}/repos?sort=updated`;
     const got = (await import('got')).default;

@@ -3,7 +3,7 @@ module.exports = {
   aliases: [],
   async execute({ message, input }) {
     const OpenAI = require('openai');
-    const openai = new OpenAI({ baseURL: 'https://api.deepinfra.com/v1/openai', apiKey: process.env.DEEP });
+    const openai = new OpenAI({ baseURL: 'https://api.deepinfra.com/v1/openai', apiKey: process.env.DEEPSEEK_API_KEY });
     function formatThinkBlockquote(text) {
       return text.replace(/<think>([\s\S]*?)<\/think>/g, (match, content) => {
         return content.split('\n').map((line) => (line.trim() ? `-# ${line}` : '')).join('\n');

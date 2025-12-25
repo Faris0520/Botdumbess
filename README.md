@@ -31,6 +31,10 @@ https://discord.com/oauth2/authorize?client_id=727354971707932702&permissions=8&
 - `h.avatar` — Show user avatar
 - `h.serverinfo` — Info about the current server
 
+### AI
+- `h.ai`, `h.o1`, `h.4o`, `h.claude` — Chat with AI
+- `h.dalle` — Generate images with DALL-E
+
 ### Fun
 - `h.roast` — Roast your GitHub profile
 - `h.respect` — Show respect in the channel
@@ -50,9 +54,41 @@ https://discord.com/oauth2/authorize?client_id=727354971707932702&permissions=8&
 - `h.ip` — Info about an IP address
 - `h.google` — Google search results
 
-### AI
-- `h.ai`, `h.o1`, `h.4o`, `h.claude` — Chat with AI
-- `h.dalle` — Generate images with DALL-E
+
+## 🚀 Build & Setup Guide
+
+1. **Clone the repository**
+	```sh
+	git clone https://github.com/Faris0520/botdumbess.git
+	cd botdumbess
+	```
+
+2. **Install dependencies**
+	```sh
+	npm install
+	```
+
+3. **Configure environment variables**
+	- Create `.env` in the root of the project
+	- Add your Discord bot token:
+	  ```env
+	  TOKEN=your-discord-bot-token
+	  ```
+    - Optionally, add API keys for OpenAI, Anthropic, and Deep if you plan to use AI features:
+      ```env
+      OPENAI_API_KEY=your-openai-api-key
+      ANTHROPIC_API_KEY=your-anthropic-api-key
+      DEEPSEEK_API_KEY=your-deepseek-api-key
+      ```
+      You can obtain these keys from 
+      - https://platform.openai.com/, 
+      - https://console.anthropic.com/
+      - https://deepinfra.com/
+
+4. **Run the bot**
+	```sh
+	node index.js
+	```
 
 ---
 
