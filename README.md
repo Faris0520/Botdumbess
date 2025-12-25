@@ -1,58 +1,69 @@
 # Botdumbess
 
-A simple discord bot. (**Spaghetti code tbh**)
+A simple discord bot.
 
 <img src="https://github.com/user-attachments/assets/60250ee6-6bb4-4eb2-9334-49f6adae45e9" width=500>
 
 https://discord.com/oauth2/authorize?client_id=727354971707932702&permissions=8&scope=bot
 
-## Features
+> [!WARNING]
+> ⚠️ **This Discord.js version of this bot is deprecated** 
+> This bot uses discord.js v12. Some features or syntax may not work with newer Discord API versions. For best results, use Node.js v12–14 and refer to the [discord.js v12 documentation](https://discordjs.guide/additional-info/changes-in-v12.html).
 
-This bot includes a wide range of commands that can help you with various tasks, from fetching information to playing music. Here are some of the key features:
+## ✨ Features
 
-### Command List
+- **Modular command system**: Easily add or remove commands in the `commands/` folder.
+- **AI integration**: Chat with AI, generate images, and more.
+- **Fun & utility tools**: Roasts, Google search, IP lookup, and more.
+- **Music & media**: Download YouTube videos as MP3/MP4.
+- **Image tools**: Search images, take screenshots, get wallpapers.
+- **Prayer times**: Get adzan times for Indonesian cities.
 
-#### General Commands
-- **`h.help`**: Displays a list of all available commands and their descriptions.
-- **`h.ping`**: Check the bot's latency and API response time.
-- **`h.invite`**: Get the invite link to add the bot to your own server.
+## 📝 Command List
 
-#### User Commands
-- **`h.userinfo`**: Get information about yourself or a mentioned user.
-- **`h.avatar`**: Display the avatar of yourself or a mentioned user.
-- **`h.serverinfo`**: Get information about the current server.
+### General
+- `h.help` — Show all commands and descriptions
+- `h.ping` — Check bot latency
+- `h.invite` — Get the bot invite link
 
-#### Fun Commands
-- **`h.roast`**: A fun command to roast your github profile.
-- **`h.respect`**: Show respect to someone in the channel.
-- **`h.choose`**: Let the bot help you make a decision between two options.
+### User
+- `h.userinfo` — Info about you or a mentioned user
+- `h.avatar` — Show user avatar
+- `h.serverinfo` — Info about the current server
 
-#### Image Commands
-- **`h.images`**: Search for images or get random images from Unsplash.
-- **`h.ss`**: Take a screenshot of a given URL.
-- **`h.wallpaper`**: Get a random wallpaper based on your search query.
+### Fun
+- `h.roast` — Roast your GitHub profile
+- `h.respect` — Show respect in the channel
+- `h.choose` — Let the bot decide between options
 
-#### Music Commands
-- **`h.ytdl`**: Download YouTube videos in MP4 format.
-- **`h.ytmp3`**: Download YouTube videos as MP3 audio files.
+### Images
+- `h.images` — Search or get random images
+- `h.ss` — Screenshot a URL
+- `h.wallpaper` — Get a random wallpaper
 
-#### Utility Commands
-- **`h.adzan`**: Get prayer times for a specified city in Indonesia.
-- **`h.ip`**: Get information about a specific IP address.
-- **`h.google`**: Perform a Google search and get the top results.
+### Music
+- `h.ytdl` — Download YouTube videos (MP4)
+- `h.ytmp3` — Download YouTube audio (MP3)
 
-#### AI Commands
-- **`h.ai` `h.o1` `h.4o` `h.claude`**: Ask questions to the AI and get responses.
-- **`h.dalle`**: Generate images based on your prompts using DALL-E.
+### Utility
+- `h.adzan` — Prayer times for Indonesian cities
+- `h.ip` — Info about an IP address
+- `h.google` — Google search results
 
-### Contributing
-
-If you would like to contribute to this project, feel free to fork the repository and submit a pull request. Any improvements or new features are welcome!
-
-### License
-
-This project is licensed under the MIT License. See the LICENSE file for more details.
+### AI
+- `h.ai`, `h.o1`, `h.4o`, `h.claude` — Chat with AI
+- `h.dalle` — Generate images with DALL-E
 
 ---
 
-Enjoy using the bot and have fun exploring all the commands it has to offer! If you have any questions or suggestions, feel free to reach out.
+## 🤝 Contributing
+
+Contributions are welcome! Fork the repo, make your changes, and submit a pull request.
+
+## 📄 License
+
+MIT License. See [LICENSE](LICENSE) for details.
+
+---
+
+Enjoy using **Botdumbess**! For questions or suggestions, open an issue or reach out.
