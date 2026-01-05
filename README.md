@@ -13,7 +13,7 @@ A simple discord bot.
 
 https://discord.com/oauth2/authorize?client_id=727354971707932702&permissions=8&scope=bot
 
-## ✨ Features
+## Features
 
 - **Modular command system**: Easily add or remove commands in the `commands/` folder.
 - **AI integration**: Chat with AI, generate images, and more.
@@ -22,7 +22,7 @@ https://discord.com/oauth2/authorize?client_id=727354971707932702&permissions=8&
 - **Image tools**: Search images, take screenshots, get wallpapers.
 - **Prayer times**: Get adzan times for Indonesian cities.
 
-## 📝 Command List
+## Command List
 
 ### General
 - `h.help` — Show all commands and descriptions
@@ -58,7 +58,7 @@ https://discord.com/oauth2/authorize?client_id=727354971707932702&permissions=8&
 - `h.google` — Google search results
 
 
-## 🚀 Build & Setup Guide
+## Build & Setup Guide
 
 1. **Clone the repository**
 	```sh
@@ -77,7 +77,7 @@ https://discord.com/oauth2/authorize?client_id=727354971707932702&permissions=8&
 	  ```env
 	  TOKEN=your-discord-bot-token
 	  ```
-    - Optionally, add API keys for OpenAI, Anthropic, and Deep if you plan to use AI features:
+    - Optionally, add API keys for OpenAI, Anthropic, and Deepseek if you plan to use AI features:
       ```env
       OPENAI_API_KEY=your-openai-api-key
       ANTHROPIC_API_KEY=your-anthropic-api-key
@@ -95,11 +95,11 @@ https://discord.com/oauth2/authorize?client_id=727354971707932702&permissions=8&
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Fork the repo, make your changes, and submit a pull request.
 
-## 📄 License
+## License
 
 MIT License. See [LICENSE](LICENSE) for details.
 
