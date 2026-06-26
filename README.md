@@ -14,7 +14,7 @@ A simple discord bot.
 https://discord.com/oauth2/authorize?client_id=727354971707932702&permissions=8&scope=bot
 
 ## Features
-
+ 
 - **Modular command system**: Easily add or remove commands in the `commands/` folder.
 - **AI integration**: Chat with AI, generate images, and more.
 - **Fun & utility tools**: Roasts, Google search, IP lookup, and more.
