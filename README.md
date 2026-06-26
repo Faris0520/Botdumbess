@@ -4,7 +4,7 @@
 > This bot uses discord.js v12. Some features or syntax may not work with newer Discord API versions. For best results, use discord.js v14 and refer to the [discord.js v14 documentation](https://discord.js.org/docs/packages/discord.js/14.25.1).
 >
 > *I will try to recreate the code using the latest version in the near future.*
-
+ 
 # Botdumbess
 
 A simple discord bot.
